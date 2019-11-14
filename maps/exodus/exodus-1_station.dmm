@@ -22573,7 +22573,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/secondary/entry/port)
 "aPU" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /obj/machinery/camera/network/exodus{
 	c_tag = "Arrivals South"
 	},
@@ -26425,7 +26425,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "aXg" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "aXh" = (
@@ -43925,7 +43925,7 @@
 /turf/simulated/floor/tiled,
 /area/teleporter)
 "bCm" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;

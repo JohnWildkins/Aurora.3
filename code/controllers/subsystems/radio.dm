@@ -78,7 +78,7 @@ Radio:
 1349 - Service people
 
 Devices:
-1451 - tracking implant
+1451 - tracking implant / beacons
 1457 - RSD default
 
 On the map:

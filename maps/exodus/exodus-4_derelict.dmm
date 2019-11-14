@@ -473,7 +473,7 @@
 /turf/simulated/floor/tiled,
 /area/constructionsite/teleporter)
 "bg" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/simulated/floor/tiled,
 /area/constructionsite/teleporter)
 "bh" = (

@@ -113,6 +113,7 @@ var/list/DEPT_FREQS_ASSOC = list(
 #define RADIO_CHAT "radio_telecoms"
 #define RADIO_ATMOSIA "radio_atmos"
 #define RADIO_NAVBEACONS "radio_navbeacon"
+#define RADIO_TELEBEACONS "radio_telebeacon"
 #define RADIO_AIRLOCK "radio_airlock"
 #define RADIO_SECBOT "radio_secbot"
 #define RADIO_MULEBOT "radio_mulebot"

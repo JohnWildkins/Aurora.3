@@ -8739,7 +8739,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "aqT" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "aqU" = (
@@ -16146,7 +16146,7 @@
 /turf/simulated/floor/tiled,
 /area/teleporter)
 "aDf" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /obj/machinery/camera/network/command{
 	c_tag = "Bridge - Teleporter"
 	},

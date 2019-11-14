@@ -232,7 +232,7 @@ other types of metals and chemistry for reagents).
 	id = "beacon"
 	req_tech = list(TECH_BLUESPACE = 1)
 	materials = list (DEFAULT_WALL_MATERIAL = 20, "glass" = 10)
-	build_path = /obj/item/device/radio/beacon
+	build_path = /obj/item/device/beacon
 	sort_string = "VADAA"
 
 /datum/design/item/bag_holding

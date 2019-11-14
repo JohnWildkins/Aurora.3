@@ -63,7 +63,7 @@
 		return 1
 	if(istype(A,/obj/machinery/nuclearbomb))
 		return 1
-	if(istype(A,/obj/item/device/radio/beacon))
+	if(istype(A,/obj/item/device/beacon))
 		return 1
 	if(istype(A,/obj/item/phylactery))
 		return 1

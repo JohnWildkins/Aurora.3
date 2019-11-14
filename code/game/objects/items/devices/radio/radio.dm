@@ -546,7 +546,7 @@ var/global/list/default_medbay_channels = list(
 	if (!( W.isscrewdriver() ))
 		return
 	b_stat = !( b_stat )
-	if(!istype(src, /obj/item/device/radio/beacon))
+	if(!istype(src, /obj/item/device/beacon))
 		if (b_stat)
 			user.show_message("<span class='notice'>\The [src] can now be attached and modified!</span>")
 		else

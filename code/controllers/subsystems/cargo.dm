@@ -561,7 +561,7 @@ var/datum/controller/subsystem/cargo/SScargo
 		return 1
 	if(istype(A,/obj/machinery/nuclearbomb))
 		return 1
-	if(istype(A,/obj/item/device/radio/beacon))
+	if(istype(A,/obj/item/device/beacon))
 		return 1
 
 	for(var/i=1, i<=A.contents.len, i++)

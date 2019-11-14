@@ -89,7 +89,7 @@
 	var/list/L = list()
 	var/list/areaindex = list()
 
-	for(var/obj/item/device/radio/beacon/R in teleportbeacons)
+	for(var/obj/item/device/beacon/R in teleportbeacons)
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
