@@ -37,20 +37,20 @@ var/global/list/teleportbeacons = list()
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
-		updateDialog()
+		updateUsrDialog()
 	return
 
 /obj/item/device/beacon/attack_ai(mob/user)
 	interact(user, TRUE)
 
-/obj/item/device/beacon/attack_hand(mob/user)
+/obj/item/device/beacon/attack_self(mob/user)
 	if(!user.IsAdvancedToolUser())
-			return 0
+		return 0
 
 	interact(user)
 	src.add_fingerprint(user)
 
-/obj/item/device/beacon/proc/interact(mob/user, ai = FALSE)
+/obj/item/device/beacon/interact(mob/user, ai = FALSE)
 	var/menu = ""
 
 	menu += "<TT><B>Tracking Beacon</B><HR><BR>"
@@ -76,22 +76,22 @@ var/global/list/teleportbeacons = list()
 
 	if(href_list["freq"])
 		freq = sanitize_frequency(freq + text2num(href_list["freq"]))
-		updateDialog()
+		updateUsrDialog()
 	if(href_list["edit"])
 		var/new_code = sanitize(input("Enter New Transponder", "Tracking Beacon", code))
 		if(!new_code)
 			return
 		code = new_code
-		updateDialog()
+		updateUsrDialog()
 
 /obj/item/device/beacon/receive_signal(datum/signal/signal)
 	if(signal.data["ping_all_beacons"])
-		addtimer(CALLBACK(src, .proc/post_signal), 1)
+		addtimer(CALLBACK(src, .proc/post_signal), 0)
 	if(signal.data["ping_beacon"])
 		var/challenge = signal.data["ping_beacon"]
-		if(!challenge || !code || challenge != code)
+		if(!challenge || challenge != code)
 			return
-		addtimer(CALLBACK(src, .proc/post_signal), 1)
+		addtimer(CALLBACK(src, .proc/post_signal), 0)
 
 /obj/item/device/beacon/proc/post_signal()
 	var/datum/radio_frequency/RF = SSradio.return_frequency(freq)

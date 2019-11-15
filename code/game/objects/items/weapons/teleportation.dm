@@ -24,6 +24,19 @@
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 400)
 
+	var/datum/teleporter/teleporter
+
+/obj/item/weapon/locator/Destroy()
+	if(teleporter)
+		qdel(teleporter)
+	..()
+
+/obj/item/weapon/locator/proc/ping_beacons(code = null)
+	if(!teleporter)
+		teleporter = new(src, frequency)
+
+	teleporter.post_signal(code)
+
 /obj/item/weapon/locator/attack_self(mob/user as mob)
 	user.set_machine(src)
 	var/dat
@@ -43,79 +56,82 @@ Frequency:
 	onclose(user, "radio")
 	return
 
+/obj/item/weapon/locator/proc/refresh()
+	src.temp = "<B>Persistent Signal Locator</B><HR>"
+	var/turf/sr = get_turf(src)
+
+	if (sr)
+		src.temp += "<B>Located Beacons:</B><BR>"
+
+		for(var/obj/item/device/beacon/W in teleporter.availablebeacons)
+			var/turf/tr = get_turf(W)
+			if (tr.z == sr.z && tr)
+				var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+				if (direct < 5)
+					direct = "very strong"
+				else
+					if (direct < 10)
+						direct = "strong"
+					else
+						if (direct < 20)
+							direct = "weak"
+						else
+							direct = "very weak"
+				src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
+
+		src.temp += "<B>Extraneous Signals:</B><BR>"
+		for (var/obj/item/weapon/implant/tracking/W in implants)
+			if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc)))
+				continue
+			else
+				var/mob/M = W.loc
+				if (M.stat == 2)
+					if (M.timeofdeath + 6000 < world.time)
+						continue
+
+			var/turf/tr = get_turf(W)
+			if (tr.z == sr.z && tr)
+				var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
+				if (direct < 20)
+					if (direct < 5)
+						direct = "very strong"
+					else
+						if (direct < 10)
+							direct = "strong"
+						else
+							direct = "weak"
+					src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
+
+		src.temp += "<B>You are at \[[sr.x],[sr.y],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
+	else
+		src.temp += "<B><FONT color='red'>Processing Error:</FONT></B> Unable to locate orbital position.<BR>"
+
+	updateUsrDialog()
+
+
 /obj/item/weapon/locator/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return
 	var/turf/current_location = get_turf(usr)//What turf is the user on?
-	if(!current_location||current_location.z==1)//If turf was not found or they're on z level 1.
+	if(!current_location)//If turf was not found or they're on z level 1.
 		to_chat(usr, "The [src] is malfunctioning.")
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
 		if (href_list["refresh"])
-			src.temp = "<B>Persistent Signal Locator</B><HR>"
-			var/turf/sr = get_turf(src)
-
-			if (sr)
-				src.temp += "<B>Located Beacons:</B><BR>"
-
-				for(var/obj/item/device/beacon/W in teleportbeacons)
-					if (W.frequency == src.frequency)
-						var/turf/tr = get_turf(W)
-						if (tr.z == sr.z && tr)
-							var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
-							if (direct < 5)
-								direct = "very strong"
-							else
-								if (direct < 10)
-									direct = "strong"
-								else
-									if (direct < 20)
-										direct = "weak"
-									else
-										direct = "very weak"
-							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
-
-				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/weapon/implant/tracking/W in implants)
-					if (!W.implanted || !(istype(W.loc,/obj/item/organ/external) || ismob(W.loc)))
-						continue
-					else
-						var/mob/M = W.loc
-						if (M.stat == 2)
-							if (M.timeofdeath + 6000 < world.time)
-								continue
-
-					var/turf/tr = get_turf(W)
-					if (tr.z == sr.z && tr)
-						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
-						if (direct < 20)
-							if (direct < 5)
-								direct = "very strong"
-							else
-								if (direct < 10)
-									direct = "strong"
-								else
-									direct = "weak"
-							src.temp += "[W.id]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
-
-				src.temp += "<B>You are at \[[sr.x],[sr.y],[sr.z]\]</B> in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
-			else
-				src.temp += "<B><FONT color='red'>Processing Error:</FONT></B> Unable to locate orbital position.<BR>"
+			ping_beacons()
+			src.temp += "Pinging active beacons..."
+			addtimer(CALLBACK(src, .proc/refresh), 2)
 		else
 			if (href_list["freq"])
 				src.frequency += text2num(href_list["freq"])
 				src.frequency = sanitize_frequency(src.frequency)
-			else
-				if (href_list["temp"])
-					src.temp = null
-		if (istype(src.loc, /mob))
-			attack_self(src.loc)
-		else
-			for(var/mob/M in viewers(1, src))
-				if (M.client)
-					src.attack_self(M)
+				if(teleporter)
+					teleporter.freq = frequency
+			else if (href_list["temp"])
+				src.temp = null
+			updateUsrDialog()
 	return
 
 
