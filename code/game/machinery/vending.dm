@@ -10,14 +10,20 @@
 	var/display_color = null  // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	var/icon/product_icon
 	var/icon/icon_state
 >>>>>>> VueUI Vending Machines
+=======
+	var/icon/product_icon
+	var/icon/icon_state
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 
 /datum/data/vending_product/New(var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
 	..()
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	src.product_path = path
 
@@ -31,6 +37,13 @@
 	if(!name)
 		product_name = initial(A.name)
 >>>>>>> VueUI Vending Machines
+=======
+	product_path = path
+	var/atom/A = new path(null)
+
+	if(!name)
+		product_name = initial(A.name)
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 	else
 		product_name = name
 
@@ -39,7 +52,10 @@
 	src.display_color = color
 	src.category = category
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 	if(istype(A, /obj/item/seeds))
 		// thanks seeds for being overlays defined at runtime
 		var/obj/item/seeds/S = A
@@ -48,7 +64,10 @@
 		product_icon = new /icon(A.icon, A.icon_state)
 	icon_state = product_icon
 	QDEL_NULL(A)
+<<<<<<< HEAD
 >>>>>>> VueUI Vending Machines
+=======
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 
 /**
  *  A vending machine
@@ -560,6 +579,7 @@
 		var/list/listed_products = list()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for(var/key = 1 to src.product_records.len)
 			var/datum/data/vending_product/I = src.product_records[key]
 
@@ -595,6 +615,25 @@
 			VUEUI_SET_CHECK(data["products"][t_key]["price"], I.price, ., data)
 			VUEUI_SET_CHECK(data["products"][t_key]["amount"], I.amount, ., data)
 
+=======
+	if(!(LAZYLEN(data["products"])) || LAZYLEN(data["products"]) != LAZYLEN(product_records))
+		for(var/key = 1 to LAZYLEN(product_records))
+			var/t_key = num2text(key)
+			var/datum/data/vending_product/I = product_records[key]
+			var/product_name = capitalize_first_letters(strip_improper(I.product_name))
+
+			if(!(I.category & categories))
+				continue
+
+			LAZYINITLIST(data["products"])
+			LAZYINITLIST(data["products"][t_key])
+
+			VUEUI_SET_CHECK(data["products"][t_key]["key"], t_key, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["name"], product_name, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["price"], I.price, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["amount"], I.amount, ., data)
+
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 			ui.add_asset(t_key, I.icon_state)
 	else if(sel_key && product_records[sel_key])
 		var/datum/data/vending_product/V = product_records[sel_key]
@@ -697,9 +736,12 @@
 	src.status_message = "Vending..."
 	src.status_error = 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 	SSnanoui.update_uis(src)
 =======
 >>>>>>> VueUI Vending Machines
+=======
+>>>>>>> f62b9b96d6ab4ff2245a660d5cf277e89f277bd3
 
 	if (R.category & CAT_COIN)
 		if(!coin)
