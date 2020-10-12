@@ -9,22 +9,46 @@
 	var/price = 0  // Price to buy one
 	var/display_color = null  // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
+<<<<<<< HEAD
+=======
+	var/icon/product_icon
+	var/icon/icon_state
+>>>>>>> VueUI Vending Machines
 
 /datum/data/vending_product/New(var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
 	..()
 
+<<<<<<< HEAD
 	src.product_path = path
 
 	if(!name)
 		var/atom/tmp = path
 		src.product_name = initial(tmp.name)
+=======
+	product_path = path
+	var/atom/A = new path(null)
+
+	if(!name)
+		product_name = initial(A.name)
+>>>>>>> VueUI Vending Machines
 	else
-		src.product_name = name
+		product_name = name
 
 	src.amount = amount
 	src.price = price
 	src.display_color = color
 	src.category = category
+<<<<<<< HEAD
+=======
+	if(istype(A, /obj/item/seeds))
+		// thanks seeds for being overlays defined at runtime
+		var/obj/item/seeds/S = A
+		product_icon = S.update_appearance(TRUE)
+	else
+		product_icon = new /icon(A.icon, A.icon_state)
+	icon_state = product_icon
+	QDEL_NULL(A)
+>>>>>>> VueUI Vending Machines
 
 /**
  *  A vending machine
@@ -109,6 +133,8 @@
 
 	var/global/list/screen_overlays
 	var/exclusive_screen = TRUE // Are we not allowed to show the deny and screen states at the same time?
+
+	var/ui_size = 80 // this is for scaling the ui buttons - i've settled on 80x80 for machines with prices, and 60x60 for those without and with large inventories (boozeomat)
 
 	light_range = 2
 	light_power = 1
@@ -502,18 +528,38 @@
 /obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	user.set_machine(src)
 
+<<<<<<< HEAD
 	var/list/data = list()
 	if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.product_name
 		data["price"] = currently_vending.price
 		data["message_err"] = 0
+=======
+	var/datum/vueui/ui = SSvueui.get_open_ui(user, src)
+	if(!ui)
+		ui = new(user, src, "machinery-vending", 425, 500, capitalize(name), state=state)
+
+	ui.open()
+
+/obj/machinery/vending/vueui_data_change(list/data, mob/user, datum/vueui/ui)
+	LAZYINITLIST(data)
+
+	VUEUI_SET_CHECK_IFNOTSET(data["ui_size"], ui_size, ., data)
+
+	if(currently_vending || !vend_ready)
+		data["mode"] = 1
+		data["sel_key"] = sel_key
+		data["sel_name"] = capitalize_first_letters(strip_improper(currently_vending.product_name))
+		data["sel_price"] = currently_vending.price
+>>>>>>> VueUI Vending Machines
 		data["message"] = src.status_message
 		data["message_err"] = src.status_error
 	else
 		data["mode"] = 0
 		var/list/listed_products = list()
 
+<<<<<<< HEAD
 		for(var/key = 1 to src.product_records.len)
 			var/datum/data/vending_product/I = src.product_records[key]
 
@@ -531,6 +577,34 @@
 
 	if(src.coin)
 		data["coin"] = src.coin.name
+=======
+	if(!(LAZYLEN(data["products"])) || LAZYLEN(data["products"]) != LAZYLEN(product_records))
+		for(var/key = 1 to LAZYLEN(product_records))
+			var/t_key = num2text(key)
+			var/datum/data/vending_product/I = product_records[key]
+			var/product_name = capitalize_first_letters(strip_improper(I.product_name))
+
+			if(!(I.category & categories))
+				continue
+
+			LAZYINITLIST(data["products"])
+			LAZYINITLIST(data["products"][t_key])
+
+			VUEUI_SET_CHECK(data["products"][t_key]["key"], t_key, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["name"], product_name, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["price"], I.price, ., data)
+			VUEUI_SET_CHECK(data["products"][t_key]["amount"], I.amount, ., data)
+
+			ui.add_asset(t_key, I.icon_state)
+	else if(sel_key && product_records[sel_key])
+		var/datum/data/vending_product/V = product_records[sel_key]
+		VUEUI_SET_CHECK(data["products"][num2text(sel_key)]["amount"], V.amount, ., data)
+
+	if(coin)
+		data["coin"] = coin.name
+	else
+		data["coin"] = null
+>>>>>>> VueUI Vending Machines
 
 	if(src.panel_open)
 		data["panel"] = 1
@@ -622,7 +696,10 @@
 	src.vend_ready = 0 //One thing at a time!!
 	src.status_message = "Vending..."
 	src.status_error = 0
+<<<<<<< HEAD
 	SSnanoui.update_uis(src)
+=======
+>>>>>>> VueUI Vending Machines
 
 	if (R.category & CAT_COIN)
 		if(!coin)
@@ -648,6 +725,7 @@
 			categories &= ~CAT_COIN
 
 	R.amount--
+	SSvueui.check_uis_for_change(src)
 
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
@@ -743,6 +821,7 @@
 		while(R.amount>0)
 			new dump_path(get_random_turf_in_range(src, 1, 1, TRUE))
 			R.amount--
+			SSvueui.check_uis_for_change(src)
 		break
 
 	stat |= BROKEN
@@ -764,6 +843,7 @@
 			continue
 
 		R.amount--
+		SSvueui.check_uis_for_change(src)
 		throw_item = new dump_path(src.loc)
 		break
 	if (!throw_item)
