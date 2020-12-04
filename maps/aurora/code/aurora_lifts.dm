@@ -115,23 +115,31 @@
 
 	lift_size_x = 4
 	lift_size_y = 4
-	depth = 2
+	depth = 3
 
 	areas_to_use = list(
 		/area/turbolift/research_maintenance,
-		/area/turbolift/research_station
+		/area/turbolift/research_station,
+		/area/turbolift/research_interstitial
 		)
+
+/area/turbolift/research_interstitial
+	name = "Interstitial - Above Research"
+	lift_announce_str = "Arriving at the Research Upper Level. Facilities on this floor include: Astrometrics Labs."
+
+	lift_floor_label = "Upper Level (Research)"
+	lift_floor_name = "Upper Level (Research)"
 
 /area/turbolift/research_station
 	name = "Station - By Research"
-	lift_announce_str = "Arriving at the Research Main Level. Facilities in this floor include: Research and Development, Robotics, Telescience, Miscellaneous Research, Conference Room."
+	lift_announce_str = "Arriving at the Research Main Level. Facilities on this floor include: Research and Development, Robotics, Telescience, Miscellaneous Research, Conference Room."
 
 	lift_floor_label = "Main Level (Research)"
 	lift_floor_name = "Main Level (Research)"
 
 /area/turbolift/research_maintenance
 	name = "Maintenance - Below Research"
-	lift_announce_str = "Arriving at the Research Sub-Level. Facilities in this floor include: Xenoarcheology, Toxins, Bomb Range, Test Range, Xenobiology, Xenobotany."
+	lift_announce_str = "Arriving at the Research Sub-Level. Facilities on this floor include: Xenoarcheology, Toxins, Bomb Range, Test Range, Xenobiology, Xenobotany."
 	base_turf = /turf/simulated/floor/plating
 
 	lift_floor_label = "Sub-Level (Research)"

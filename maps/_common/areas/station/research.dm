@@ -39,6 +39,10 @@
 	name = "Research and Development"
 	icon_state = "research"
 
+/area/rnd/astrometrics
+	name = "Research - Astrometrics Laboratory"
+	icon_state = "astro"
+
 /area/rnd/telesci
 	name = "Research - Telescience Laboratory"
 	icon_state = "research"
