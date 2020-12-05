@@ -8482,6 +8482,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/astrometrics)
 "Ai" = (
@@ -8933,6 +8937,15 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
+"CF" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/item/reagent_containers/pill/dexalin_plus,
+/turf/simulated/floor/airless{
+	icon_state = "asteroidplating"
+	},
+/area/mine/unexplored)
 "CL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -12666,6 +12679,7 @@
 /obj/effect/floor_decal/corner_wide/mauve{
 	dir = 6
 	},
+/obj/structure/table/reinforced/steel,
 /turf/simulated/floor/tiled/white,
 /area/rnd/astrometrics)
 "Ti" = (
@@ -13126,6 +13140,13 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/item/stack/medical/bruise_pack/full,
+/obj/item/stack/medical/bruise_pack/full,
+/obj/item/stack/medical/ointment/full,
+/obj/item/stack/medical/ointment/full,
+/obj/item/reagent_containers/pill/dexalin_plus,
+/obj/item/reagent_containers/pill/dexalin_plus,
+/obj/item/reagent_containers/pill/dexalin_plus,
 /turf/simulated/floor/tiled/white,
 /area/rnd/astrometrics)
 "Vn" = (
@@ -30050,7 +30071,7 @@ mg
 mg
 mg
 mg
-mg
+CF
 DF
 ab
 ab

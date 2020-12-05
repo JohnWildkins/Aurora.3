@@ -467,6 +467,20 @@
 		. += ascii2text(letter)
 	. = jointext(.,null)
 
+/proc/generateRandomAlphanumericString(length)
+	. = list()
+	var/val = 65
+	for(var/a in 1 to length)
+		switch(rand(1, 3))
+			if(1)
+				val = rand(48, 57)
+			if(2)
+				val = rand(65, 90)
+			if(3)
+				val = rand(97, 122)
+		. += ascii2text(val)
+	. = jointext(., null)
+
 #define starts_with(string, substring) (copytext(string,1,1+length(substring)) == substring)
 
 #define gender2text(gender) capitalize(gender)
