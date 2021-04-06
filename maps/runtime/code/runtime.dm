@@ -25,3 +25,10 @@
 		NETWORK_COMMAND,
 		NETWORK_ENGINEERING,
 	)
+
+	use_overmap = TRUE
+
+/obj/effect/overmap/visitable/ship/runtime
+	name = "NSV Runtime"
+	desc = "To boldly go where shitcode's gone before."
+	base = TRUE

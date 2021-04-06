@@ -27,7 +27,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/airless,
-/area/template_noop)
+/area/engineering)
 "ah" = (
 /turf/simulated/wall/r_wall,
 /area/engineering)
@@ -54,7 +54,7 @@
 	icon_state = "1-4"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "am" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -68,7 +68,7 @@
 	icon_state = "2-8"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "an" = (
 /obj/machinery/alarm{
 	locked = 0;
@@ -185,7 +185,7 @@
 	output_attempt = 1
 	},
 /turf/simulated/floor/airless,
-/area/template_noop)
+/area/engineering)
 "az" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -204,7 +204,7 @@
 	icon_state = "2-4"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "aA" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -213,7 +213,7 @@
 	icon_state = "4-8"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "aB" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -311,7 +311,7 @@
 	icon_state = "2-4"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "aN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -323,7 +323,7 @@
 	icon_state = "1-2"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "aO" = (
 /obj/item/device/flashlight{
 	pixel_y = 5
@@ -420,7 +420,7 @@
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable,
 /turf/simulated/floor/airless,
-/area/template_noop)
+/area/engineering)
 "ba" = (
 /obj/item/weldingtool/experimental,
 /obj/structure/table/standard,
@@ -645,7 +645,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge)
 "bE" = (
-/obj/structure/table/standard,
+/obj/machinery/computer/ship/engines,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "bF" = (
@@ -656,6 +656,7 @@
 "bG" = (
 /obj/item/storage/backpack/holding,
 /obj/structure/table/standard,
+/obj/machinery/shipsensors,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "bH" = (
@@ -832,6 +833,7 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 9
 	},
+/obj/machinery/computer/ship/navigation,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "cb" = (
@@ -851,6 +853,7 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
 	},
+/obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "cd" = (
@@ -1452,6 +1455,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/hallway/primary/central_one)
+"iL" = (
+/obj/structure/lattice,
+/obj/machinery/shipsensors,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/template_noop,
+/area/engineering)
 "jf" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1504,6 +1517,11 @@
 	},
 /obj/machinery/computer/security,
 /turf/simulated/floor/tiled,
+/area/bridge)
+"nB" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced,
+/obj/machinery/shipsensors,
+/turf/simulated/floor/plating,
 /area/bridge)
 "ob" = (
 /obj/machinery/light{
@@ -1568,7 +1586,7 @@
 	dir = 4
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/engineering)
 "zP" = (
 /obj/machinery/camera/network/civilian_main{
 	c_tag = "Central Corridor 2";
@@ -1632,6 +1650,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/construction)
+"IQ" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/engineering)
 "Kz" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 4
@@ -1650,6 +1672,14 @@
 	c_tag = "Central Corridor 3";
 	dir = 8
 	},
+/turf/simulated/floor/tiled,
+/area/hallway/primary/central_one)
+"LJ" = (
+/obj/machinery/computer/ship/helm,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"OL" = (
+/obj/effect/overmap/visitable/ship/runtime,
 /turf/simulated/floor/tiled,
 /area/hallway/primary/central_one)
 "PS" = (
@@ -1674,6 +1704,20 @@
 /obj/machinery/computer/station_alert/all,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"TH" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/template_noop,
+/area/engineering)
 "TP" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -2748,13 +2792,13 @@ aa
 ab
 aa
 ad
-ab
-ab
-ab
+IQ
+IQ
+IQ
 yC
-ab
-ab
-ab
+IQ
+IQ
+IQ
 br
 bD
 ca
@@ -2802,13 +2846,13 @@ aa
 ab
 aa
 ad
-ab
+IQ
 ag
 al
 ay
 aM
 aZ
-ab
+IQ
 bs
 bE
 cb
@@ -2856,15 +2900,15 @@ aa
 ab
 aa
 ad
-ab
+IQ
 ag
 am
 az
 aN
 aZ
-ab
+IQ
 bs
-bE
+LJ
 cb
 mn
 br
@@ -2910,20 +2954,20 @@ aa
 ab
 aa
 ad
-ab
-ab
-ab
-aA
-ab
-ab
-ab
+IQ
+IQ
+iL
+TH
+IQ
+IQ
+IQ
 bs
 bF
 tT
 cm
 cs
 cA
-bB
+OL
 bB
 cN
 cV
@@ -2966,12 +3010,12 @@ aa
 ad
 aa
 aa
-ab
+IQ
 aA
-ab
+IQ
 aa
 aa
-bs
+nB
 bG
 cb
 RL

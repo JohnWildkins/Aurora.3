@@ -42,6 +42,8 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	ui_interact(user)
 
 /obj/machinery/computer/ship/Topic(href, href_list)
+	if(..())
+		return TOPIC_HANDLED
 	if(href_list["sync"])
 		sync_linked()
 		return TOPIC_REFRESH
@@ -81,8 +83,10 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		look(user)
 
 /obj/machinery/computer/ship/check_eye(var/mob/user)
+	if(!viewing_overmap(user))
+		return FALSE
+
 	if (use_check_and_message(user) || user.blinded || inoperable() || !linked)
-		unlook(user)
 		return -1
 	else
 		return 0
