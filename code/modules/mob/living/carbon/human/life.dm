@@ -448,7 +448,7 @@
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.
 		bodytemperature += species.passive_temp_gain
-	if (species.body_temperature == null)
+	if (species.body_temperature == null || species.flags & IS_IPC)
 		return //this species doesn't have metabolic thermoregulation
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
@@ -1396,6 +1396,7 @@
 	else if (last_oxy_overlay)
 		damageoverlay.cut_overlay(last_oxy_overlay)
 		last_oxy_overlay = null
+<<<<<<< Updated upstream
 
 //Fevers
 //This handles infection fevers as well as fevers caused by chem effects
@@ -1445,3 +1446,5 @@
 	if(fever >= 7 && prob(10)) // your organs are boiling, figuratively speaking
 		var/obj/item/organ/internal/IO = pick(internal_organs)
 		IO.take_internal_damage(1)
+=======
+>>>>>>> Stashed changes

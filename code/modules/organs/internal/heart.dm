@@ -17,6 +17,63 @@
 	var/next_blood_squirt = 0
 	var/list/external_pump
 
+/obj/item/organ/internal/heart/coolant_pump
+	name = "liquid coolant pump"
+	var/pumping = FALSE
+	var/evaporating = FALSE
+
+/obj/item/organ/internal/heart/coolant_pump/Initialize()
+	. = ..()
+	status |= ORGAN_ROBOT
+
+/obj/item/organ/internal/heart/coolant_pump/process()
+	if(owner)
+		handle_coolant()
+	..()
+
+/obj/item/organ/internal/heart/coolant_pump/proc/handle_coolant()
+	var/mob/living/carbon/human/H = owner
+	if(!istype(owner) || !H?.species)
+		return
+
+	var/coolant_vol = round(owner.vessel.get_reagent_amount(owner.species.blood_type))
+	var/datum/reagent/blood/coolant/coolant = owner.vessel.get_reagent(owner.species.blood_type)
+
+	if(!coolant || coolant_vol <= 0)
+		coolant_vol = 0
+		if(pumping)
+			pumping = FALSE
+			to_chat(H, SPAN_WARNING("You hear a sputter as your coolant pump stops dead. You're out of coolant!"))
+		return
+
+	var/turf/T = get_turf(H)
+	var/datum/gas_mixture/environment = T ? T.return_air() : null
+	var/pressure =  environment ? environment.return_pressure() : 0
+
+	if(coolant.get_temperature() < H.bodytemperature)
+		coolant.set_temperature(H.bodytemperature)
+	H.bodytemperature = min(H.bodytemperature, H.species.heat_discomfort_level)
+
+	to_world("Coolant: [coolant.get_temperature()] K / Body: [H.bodytemperature] K")
+
+	if(coolant.get_temperature() >= H.species.heat_level_1 || (pumping && coolant.get_temperature() >= H.species.heat_discomfort_level))
+		if(!pumping)
+			pumping = TRUE
+			to_chat(H, SPAN_NOTICE("You hear a click as your coolant pump whirrs to life."))
+			playsound(H, 'sound/machines/click.ogg', 20, 1)
+		if(pressure > owner.species.warning_low_pressure)
+			// Atmospheric pressure is greater than 50 kPa. Open cycle cooling.
+			if(!evaporating)
+				evaporating = TRUE
+				to_chat(H, SPAN_NOTICE("Fans spool up on the rear of your chassis."))
+		else
+			// Atmospheric pressure is below 50 kPa. Closed cycle cooling.
+	else if(pumping && H.species.heat_discomfort_level > coolant.get_temperature())
+		pumping = FALSE
+		evaporating = FALSE
+		to_chat(H, SPAN_NOTICE("You hear a click as your coolant pump returns to idle."))
+		playsound(H, 'sound/machines/click.ogg', 20, 1)
+
 /obj/item/organ/internal/heart/process()
 	if(owner)
 		handle_pulse()
@@ -112,10 +169,11 @@
 	if(owner.species && owner.species.flags & NO_BLOOD)
 		return
 
-	if(!owner || owner.stat == DEAD || owner.bodytemperature < 170 || owner.InStasis())	//Dead or cryosleep people do not pump the blood.
+	if(owner.stat == DEAD || owner.bodytemperature < 170 || owner.InStasis())	//Dead or cryosleep people do not pump the blood.
 		return
 
 	if(pulse != PULSE_NONE || BP_IS_ROBOTIC(src))
+<<<<<<< Updated upstream
 		var/blood_volume = round(REAGENT_VOLUME(owner.vessel, /decl/reagent/blood))
 
 		//Blood regeneration if there is some space
@@ -125,13 +183,25 @@
 				if(blood_volume <= BLOOD_VOLUME_SAFE) //We lose nutrition and hydration very slowly if our blood is too low
 					owner.adjustNutritionLoss(2)
 					owner.adjustHydrationLoss(1)
+=======
+		var/blood_volume = round(owner.vessel.get_reagent_amount(owner.species.blood_type))
+
+		//Blood regeneration if there is some space
+		if(!(owner.species?.flags & IS_IPC))
+			regen_blood(blood_volume)
+>>>>>>> Stashed changes
 
 		//Bleeding out
 		var/blood_max = 0
 		var/open_wound
 		var/list/do_spray = list()
+<<<<<<< Updated upstream
 		for(var/obj/item/organ/external/temp in owner.bad_external_organs)
 			if((temp.status & ORGAN_BLEEDING) && !BP_IS_ROBOTIC(temp))
+=======
+		for(var/obj/item/organ/external/temp in owner.organs)
+			if((temp.status & ORGAN_BLEEDING) && !(BP_IS_ROBOTIC(temp) && !(owner.species?.flags & IS_IPC)))
+>>>>>>> Stashed changes
 				for(var/datum/wound/W in temp.wounds)
 					if(W.bleeding())
 						open_wound = TRUE
@@ -168,20 +238,41 @@
 		else if(CE_STABLE in owner.chem_effects)
 			blood_max *= 0.8
 
-		if(world.time >= next_blood_squirt && istype(owner.loc, /turf) && do_spray.len)
-			owner.visible_message("<span class='danger'>Blood squirts from \the [owner]'s [pick(do_spray)]!</span>", \
-								"<span class='danger'><font size=3>Blood sprays out of your [pick(do_spray)]!</font></span>")
-			owner.eye_blurry = 2
-			owner.Stun(1)
-			next_blood_squirt = world.time + 100
-			var/turf/sprayloc = get_turf(owner)
-			blood_max -= owner.drip(Ceiling(blood_max/3), sprayloc)
+		if(blood_max > 0)
+			bleed(blood_max, do_spray)
+
+/obj/item/organ/internal/heart/proc/regen_blood(var/blood_volume)
+	if(blood_volume < species.blood_volume && blood_volume)
+		var/datum/reagent/blood/B = locate() in owner.vessel.reagent_list //Grab some blood
+		if(B) // Make sure there's some blood at all
+			if(weakref && B.data["donor"] != weakref) //If it's not theirs, then we look for theirs - donor is a weakref here, but it should be safe to just directly compare it.
+				for(var/datum/reagent/blood/D in owner.vessel.reagent_list)
+					if(weakref && D.data["donor"] == weakref)
+						B = D
+						break
+
+			B.volume += 0.1 // regenerate blood VERY slowly
+			if(blood_volume <= BLOOD_VOLUME_SAFE) //We loose nutrition and hydration very slowly if our blood is too low
+				owner.adjustNutritionLoss(2)
+				owner.adjustHydrationLoss(1)
+			if(CE_BLOODRESTORE in owner.chem_effects)
+				B.volume += owner.chem_effects[CE_BLOODRESTORE]
+
+/obj/item/organ/internal/heart/proc/bleed(var/blood_max, var/list/do_spray)
+	if(world.time >= next_blood_squirt && istype(owner.loc, /turf) && do_spray.len)
+		owner.visible_message("<span class='danger'>Blood squirts from \the [owner]'s [pick(do_spray)]!</span>", \
+							"<span class='danger'><font size=3>Blood sprays out of your [pick(do_spray)]!</font></span>")
+		owner.eye_blurry = 2
+		owner.Stun(1)
+		next_blood_squirt = world.time + 100
+		var/turf/sprayloc = get_turf(owner)
+		blood_max -= owner.drip(Ceiling(blood_max/3), sprayloc)
+		if(blood_max > 0)
+			blood_max -= owner.blood_squirt(blood_max, sprayloc)
 			if(blood_max > 0)
-				blood_max -= owner.blood_squirt(blood_max, sprayloc)
-				if(blood_max > 0)
-					owner.drip(blood_max, get_turf(owner))
-		else
-			owner.drip(blood_max)
+				owner.drip(blood_max, get_turf(owner))
+	else
+		owner.drip(blood_max)
 
 /obj/item/organ/internal/heart/proc/is_working()
 	if(!is_usable())

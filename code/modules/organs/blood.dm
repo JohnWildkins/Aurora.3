@@ -14,6 +14,7 @@
 	if(species && species.flags & NO_BLOOD) //We want the var for safety but we can do without the actual blood.
 		return
 
+<<<<<<< Updated upstream
 	vessel.add_reagent(/decl/reagent/blood, species.blood_volume, temperature = species?.body_temperature)
 
 //Resets blood data
@@ -22,6 +23,28 @@
 		return
 	LAZYINITLIST(vessel.reagent_data)
 	LAZYSET(vessel.reagent_data, /decl/reagent/blood, get_blood_data())
+=======
+	vessel.add_reagent(species.blood_type, species.blood_volume)
+	fixblood()
+
+//Resets blood data
+/mob/living/carbon/human/proc/fixblood()
+	for(var/datum/reagent/blood/B in vessel.reagent_list)
+		if(B.type == species.blood_type)
+			B.data = list(
+				"donor" = WEAKREF(src),
+				"species" = species.bodytype,
+				"blood_DNA" = dna?.unique_enzymes,
+				"blood_colour" = species.blood_color,
+				"blood_type" = dna?.b_type,
+				"resistances" = null,
+				"trace_chem" = null
+			)
+			B.color = B.data["blood_colour"]
+	var/datum/reagent/blood/coolant/C = vessel.get_reagent(species.blood_type)
+	if(istype(C))
+		C.set_temperature(bodytemperature)
+>>>>>>> Stashed changes
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num, var/tar = src, var/spraydir)
@@ -32,7 +55,11 @@
 	if(!amt)
 		return
 
+<<<<<<< Updated upstream
 	vessel.remove_reagent(/decl/reagent/blood,amt)
+=======
+	vessel.remove_reagent(species.blood_type,amt)
+>>>>>>> Stashed changes
 	blood_splatter(tar, src, spray_dir = spraydir)
 
 #define BLOOD_SPRAY_DISTANCE 2
@@ -84,7 +111,11 @@
 #undef BLOOD_SPRAY_DISTANCE
 
 /mob/living/carbon/human/proc/get_blood_volume()
+<<<<<<< Updated upstream
 	return round((REAGENT_VOLUME(vessel, /decl/reagent/blood)/species.blood_volume)*100)
+=======
+	return round((vessel.get_reagent_amount(species.blood_type)/species.blood_volume)*100)
+>>>>>>> Stashed changes
 
 /mob/living/carbon/human/proc/get_blood_circulation()
 	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]
@@ -140,8 +171,40 @@
 
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
+<<<<<<< Updated upstream
 	container.reagents.add_reagent(/decl/reagent/blood, amount, get_blood_data(), temperature = species?.body_temperature)
 	return TRUE
+=======
+
+	var/datum/reagent/B = get_blood(container.reagents)
+	if(!B) B = new species.blood_type
+	B.holder = container
+	B.volume += amount
+
+	//set reagent data
+	B.data["donor"] = WEAKREF(src)
+	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
+	if(src.resistances && src.resistances.len)
+		if(B.data["resistances"])
+			B.data["resistances"] |= src.resistances.Copy()
+		else
+			B.data["resistances"] = src.resistances.Copy()
+	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+
+	// Putting this here due to return shenanigans.
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		B.data["blood_colour"] = H.species.blood_color
+		B.color = B.data["blood_colour"]
+		B.data["species"] = H.species.bodytype
+
+	var/list/temp_chem = list()
+	for(var/datum/reagent/R in src.reagents.reagent_list)
+		temp_chem += R.type
+		temp_chem[R.type] = R.volume
+	B.data["trace_chem"] = list2params(temp_chem)
+	return B
+>>>>>>> Stashed changes
 
 //For humans, blood does not appear from blue, it comes from vessels.
 /mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
@@ -152,12 +215,20 @@
 	if(vessel.total_volume < amount)
 		return FALSE
 
+<<<<<<< Updated upstream
 	vessel.trans_to_holder(container.reagents, amount)
 
 	if(vessel.has_reagent(/decl/reagent/blood))
 		LAZYSET(vessel.reagent_data, /decl/reagent/blood, get_blood_data())
 	vessel.trans_to_holder(container.reagents, amount)
 	return TRUE
+=======
+	if(vessel.get_reagent_amount(species.blood_type) < amount)
+		return null
+
+	. = ..()
+	vessel.remove_reagent(species.blood_type,amount) // Removes blood if human
+>>>>>>> Stashed changes
 
 //Transfers blood from container to vessels
 /mob/living/carbon/proc/inject_blood(var/amount, var/datum/reagents/donor)
@@ -167,12 +238,32 @@
 		reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
+<<<<<<< Updated upstream
 /mob/living/carbon/human/inject_blood(var/amount, var/datum/reagents/donor)
 	if(!should_have_organ(BP_HEART))
 		reagents.add_reagent(/decl/reagent/blood, amount, REAGENT_DATA(donor, /decl/reagent/blood), temperature = species?.body_temperature)
 		return
 	// Incompatibility is handled in mix_data now.
 	vessel.add_reagent(/decl/reagent/blood, amount, REAGENT_DATA(donor, /decl/reagent/blood), temperature = species?.body_temperature)
+=======
+/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+	// In case of mobs without blood, put it in their chem storage.
+	if(species.flags & NO_BLOOD)
+		reagents.add_reagent(injected.type, amount, injected.data)
+		reagents.update_total()
+		return
+
+	var/datum/reagent/blood/our = get_blood(vessel)
+
+	if (!injected || !our)
+		return
+	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) && !(mind && mind.vampire))
+		reagents.add_reagent(/datum/reagent/toxin,amount * 0.5)
+		reagents.update_total()
+	else
+		vessel.add_reagent(injected.type, amount, injected.data)
+		vessel.update_total()
+>>>>>>> Stashed changes
 	..()
 
 proc/blood_incompatible(donor,receiver,donor_species,receiver_species)
@@ -268,9 +359,20 @@ proc/blood_splatter(var/target, var/source, var/large, var/spray_dir, var/source
 		return splatter
 
 	// Update appearance.
+<<<<<<< Updated upstream
 	if(blood_data["blood_colour"])
 		splatter.basecolor = blood_data["blood_colour"]
 		splatter.update_icon()
+=======
+	if(source.data["blood_colour"])
+		B.basecolor = source.data["blood_colour"]
+		B.update_icon()
+		B.name = fluid_color_type_map(B.basecolor)
+		B.dryname = "dried [B.name]"
+		if(B.name == "coolant" && istype(drop))
+			B.desc = "It's blue."
+
+>>>>>>> Stashed changes
 	if(spray_dir)
 		splatter.icon_state = "squirt"
 		splatter.set_dir(spray_dir)

@@ -60,5 +60,9 @@
 			R.on_heat_change(energy_per_reagent, src)
 	thermal_energy += thermal_energy_to_add
 
+<<<<<<< Updated upstream
 /decl/reagent/proc/on_heat_change(energy_change, var/datum/reagents/holder)
 	return // stub for heat effects
+=======
+	return TRUE
+>>>>>>> Stashed changes

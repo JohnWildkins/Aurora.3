@@ -216,7 +216,11 @@
 		O.set_dna(dna)
 
 /mob/living/carbon/human/proc/get_blood_alcohol()
+<<<<<<< Updated upstream
 	return round(intoxication/max(REAGENT_VOLUME(vessel, /decl/reagent/blood),1),0.01)
+=======
+	return round(intoxication/max(vessel.get_reagent_amount(species.blood_type),1),0.01)
+>>>>>>> Stashed changes
 
 /mob/living/proc/is_asystole()
 	return FALSE

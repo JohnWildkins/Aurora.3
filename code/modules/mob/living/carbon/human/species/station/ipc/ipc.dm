@@ -65,6 +65,8 @@
 
 	body_temperature = null
 	passive_temp_gain = 10  // This should cause IPCs to stabilize at ~80 C in a 20 C environment.
+	blood_type = /datum/reagent/blood/coolant
+	blood_volume = 200
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/self_diagnostics,
@@ -84,7 +86,12 @@
 	has_organ = list(
 		BP_BRAIN   = /obj/item/organ/internal/mmi_holder/posibrain,
 		BP_CELL    = /obj/item/organ/internal/cell,
+<<<<<<< Updated upstream
 		BP_EYES  = /obj/item/organ/internal/eyes/optical_sensor,
+=======
+		BP_HEART = /obj/item/organ/internal/heart/coolant_pump,
+		BP_OPTICS  = /obj/item/organ/internal/eyes/optical_sensor,
+>>>>>>> Stashed changes
 		BP_IPCTAG = /obj/item/organ/internal/ipc_tag
 	)
 
@@ -130,11 +137,28 @@
 /datum/species/machine/handle_post_spawn(var/mob/living/carbon/human/H)
 	. = ..()
 	check_tag(H, H.client)
+	
+/datum/species/machine/handle_sprint_cost(var/mob/living/carbon/human/H, var/cost)
+	if (H.stat == CONSCIOUS)
+		var/obj/item/organ/internal/heart/hrt = H.internal_organs_by_name[BP_HEART]
+		var/datum/reagent/blood/coolant/coolant = H.vessel.get_reagent(H.species.blood_type)
+		to_world("Sprint Cost: [cost], Sprint Temp Factor: [sprint_temperature_factor], Cost*STF: [cost * sprint_temperature_factor]")
+		if(!istype(hrt) || !istype(coolant))
+			H.bodytemperature += cost * sprint_temperature_factor
+		else
+			coolant.set_temperature(coolant.get_temperature() + (cost * sprint_temperature_factor))
+		H.adjustNutritionLoss(cost * sprint_charge_factor)
+		if(H.nutrition <= 0 && H.max_nutrition > 0)
+			H.Weaken(15)
+			H.m_intent = "walk"
+			H.hud_used.move_intent.update_move_icon(H)
+			to_chat(H, SPAN_DANGER("ERROR: Power reserves depleted, emergency shutdown engaged. Backup power will come online in approximately 30 seconds, initiate charging as primary directive."))
+			playsound(H.loc, 'sound/machines/buzz-two.ogg', 100, 0)
+		else
+			return 1
 
-/datum/species/machine/handle_sprint_cost(var/mob/living/carbon/human/H, var/cost, var/pre_move)
-	if(!pre_move && H.stat == CONSCIOUS)
-		H.bodytemperature += cost * sprint_temperature_factor
-	return TRUE
+	return 0
+>>>>>>> Stashed changes
 
 /datum/species/machine/handle_death(var/mob/living/carbon/human/H)
 	..()

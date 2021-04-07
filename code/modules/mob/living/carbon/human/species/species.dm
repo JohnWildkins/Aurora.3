@@ -83,7 +83,11 @@
 	var/metabolism_mod = 1					 // Reagent metabolism modifier
 	var/bleed_mod = 1						 // How fast this species bleeds.
 	var/blood_volume = DEFAULT_BLOOD_AMOUNT // Blood volume.
+<<<<<<< Updated upstream
 	var/injection_mod = 1                    // Multiplicative time modifier on syringe injections
+=======
+	var/blood_type = /datum/reagent/blood
+>>>>>>> Stashed changes
 
 	var/vision_flags = DEFAULT_SIGHT         // Same flags as glasses.
 	var/inherent_eye_protection              // If set, this species has this level of inherent eye protection.
@@ -554,6 +558,7 @@
 			C.do_run_act()
 
 	var/remainder = 0
+	to_world("Sprint Cost: [cost], Stamina: [H.stamina] / [initial(H.stamina)]")
 	if (H.stamina > cost)
 		if(!pre_move)
 			H.stamina -= cost

@@ -800,7 +800,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(W.damage_type == CUT)
 				cut_dam += W.damage
 
-		if(!(status & ORGAN_ROBOT) && W.bleeding() && (H && !(H.species.flags & NO_BLOOD)))
+		if(H && !(H.species.flags & NO_BLOOD) && W.bleeding() && !(BP_IS_ROBOTIC(src) && !(H.species.flags & IS_IPC)))
 			W.bleed_timer--
 			status |= ORGAN_BLEEDING
 

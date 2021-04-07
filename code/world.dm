@@ -57,6 +57,14 @@ var/global/datum/global_init/init = new ()
 	maxx = WORLD_MIN_SIZE	// So that we don't get map-window-popin at boot. DMMS will expand this.
 	maxy = WORLD_MIN_SIZE
 
+<<<<<<< Updated upstream
+=======
+/world/proc/enable_debugger()
+    var/dll = world.GetConfig("env", "EXTOOLS_DLL")
+    if (dll)
+        call(dll, "debug_initialize")()
+
+>>>>>>> Stashed changes
 #define RECOMMENDED_VERSION 510
 /world/New()
 	//logs
@@ -81,6 +89,8 @@ var/global/datum/global_init/init = new ()
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	callHook("startup")
+
+	enable_debugger()
 
 	. = ..()
 

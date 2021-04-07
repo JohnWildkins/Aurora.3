@@ -12,6 +12,7 @@
 
 	fallback_specific_heat = 3.617
 
+<<<<<<< Updated upstream
 /decl/reagent/blood/mix_data(var/list/newdata, var/newamount, var/datum/reagents/holder)
 	var/list/data = ..()
 	if(LAZYACCESS(newdata, "trace_chem"))
@@ -39,6 +40,37 @@
 /decl/reagent/blood/touch_turf(var/turf/simulated/T, var/amount, var/datum/reagents/holder)
 
 	if(!istype(T) || amount < 3)
+=======
+/datum/reagent/blood/coolant
+	data = list(
+		"donor" = null,
+		"species" = SPECIES_IPC,
+		"blood_DNA" = null,
+		"blood_type" = "coolant",
+		"blood_colour" = "#44aaff",
+		"resistances" = null,
+		"trace_chem" = null
+	)
+	name = "Coolant"
+	color = "#44aaff"
+	taste_description = "antifreeze"
+
+	glass_icon_state = "antifreeze"
+	glass_name = "glass of antifreeze"
+	glass_desc = "Probably shouldn't drink this."
+
+	fallback_specific_heat = 4.7
+
+/datum/reagent/blood/initialize_data(var/newdata)
+	..()
+	if(data && data["blood_colour"])
+		color = data["blood_colour"]
+	return
+
+/datum/reagent/blood/touch_turf(var/turf/simulated/T)
+
+	if(!istype(T) || volume < 3)
+>>>>>>> Stashed changes
 		return
 	var/list/rdata = REAGENT_DATA(holder, type)
 	if(isemptylist(rdata))

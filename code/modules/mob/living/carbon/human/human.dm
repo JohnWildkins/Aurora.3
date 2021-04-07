@@ -1170,7 +1170,11 @@
 /mob/living/carbon/human/revive(reset_to_roundstart = TRUE)
 
 	if(species && !(species.flags & NO_BLOOD))
+<<<<<<< Updated upstream
 		vessel.add_reagent(/decl/reagent/blood,560-vessel.total_volume, temperature = species.body_temperature)
+=======
+		vessel.add_reagent(species.blood_type,560-vessel.total_volume)
+>>>>>>> Stashed changes
 		fixblood()
 
 	// Fix up all organs.
@@ -1413,7 +1417,12 @@
 	spawn(0)
 		regenerate_icons()
 		if (vessel)
+<<<<<<< Updated upstream
 			restore_blood()
+=======
+			vessel.add_reagent(species.blood_type,560-vessel.total_volume)
+			fixblood()
+>>>>>>> Stashed changes
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	if(client && client.screen)
