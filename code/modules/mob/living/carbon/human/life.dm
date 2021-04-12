@@ -448,6 +448,9 @@
 /mob/living/carbon/human/proc/stabilize_body_temperature()
 	if (species.passive_temp_gain) // We produce heat naturally.
 		bodytemperature += species.passive_temp_gain
+	if (species.flags & IS_IPC)
+		
+		return
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
 

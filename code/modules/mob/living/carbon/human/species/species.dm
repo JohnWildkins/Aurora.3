@@ -37,6 +37,7 @@
 	var/eyes_icons = 'icons/mob/human_face/eyes.dmi'     // DMI file for eyes, mostly for none 32x32 species.
 	var/has_floating_eyes                                // Eyes will overlay over darkness (glow)
 	var/eyes_icon_blend = ICON_ADD                       // The icon blending mode to use for eyes.
+	var/blood = /decl/reagent/blood
 	var/blood_type = "blood"
 	var/blood_color = "#A10808"                          // Red.
 	var/flesh_color = "#FFC896"                          // Pink.
@@ -554,6 +555,7 @@
 			C.do_run_act()
 
 	var/remainder = 0
+	to_world("Sprint Cost: [cost], Stamina: [H.stamina] / [initial(H.stamina)]")
 	if (H.stamina > cost)
 		if(!pre_move)
 			H.stamina -= cost

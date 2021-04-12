@@ -70,11 +70,18 @@
 	var/obj/item/cell/cell = /obj/item/cell/super
 	//at 0.8 completely depleted after 60ish minutes of constant walking or 130 minutes of standing still
 	var/servo_cost = 0.8
+	var/backup_cell = TRUE
+	var/backup_timer
 
 /obj/item/organ/internal/cell/Initialize()
 	robotize()
 	replace_cell(new cell(src))
 	. = ..()
+
+/obj/item/organ/internal/cell/Destroy()
+	if(cell)
+		qdel(cell)
+	..()
 
 /obj/item/organ/internal/cell/proc/percent()
 	if(!cell)
@@ -91,7 +98,18 @@
 /obj/item/organ/internal/cell/proc/use(var/amount)
 	if(!is_usable() || !cell)
 		return
-	return cell.use(amount)
+	if(!cell.checked_use(amount) || get_charge() == 0)
+		// owner.Weaken(15)
+		if(owner.m_intent != M_WALK)
+			owner.m_intent = M_WALK
+			owner.hud_used.move_intent.update_move_icon(owner)
+		to_chat(owner, SPAN_DANGER("ERROR: <b>Power reserves depleted.</b> Emergency shutdown engaged."))
+		playsound(owner.loc, 'sound/machines/buzz-two.ogg', 100, 0)
+		if(backup_cell)
+			to_chat(owner, SPAN_WARNING("Backup power will come online in approximately thirty seconds; initiate charging as primary directive."))
+			backup_timer = addtimer(CALLBACK(cell, /obj/item/cell/.proc/give, cell.maxcharge / 20), 30 SECONDS, TIMER_STOPPABLE)
+		else
+			to_chat(owner, SPAN_DANGER("ERROR: <b>NO BACKUP CHARGE DETECTED.</b> System shutdown imminent!"))
 
 /obj/item/organ/internal/cell/process()
 	..()
@@ -127,6 +145,8 @@
 				user.put_in_hands(cell)
 				to_chat(user, SPAN_NOTICE("You remove \the [cell] from \the [src]."))
 				cell = null
+				if(backup_timer)
+					deltimer(backup_timer)
 			else
 				to_chat(user, SPAN_WARNING("There is no cell to remove."))
 		else

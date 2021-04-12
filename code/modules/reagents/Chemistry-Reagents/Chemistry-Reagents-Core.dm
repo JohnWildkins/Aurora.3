@@ -12,6 +12,17 @@
 
 	fallback_specific_heat = 3.617
 
+/decl/reagent/blood/coolant
+	name = "Coolant"
+	color = "#44AAFF"
+	taste_description = "antifreeze"
+
+	glass_icon_state = "antifreeze"
+	glass_name = "glass of antifreeze"
+	glass_desc = "Don't breathe this. Or drink it."
+
+	fallback_specific_heat = 4.7
+
 /decl/reagent/blood/mix_data(var/list/newdata, var/newamount, var/datum/reagents/holder)
 	var/list/data = ..()
 	if(LAZYACCESS(newdata, "trace_chem"))

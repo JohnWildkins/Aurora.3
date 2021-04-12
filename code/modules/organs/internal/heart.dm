@@ -116,22 +116,18 @@
 		return
 
 	if(pulse != PULSE_NONE || BP_IS_ROBOTIC(src))
-		var/blood_volume = round(REAGENT_VOLUME(owner.vessel, /decl/reagent/blood))
+		var/blood_volume = round(REAGENT_VOLUME(owner.vessel, species.blood))
 
 		//Blood regeneration if there is some space
-		if(blood_volume < species.blood_volume && blood_volume)
-			if(REAGENT_DATA(owner.vessel, /decl/reagent/blood)) // Make sure there's blood at all
-				owner.vessel.add_reagent(/decl/reagent/blood, 0.1 + LAZYACCESS(owner.chem_effects, CE_BLOODRESTORE), temperature = species?.body_temperature)
-				if(blood_volume <= BLOOD_VOLUME_SAFE) //We lose nutrition and hydration very slowly if our blood is too low
-					owner.adjustNutritionLoss(2)
-					owner.adjustHydrationLoss(1)
+		if(!(owner.species?.flags & IS_IPC))
+			regen_blood(blood_volume)
 
 		//Bleeding out
 		var/blood_max = 0
 		var/open_wound
 		var/list/do_spray = list()
 		for(var/obj/item/organ/external/temp in owner.bad_external_organs)
-			if((temp.status & ORGAN_BLEEDING) && !BP_IS_ROBOTIC(temp))
+			if((temp.status & ORGAN_BLEEDING) && (!BP_IS_ROBOTIC(temp) || (BP_IS_ROBOTIC(temp) && isipc(owner))))
 				for(var/datum/wound/W in temp.wounds)
 					if(W.bleeding())
 						open_wound = TRUE
@@ -153,7 +149,7 @@
 						blood_max += bleed_amount
 						do_spray += "[temp.name]"
 					else
-						owner.vessel.remove_reagent(/decl/reagent/blood, bleed_amount)
+						owner.vessel.remove_reagent(species.blood, bleed_amount)
 
 		switch(pulse)
 			if(PULSE_SLOW)
@@ -168,20 +164,32 @@
 		else if(CE_STABLE in owner.chem_effects)
 			blood_max *= 0.8
 
-		if(world.time >= next_blood_squirt && istype(owner.loc, /turf) && do_spray.len)
-			owner.visible_message("<span class='danger'>Blood squirts from \the [owner]'s [pick(do_spray)]!</span>", \
-								"<span class='danger'><font size=3>Blood sprays out of your [pick(do_spray)]!</font></span>")
-			owner.eye_blurry = 2
-			owner.Stun(1)
-			next_blood_squirt = world.time + 100
-			var/turf/sprayloc = get_turf(owner)
-			blood_max -= owner.drip(Ceiling(blood_max/3), sprayloc)
+		if(blood_max > 0)
+			bleed(blood_max, do_spray)
+
+/obj/item/organ/internal/heart/proc/regen_blood(var/blood_volume)
+	if(blood_volume < species.blood_volume && blood_volume)
+		if(REAGENT_DATA(owner.vessel, /decl/reagent/blood)) // Make sure there's blood at all
+			owner.vessel.add_reagent(/decl/reagent/blood, 0.1 + LAZYACCESS(owner.chem_effects, CE_BLOODRESTORE), temperature = species?.body_temperature)
+			if(blood_volume <= BLOOD_VOLUME_SAFE) //We lose nutrition and hydration very slowly if our blood is too low
+				owner.adjustNutritionLoss(2)
+				owner.adjustHydrationLoss(1)
+
+/obj/item/organ/internal/heart/proc/bleed(var/blood_max, var/list/do_spray)
+	if(world.time >= next_blood_squirt && istype(owner.loc, /turf) && do_spray.len)
+		owner.visible_message("<span class='danger'>Blood squirts from \the [owner]'s [pick(do_spray)]!</span>", \
+							"<span class='danger'><font size=3>Blood sprays out of your [pick(do_spray)]!</font></span>")
+		owner.eye_blurry = 2
+		owner.Stun(1)
+		next_blood_squirt = world.time + 100
+		var/turf/sprayloc = get_turf(owner)
+		blood_max -= owner.drip(Ceiling(blood_max/3), sprayloc)
+		if(blood_max > 0)
+			blood_max -= owner.blood_squirt(blood_max, sprayloc)
 			if(blood_max > 0)
-				blood_max -= owner.blood_squirt(blood_max, sprayloc)
-				if(blood_max > 0)
-					owner.drip(blood_max, get_turf(owner))
-		else
-			owner.drip(blood_max)
+				owner.drip(blood_max, get_turf(owner))
+	else
+		owner.drip(blood_max)
 
 /obj/item/organ/internal/heart/proc/is_working()
 	if(!is_usable())

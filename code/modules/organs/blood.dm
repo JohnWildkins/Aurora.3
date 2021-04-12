@@ -14,14 +14,15 @@
 	if(species && species.flags & NO_BLOOD) //We want the var for safety but we can do without the actual blood.
 		return
 
-	vessel.add_reagent(/decl/reagent/blood, species.blood_volume, temperature = species?.body_temperature)
+	vessel.add_reagent(species.blood, species.blood_volume, temperature = species?.body_temperature)
+	fixblood()
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
-	if(!REAGENT_VOLUME(vessel, /decl/reagent/blood))
+	if(!REAGENT_VOLUME(vessel, species.blood))
 		return
 	LAZYINITLIST(vessel.reagent_data)
-	LAZYSET(vessel.reagent_data, /decl/reagent/blood, get_blood_data())
+	LAZYSET(vessel.reagent_data, species.blood, get_blood_data())
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num, var/tar = src, var/spraydir)
@@ -32,7 +33,7 @@
 	if(!amt)
 		return
 
-	vessel.remove_reagent(/decl/reagent/blood,amt)
+	vessel.remove_reagent(species.blood, amt)
 	blood_splatter(tar, src, spray_dir = spraydir)
 
 #define BLOOD_SPRAY_DISTANCE 2
@@ -84,7 +85,7 @@
 #undef BLOOD_SPRAY_DISTANCE
 
 /mob/living/carbon/human/proc/get_blood_volume()
-	return round((REAGENT_VOLUME(vessel, /decl/reagent/blood)/species.blood_volume)*100)
+	return round((REAGENT_VOLUME(vessel, species.blood)/species.blood_volume)*100)
 
 /mob/living/carbon/human/proc/get_blood_circulation()
 	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]
@@ -154,8 +155,8 @@
 
 	vessel.trans_to_holder(container.reagents, amount)
 
-	if(vessel.has_reagent(/decl/reagent/blood))
-		LAZYSET(vessel.reagent_data, /decl/reagent/blood, get_blood_data())
+	if(vessel.has_reagent(species.blood))
+		LAZYSET(vessel.reagent_data, species.blood, get_blood_data())
 	vessel.trans_to_holder(container.reagents, amount)
 	return TRUE
 
@@ -169,10 +170,10 @@
 //Transfers blood from reagents to vessel, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(var/amount, var/datum/reagents/donor)
 	if(!should_have_organ(BP_HEART))
-		reagents.add_reagent(/decl/reagent/blood, amount, REAGENT_DATA(donor, /decl/reagent/blood), temperature = species?.body_temperature)
+		reagents.add_reagent(species.blood, amount, REAGENT_DATA(donor, species.blood), temperature = species?.body_temperature)
 		return
 	// Incompatibility is handled in mix_data now.
-	vessel.add_reagent(/decl/reagent/blood, amount, REAGENT_DATA(donor, /decl/reagent/blood), temperature = species?.body_temperature)
+	vessel.add_reagent(species.blood, amount, REAGENT_DATA(donor, species.blood), temperature = species?.body_temperature)
 	..()
 
 proc/blood_incompatible(donor,receiver,donor_species,receiver_species)

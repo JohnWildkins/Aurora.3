@@ -34,8 +34,6 @@
 	eyes = "eyes_s"
 	show_ssd = "completely quiescent"
 
-	max_nutrition_factor = 0.8
-
 	heat_level_1 = 500
 	heat_level_2 = 1000
 	heat_level_3 = 2000

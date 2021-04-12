@@ -471,7 +471,7 @@ This function completely restores a damaged organ to perfect condition.
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + damage
-	if(damage > 15 && !(type in list(BURN, LASER)) && local_damage > 30 && !(status & ORGAN_ROBOT))
+	if(damage > 15 && !(type in list(BURN, LASER)) && local_damage > 30 && (!BP_IS_ROBOTIC(src) || (BP_IS_ROBOTIC(src) && istype(species.blood, /decl/reagent/blood/coolant))))
 		var/internal_damage
 		if(prob(damage) && sever_artery())
 			internal_damage = TRUE
@@ -481,14 +481,14 @@ This function completely restores a damaged organ to perfect condition.
 			owner.custom_pain("You feel something rip in your [name]!", 25)
 
 	//Burn damage can cause fluid loss due to blistering and cook-off
-	if((type in list(BURN, LASER)) && (damage > 5 || damage + burn_dam >= 15) && !BP_IS_ROBOTIC(src))
+	if((type in list(BURN, LASER)) && (damage > 5 || damage + burn_dam >= 15) && (!BP_IS_ROBOTIC(src) || (BP_IS_ROBOTIC(src) && istype(species.blood, /decl/reagent/blood/coolant))))
 		var/fluid_loss_severity
 		switch(type)
 			if(BURN)
 				fluid_loss_severity = FLUIDLOSS_WIDE_BURN
 			if(LASER)
 				fluid_loss_severity = FLUIDLOSS_CONC_BURN
-		var/fluid_loss = (damage/(owner.maxHealth - config.health_threshold_dead)) * DEFAULT_BLOOD_AMOUNT * fluid_loss_severity
+		var/fluid_loss = (damage/(owner.maxHealth - config.health_threshold_dead)) * owner.species.blood_volume * fluid_loss_severity
 		owner.remove_blood_simple(fluid_loss)
 
 	// first check whether we can widen an existing wound
@@ -800,7 +800,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(W.damage_type == CUT)
 				cut_dam += W.damage
 
-		if(!(status & ORGAN_ROBOT) && W.bleeding() && (H && !(H.species.flags & NO_BLOOD)))
+		if(!((status & ORGAN_ROBOT) && (!isipc(owner))) && W.bleeding() && (H && !(H.species.flags & NO_BLOOD)))
 			W.bleed_timer--
 			status |= ORGAN_BLEEDING
 
@@ -1350,7 +1350,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return sounds
 
 /obj/item/organ/external/proc/sever_artery()
-	if((status & ORGAN_ROBOT) || (status & ORGAN_ARTERY_CUT) || !species || species.flags & NO_BLOOD || species.flags & NO_ARTERIES)
+	if(((status & ORGAN_ROBOT) && !isipc(owner)) || (status & ORGAN_ARTERY_CUT) || !species || species.flags & NO_BLOOD || species.flags & NO_ARTERIES)
 		return FALSE
 	else
 		status |= ORGAN_ARTERY_CUT

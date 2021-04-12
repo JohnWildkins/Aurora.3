@@ -8,9 +8,10 @@
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user, var/target_zone)
-	if(istype(H))
+	if(!istype(H))
+		return
+	if(H.a_intent == I_HURT)
 		if(target_zone == BP_EYES)
-
 			if(!H.organs_by_name[BP_HEAD])
 				to_chat(user, "<span class='warning'>\The [H] doesn't have a head.</span>")
 				return
@@ -73,9 +74,31 @@
 				user.unEquip(T)
 				qdel(T)
 				H.update_inv_handcuffed()
-		else
-			return ..()
-		return 1
+	else if(H.a_intent == I_HELP)
+		var/obj/item/organ/external/S = H.organs_by_name[target_zone]
+		if(istype(S) && (S.status & (ORGAN_BLEEDING|ORGAN_ROBOT)))
+			repair_organ(user, H, S)
+	else
+		return ..()
+	return TRUE
+
+/obj/item/tape_roll/proc/repair_organ(var/mob/living/user, var/mob/living/carbon/human/target, var/obj/item/organ/external/affecting)
+	var/static/list/repair_messages = list(
+		"tapes over some leaks",
+		"fixes a puncture",
+		"patches some holes"
+	)
+	for (var/datum/wound/W in affecting.wounds)
+		if(W.bandaged)
+			continue
+		if(!do_mob(user, target, W.damage/5))
+			to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
+			break
+		user.visible_message(SPAN_WARNING("\The [user] [pick(repair_messages)] on [target]'s [affecting.name] with \the [src]."))
+		W.bandage()
+		playsound(src, 'sound/items/tape.ogg', 15)
+	affecting.update_damages()
+	target.update_bandages(TRUE)
 
 /obj/item/tape_roll/proc/stick(var/obj/item/W, mob/user)
 	if(!istype(W, /obj/item/paper))

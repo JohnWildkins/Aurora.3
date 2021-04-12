@@ -59,12 +59,16 @@
 	cold_level_2 = -1
 	cold_level_3 = -1
 
+	heat_discomfort_level = 500
+	heat_discomfort_strings = list(
+		"Your CPU temperature probes warn you that you are approaching critical heat levels!"
+		)
+
 	heat_level_1 = 600
 	heat_level_2 = 1200
 	heat_level_3 = 2400
 
-	body_temperature = null
-	passive_temp_gain = 10  // This should cause IPCs to stabilize at ~80 C in a 20 C environment.
+	passive_temp_gain = 10
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/self_diagnostics,
@@ -76,15 +80,18 @@
 	appearance_flags = HAS_SKIN_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR | HAS_SOCKS
 	spawn_flags = CAN_JOIN | IS_WHITELISTED | NO_AGE_MINIMUM
 
-	blood_type = "oil"
+	blood = /decl/reagent/blood/coolant
+	blood_type = "coolant"
+	blood_volume = 200
 	blood_color = COLOR_IPC_BLOOD
 	flesh_color = "#575757"
 	reagent_tag = IS_MACHINE
 
 	has_organ = list(
-		BP_BRAIN   = /obj/item/organ/internal/mmi_holder/posibrain,
-		BP_CELL    = /obj/item/organ/internal/cell,
-		BP_EYES  = /obj/item/organ/internal/eyes/optical_sensor,
+		BP_BRAIN  = /obj/item/organ/internal/mmi_holder/posibrain,
+		BP_CELL   = /obj/item/organ/internal/cell,
+		BP_EYES   = /obj/item/organ/internal/eyes/optical_sensor,
+		BP_HEART  = /obj/item/organ/internal/heart/coolant_pump,
 		BP_IPCTAG = /obj/item/organ/internal/ipc_tag
 	)
 
@@ -104,11 +111,6 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/ipc)
 	)
 
-
-	heat_discomfort_level = 500 //This will be 100 below the first heat level
-	heat_discomfort_strings = list(
-		"Your CPU temperature probes warn you that you are approaching critical heat levels!"
-		)
 	stamina = -1	// Machines use power and generate heat, stamina is not a thing
 	sprint_speed_factor = 1  // About as capable of speed as a human
 
@@ -132,8 +134,19 @@
 	check_tag(H, H.client)
 
 /datum/species/machine/handle_sprint_cost(var/mob/living/carbon/human/H, var/cost, var/pre_move)
-	if(!pre_move && H.stat == CONSCIOUS)
+	if (H.stat != CONSCIOUS)
+		return FALSE
+
+	var/obj/item/organ/internal/heart/HRT = H.internal_organs_by_name[BP_HEART]
+	var/obj/item/organ/internal/cell/BAT = H.internal_organs_by_name[BP_CELL]
+	var/decl/reagent/blood/coolant/CL = decls_repository.get_decl(/decl/reagent/blood/coolant)
+
+	if(!pre_move)
 		H.bodytemperature += cost * sprint_temperature_factor
+
+	if(istype(BAT))
+		BAT.use(cost * sprint_charge_factor)
+
 	return TRUE
 
 /datum/species/machine/handle_death(var/mob/living/carbon/human/H)

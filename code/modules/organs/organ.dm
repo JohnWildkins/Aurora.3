@@ -393,7 +393,7 @@
 	if (!reagents)
 		create_reagents(5)
 
-	var/blood_data = LAZYACCESS(reagents.reagent_data, /decl/reagent/blood)
+	var/blood_data = LAZYACCESS(reagents.reagent_data, species.blood)
 	if(!("blood_DNA" in blood_data))
 		owner.vessel.trans_to(src, 5, 1, 1)
 

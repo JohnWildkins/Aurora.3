@@ -358,8 +358,12 @@ This function restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
 	if(!(species.flags & NO_BLOOD))
-		var/total_blood = REAGENT_VOLUME(vessel, /decl/reagent/blood)
-		vessel.add_reagent(/decl/reagent/blood,560.0-total_blood, temperature = species.body_temperature)
+		var/total_blood = REAGENT_VOLUME(vessel, species.blood)
+		if(!total_blood)
+			vessel.clear_reagents()
+			vessel.add_reagent(species.blood, species.blood_volume, temperature = species.body_temperature)
+		else
+			vessel.add_reagent(species.blood, species.blood_volume - total_blood, temperature = species.body_temperature)
 
 
 /*
@@ -478,4 +482,4 @@ This function restores all organs.
 
 /mob/living/carbon/human/remove_blood_simple(var/blood)
 	if(should_have_organ(BP_HEART))
-		vessel.remove_reagent(/decl/reagent/blood, blood)
+		vessel.remove_reagent(species.blood_type, blood)

@@ -203,7 +203,11 @@
 
 		var/obj/item/organ/internal/cell/IC = internal_organs_by_name[BP_CELL]
 		if(IC && IC.cell)
-			stat("Battery charge:", "[IC.get_charge()]/[IC.cell.maxcharge]")
+			stat("Microbattery Charge:", "[IC.get_charge()]/[IC.cell.maxcharge]")
+
+		if(isipc(src))
+			stat("Body Temperature:", bodytemperature)
+			stat("Coolant Tank:", "[REAGENT_VOLUME(vessel, species.blood)] / [species.blood_volume]")
 
 		if(back && istype(back,/obj/item/rig))
 			var/obj/item/rig/suit = back
@@ -1170,7 +1174,7 @@
 /mob/living/carbon/human/revive(reset_to_roundstart = TRUE)
 
 	if(species && !(species.flags & NO_BLOOD))
-		vessel.add_reagent(/decl/reagent/blood,560-vessel.total_volume, temperature = species.body_temperature)
+		vessel.add_reagent(species.blood, 560 - vessel.total_volume, temperature = species.body_temperature)
 		fixblood()
 
 	// Fix up all organs.

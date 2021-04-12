@@ -416,7 +416,7 @@
 					COLOR_DIONA_BLOOD = "blood",
 					COLOR_SKRELL_BLOOD = "blood",
 					COLOR_VAURCA_BLOOD = "blood",
-					COLOR_IPC_BLOOD = "oil",
+					COLOR_IPC_BLOOD = "coolant",
 					COLOR_OIL = "oil",
 					COLOR_SNOW = "snow",
 					COLOR_ASH = "ash",
