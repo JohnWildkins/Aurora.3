@@ -58,14 +58,14 @@
 	switch(outcomes)
 		if("remains")
 			new /obj/effect/decal/remains/xeno (get_turf(src))
-		if("xenoarch")
-			new /obj/item/archaeological_find (get_turf(src))
+		// if("xenoarch")
+		// 	new /obj/item/archaeological_find (get_turf(src))
 		if("highvalue")
 			new /obj/random/highvalue (get_turf(src))
 		if("supermatter")
 			new /obj/machinery/power/supermatter/shard (get_turf(src))
-		if("artifact")
-			new /obj/machinery/artifact (get_turf(src))
+		// if("artifact")
+		// 	new /obj/machinery/artifact (get_turf(src)) TODO UPDATE XENOARCH
 		if("beyond")
 			new /obj/machinery/from_beyond (get_turf(src))
 	return

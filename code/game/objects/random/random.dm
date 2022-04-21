@@ -1453,10 +1453,10 @@
 		/obj/item/gun/custom_ka/frameF/prebuilt01 = 0.03125,
 		/obj/item/gun/custom_ka/frameF/prebuilt02 = 0.03125,
 		/obj/item/gun/custom_ka/frameE/prebuilt = 0.03125,
-		/obj/item/gun/energy/captain/xenoarch = 0.5,
-		/obj/item/gun/energy/laser/xenoarch = 0.5,
-		/obj/item/gun/energy/laser/practice/xenoarch = 0.25,
-		/obj/item/gun/energy/xray/xenoarch = 0.25,
+		// /obj/item/gun/energy/captain/xenoarch = 0.5,
+		// /obj/item/gun/energy/laser/xenoarch = 0.5,
+		// /obj/item/gun/energy/laser/practice/xenoarch = 0.25,
+		// /obj/item/gun/energy/xray/xenoarch = 0.25, TODO UPDATE XENOARCH
 		/obj/item/gun/energy/net = 1
 	)
 

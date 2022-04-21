@@ -384,8 +384,9 @@ STOCK_ITEM_UNCOMMON(pickaxes, 1)
 		/obj/item/pickaxe/drill = 5,
 		/obj/item/pickaxe/gold = 0.5,
 		/obj/item/pickaxe/diamond = 0.25,
-		/obj/item/pickaxe/brush = 1,
-		/obj/item/pickaxe/hand = 2
+		// /obj/item/pickaxe/brush = 1,
+		// /obj/item/pickaxe/hand = 2
+		// TODO UPDATE XENOARCH
 		)
 	var/type = pickweight(pickaxe_type)
 	new type(L)

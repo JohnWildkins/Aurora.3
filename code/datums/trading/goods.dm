@@ -241,11 +241,12 @@ Sells devices, odds and ends, and medical stuff
 		/obj/item/device/camera                    = TRADER_THIS_TYPE,
 		/obj/item/device/destTagger                = TRADER_THIS_TYPE,
 		/obj/item/device/gps                       = TRADER_THIS_TYPE,
-		/obj/item/device/measuring_tape            = TRADER_THIS_TYPE,
-		/obj/item/device/ano_scanner               = TRADER_THIS_TYPE,
-		/obj/item/device/core_sampler              = TRADER_THIS_TYPE,
-		/obj/item/device/depth_scanner             = TRADER_THIS_TYPE,
-		/obj/item/device/beacon_locator            = TRADER_THIS_TYPE,
+		// /obj/item/device/measuring_tape            = TRADER_THIS_TYPE,
+		// /obj/item/device/ano_scanner               = TRADER_THIS_TYPE,
+		// /obj/item/device/core_sampler              = TRADER_THIS_TYPE,
+		// /obj/item/device/depth_scanner             = TRADER_THIS_TYPE,
+		// /obj/item/device/beacon_locator            = TRADER_THIS_TYPE, 
+		// TODO UPDATE XENOARCH
 		/obj/item/stack/medical/advanced           = TRADER_BLACKLIST
 	)
 

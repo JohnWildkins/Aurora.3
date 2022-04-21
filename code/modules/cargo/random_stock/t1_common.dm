@@ -242,11 +242,12 @@ STOCK_ITEM_COMMON(scanners, 3.2)
 		/obj/item/autopsy_scanner = 1,
 		/obj/item/device/robotanalyzer = 4,
 		/obj/item/mining_scanner = 1,
-		/obj/item/device/ano_scanner = 1,
+		// /obj/item/device/ano_scanner = 1,
 		/obj/item/device/reagent_scanner = 2,
 		/obj/item/device/reagent_scanner/adv = 2,
 		/obj/item/barcodescanner = 1,
-		/obj/item/device/depth_scanner = 1
+		// /obj/item/device/depth_scanner = 1
+		// TODO UPDATE XENOARCH
 	)
 	for(var/i in 1 to rand(1, 2))
 		var/stype = pickweight(possible)
@@ -501,11 +502,13 @@ STOCK_ITEM_COMMON(gasmask, 2)
 	var/type = pickweight(masks)
 	new type(L)
 
-STOCK_ITEM_COMMON(mining, 2)
-	var/list/mine_items = list(/obj/item/shovel, /obj/item/device/flashlight/lantern, /obj/item/mining_scanner, /obj/item/storage/box/excavation)
-	for(var/i in 1 to rand(1, 2))
-		var/to_spawn = pick(mine_items)
-		new to_spawn(L)
+// STOCK_ITEM_COMMON(mining, 2)
+// 	var/list/mine_items = list(/obj/item/shovel, /obj/item/device/flashlight/lantern, /obj/item/mining_scanner, /obj/item/storage/box/excavation)
+// 	for(var/i in 1 to rand(1, 2))
+// 		var/to_spawn = pick(mine_items)
+// 		new to_spawn(L)
+
+// TODO UPDATE XENOARCH
 
 STOCK_ITEM_COMMON(paicard, 2)
 	new /obj/item/device/paicard(L)

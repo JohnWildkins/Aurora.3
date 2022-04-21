@@ -54,14 +54,14 @@
 	reward_high = 3500
 	wanted_types = list(/obj/item/clothing/gloves/force)
 
-/datum/bounty/item/science/fossil
-	name = "Fossil"
-	description = "We want to set up a display in one of the libraries on the %DOCKSHORT. Ship us a unique discovery when you are done displaying it on-station."
-	reward_low = 7500
-	reward_high = 8500
-	required_count = 1
-	random_count = 1 //wants one or two
-	wanted_types = list(/obj/item/fossil, /obj/skeleton)
+// /datum/bounty/item/science/fossil
+// 	name = "Fossil"
+// 	description = "We want to set up a display in one of the libraries on the %DOCKSHORT. Ship us a unique discovery when you are done displaying it on-station."
+// 	reward_low = 7500
+// 	reward_high = 8500
+// 	required_count = 1
+// 	random_count = 1 //wants one or two
+// 	wanted_types = list(/obj/item/fossil, /obj/skeleton) TODO UPDATE XENOARCH
 
 /datum/bounty/item/science/circuitboard
 	name = "Telecomms Monitor Circuitboard"

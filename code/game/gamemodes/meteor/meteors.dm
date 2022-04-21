@@ -274,10 +274,11 @@
 /obj/effect/meteor/emp/meteor_effect()
 	empulse(src, rand(2, 4), rand(4, 10))
 
-/obj/effect/meteor/artifact
-	icon_state = "sharp"
-	meteor_loot = list(/obj/item/archaeological_find)
-	dropamt = 1
+// /obj/effect/meteor/artifact
+// 	icon_state = "sharp"
+// 	meteor_loot = list(/obj/item/archaeological_find)
+// 	dropamt = 1
+// TODO UPDATE XENOARCH
 
 /obj/effect/meteor/supermatter
 	name = "supermatter shard"

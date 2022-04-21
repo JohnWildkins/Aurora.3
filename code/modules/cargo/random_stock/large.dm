@@ -80,8 +80,9 @@ STOCK_ITEM_LARGE(piano, 2)
 	new /obj/structure/device/piano(L)
 
 //Xenoarch suspension field generator, they need a spare
-STOCK_ITEM_LARGE(suspension, 2)
-	new /obj/machinery/suspension_gen(L)
+// STOCK_ITEM_LARGE(suspension, 2)
+// 	new /obj/machinery/suspension_gen(L)
+// TODO UPDATE XENOARCH
 
 STOCK_ITEM_LARGE(animal, 2.5)
 	new /obj/random/animal_crate(L)

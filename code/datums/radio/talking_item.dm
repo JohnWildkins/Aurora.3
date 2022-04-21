@@ -1,11 +1,7 @@
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Formerly talking crystals - these procs are now modular so that you can make any /obj/item 'parrot' player speech back to them
 // This could be extended to atoms, but it's bad enough as is
 // I genuinely tried to Add and Remove them from var and proc lists, but just couldn't get it working
-
-//for easy reference
-/obj/var/datum/talking_atom/talking_atom
 
 /datum/talking_atom
 	var/list/heard_words = list()

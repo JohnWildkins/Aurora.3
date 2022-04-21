@@ -101,8 +101,9 @@
 		icon_state = "ore[pick(1,2,3)]"
 
 /obj/item/ore/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/device/core_sampler))
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-	else
-		return ..()
+	// if(istype(W,/obj/item/device/core_sampler))
+	// 	var/obj/item/device/core_sampler/C = W
+	// 	C.sample_item(src, user)
+	// TODO UPDATE XENOARCH
+	// else
+	return ..()

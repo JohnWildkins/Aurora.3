@@ -29,6 +29,7 @@
 	var/equip_slot = 0
 	var/usesound
 	var/toolspeed = 1
+	var/datum/talking_atom/talking_atom
 
 /obj/Destroy()
 	STOP_PROCESSING(SSprocessing, src)

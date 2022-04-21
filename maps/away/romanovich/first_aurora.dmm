@@ -192,10 +192,6 @@
 "aH" = (
 /turf/simulated/floor/airless,
 /area/derelict/hallway/northwest)
-"aI" = (
-/obj/machinery/artifact,
-/turf/unsimulated/floor/asteroid/ash,
-/area/template_noop)
 "aJ" = (
 /obj/item/gun/energy/stunrevolver,
 /turf/template_noop,
@@ -7138,10 +7134,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/derelict/hallway/southeast)
-"wg" = (
-/obj/machinery/artifact,
-/turf/simulated/floor/airless,
-/area/derelict/hallway/southwest)
 "wh" = (
 /obj/structure/particle_accelerator/end_cap,
 /obj/effect/decal/cleanable/dirt,
@@ -30463,7 +30455,7 @@ iq
 iq
 iq
 iq
-wg
+iq
 kQ
 aa
 aa
@@ -33172,7 +33164,7 @@ aa
 ab
 ab
 ab
-aI
+bG
 ab
 aa
 aa

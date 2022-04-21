@@ -36,7 +36,8 @@
 		/obj/machinery/smartfridge,
 		/obj/machinery/biogenerator,
 		/obj/machinery/constructable_frame,
-		/obj/machinery/radiocarbon_spectrometer,
+		// /obj/machinery/radiocarbon_spectrometer,
+		// TODO UPDATE XENOARCH
 		/obj/item/storage/part_replacer
 	)
 	//The above list a misnomer. This basically means that anything in this list has their own way of handling reagent transfers and should be ignored in afterattack.

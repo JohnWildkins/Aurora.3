@@ -241,24 +241,25 @@ var/list/mineral_can_smooth_with = list(
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 
-	if(istype(W, /obj/item/device/core_sampler))
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-		return
+	// if(istype(W, /obj/item/device/core_sampler))
+	// 	var/obj/item/device/core_sampler/C = W
+	// 	C.sample_item(src, user)
+	// 	return
 
-	if(istype(W, /obj/item/device/depth_scanner))
-		var/obj/item/device/depth_scanner/C = W
-		C.scan_atom(user, src)
-		return
+	// if(istype(W, /obj/item/device/depth_scanner))
+	// 	var/obj/item/device/depth_scanner/C = W
+	// 	C.scan_atom(user, src)
+	// 	return
 
-	if(istype(W, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = W
-		user.visible_message(SPAN_NOTICE("\The [user] extends \the [P] towards \the [src].") , SPAN_NOTICE("You extend \the [P] towards \the [src]."))
-		if(do_after(user,25))
-			if(!istype(src, /turf/simulated/mineral))
-				return
-			to_chat(user, SPAN_NOTICE("[icon2html(P, user)] \The [src] has been excavated to a depth of [2 * excavation_level]cm."))
-		return
+	// if(istype(W, /obj/item/device/measuring_tape))
+	// 	var/obj/item/device/measuring_tape/P = W
+	// 	user.visible_message(SPAN_NOTICE("\The [user] extends \the [P] towards \the [src].") , SPAN_NOTICE("You extend \the [P] towards \the [src]."))
+	// 	if(do_after(user,25))
+	// 		if(!istype(src, /turf/simulated/mineral))
+	// 			return
+	// 		to_chat(user, SPAN_NOTICE("[icon2html(P, user)] \The [src] has been excavated to a depth of [2 * excavation_level]cm."))
+	// 	return
+	// TODO UPDATE XENOARCH
 
 	if(istype(W, /obj/item/pickaxe) && W.simulated)	// Pickaxe offhand is not simulated.
 		var/turf/T = user.loc
@@ -276,80 +277,81 @@ var/list/mineral_can_smooth_with = list(
 		P.drilling = TRUE
 
 		//handle any archaeological finds we might uncover
-		var/fail_message
-		if(finds?.len)
-			var/datum/find/F = finds[1]
-			if(excavation_level + P.excavation_amount > F.excavation_required)
-				//Chance to destroy / extract any finds here
-				fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
+		// var/fail_message
+		// if(finds?.len)
+		// 	var/datum/find/F = finds[1]
+		// 	if(excavation_level + P.excavation_amount > F.excavation_required)
+		// 		//Chance to destroy / extract any finds here
+		// 		fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 
-		if(fail_message)
-			to_chat(user, SPAN_WARNING("You start [P.drill_verb][fail_message ? fail_message : ""]."))
+		// if(fail_message)
+		// 	to_chat(user, SPAN_WARNING("You start [P.drill_verb][fail_message ? fail_message : ""]."))
 
-		if(fail_message && prob(90))
-			if(prob(25))
-				excavate_find(5, finds[1])
-			else if(prob(50))
-				finds.Remove(finds[1])
-				if(prob(50))
-					artifact_debris()
+		// if(fail_message && prob(90))
+		// 	if(prob(25))
+		// 		excavate_find(5, finds[1])
+		// 	else if(prob(50))
+		// 		finds.Remove(finds[1])
+		// 		if(prob(50))
+		// 			artifact_debris()
 
-		if(do_after(user,P.digspeed))
-			if(!istype(src, /turf/simulated/mineral))
-				return
+		// if(do_after(user,P.digspeed))
+		// 	if(!istype(src, /turf/simulated/mineral))
+		// 		return
 
-			P.drilling = FALSE
+		// 	P.drilling = FALSE
 
-			if(prob(50))
-				var/obj/item/ore/O
-				if(prob(25) && (mineral) && (P.excavation_amount >= 30))
-					O = new mineral.ore(src)
-				else
-					O = new /obj/item/ore(src)
-				if(istype(O))
-					O.geologic_data = get_geodata()
-				addtimer(CALLBACK(O, /atom/movable/.proc/forceMove, user.loc), 1)
+		// 	if(prob(50))
+		// 		var/obj/item/ore/O
+		// 		if(prob(25) && (mineral) && (P.excavation_amount >= 30))
+		// 			O = new mineral.ore(src)
+		// 		else
+		// 			O = new /obj/item/ore(src)
+		// 		if(istype(O))
+		// 			O.geologic_data = get_geodata()
+		// 		addtimer(CALLBACK(O, /atom/movable/.proc/forceMove, user.loc), 1)
 
-			if(finds?.len)
-				var/datum/find/F = finds[1]
-				if(round(excavation_level + P.excavation_amount) == F.excavation_required)
-					//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
-					if(excavation_level + P.excavation_amount > F.excavation_required)
-						//if you can get slightly over, perfect extraction
-						excavate_find(100, F)
-					else
-						excavate_find(80, F)
+		// 	if(finds?.len)
+		// 		var/datum/find/F = finds[1]
+		// 		if(round(excavation_level + P.excavation_amount) == F.excavation_required)
+		// 			//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
+		// 			if(excavation_level + P.excavation_amount > F.excavation_required)
+		// 				//if you can get slightly over, perfect extraction
+		// 				excavate_find(100, F)
+		// 			else
+		// 				excavate_find(80, F)
 
-				else if(excavation_level + P.excavation_amount > F.excavation_required - F.clearance_range)
-					//just pull the surrounding rock out
-					excavate_find(0, F)
+		// 		else if(excavation_level + P.excavation_amount > F.excavation_required - F.clearance_range)
+		// 			//just pull the surrounding rock out
+		// 			excavate_find(0, F)
 
-			if(excavation_level + P.excavation_amount >= 100)
-				//if players have been excavating this turf, leave some rocky debris behind
-				var/obj/structure/boulder/B
-				if(artifact_find)
-					if(excavation_level > 0 || prob(15))
-						//boulder with an artifact inside
-						B = new(src, "#9c9378") // if we ever get natural walls, edit this
-						if(artifact_find)
-							B.artifact_find = artifact_find
-					else
-						artifact_debris(1)
-				else if(prob(15))
-					//empty boulder
-					B = new(src, "#9c9378") // if we ever get natural walls, edit this
+		// 	if(excavation_level + P.excavation_amount >= 100)
+		// 		//if players have been excavating this turf, leave some rocky debris behind
+		// 		var/obj/structure/boulder/B
+		// 		if(artifact_find)
+		// 			if(excavation_level > 0 || prob(15))
+		// 				//boulder with an artifact inside
+		// 				B = new(src, "#9c9378") // if we ever get natural walls, edit this
+		// 				if(artifact_find)
+		// 					B.artifact_find = artifact_find
+		// 			else
+		// 				artifact_debris(1)
+		// 		else if(prob(15))
+		// 			//empty boulder
+		// 			B = new(src, "#9c9378") // if we ever get natural walls, edit this
 
-				if(B)
-					GetDrilled(0)
-				else
-					GetDrilled(1)
-				return
+		// 		if(B)
+		// 			GetDrilled(0)
+		// 		else
+		// 			GetDrilled(1)
+		// 		return
 
-			excavation_level += P.excavation_amount
+		// 	excavation_level += P.excavation_amount
 
-		else
-			to_chat(user, SPAN_NOTICE("You stop [P.drill_verb] \the [src]."))
-			P.drilling = FALSE
+		// else
+		// 	to_chat(user, SPAN_NOTICE("You stop [P.drill_verb] \the [src]."))
+		// 	P.drilling = FALSE
+		// TODO UPDATE XENOARCH
 
 	if(istype(W, /obj/item/autochisel))
 		if(last_act + 80 > world.time)//prevents message spam
@@ -368,11 +370,12 @@ var/list/mineral_can_smooth_with = list(
 		new /obj/structure/sculpting_block(src)
 		GetDrilled(1)
 
-/turf/simulated/mineral/proc/get_geodata()
-	if(!geologic_data)
-		geologic_data = new /datum/geosample(src)
-	geologic_data.UpdateNearbyArtifactInfo(src)
-	return geologic_data
+// /turf/simulated/mineral/proc/get_geodata()
+// 	if(!geologic_data)
+// 		geologic_data = new /datum/geosample(src)
+// 	geologic_data.UpdateNearbyArtifactInfo(src)
+// 	return geologic_data
+// TODO UPDATE XENOARCH
 
 /turf/simulated/mineral/proc/clear_ore_effects()
 	if(my_mineral)
@@ -384,8 +387,9 @@ var/list/mineral_can_smooth_with = list(
 
 	clear_ore_effects()
 	var/obj/item/ore/O = new mineral.ore(src)
-	if(istype(O))
-		O.geologic_data = get_geodata()
+	// if(istype(O))
+	// 	O.geologic_data = get_geodata()
+	// TODO UPDATE XENOARCH
 	return O
 
 /turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
@@ -415,31 +419,32 @@ var/list/mineral_can_smooth_with = list(
 /turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
-	var/obj/item/X
-	if(prob_clean)
-		X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
-	else
-		var/obj/item/ore/strangerock/SR = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
-		SR.geologic_data = get_geodata()
-		X = SR
+	// var/obj/item/X
+	// if(prob_clean)
+	// 	X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
+	// else
+	// 	var/obj/item/ore/strangerock/SR = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
+	// 	SR.geologic_data = get_geodata()
+	// 	X = SR
 
-	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
-	//yuck //yuck indeed. //yuck ultra
-	var/display_name = "something"
-	if(!X)
-		X = last_find
-	if(X)
-		display_name = X.name
+	// //some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
+	// //yuck //yuck indeed. //yuck ultra
+	// var/display_name = "something"
+	// if(!X)
+	// 	X = last_find
+	// if(X)
+	// 	display_name = X.name
 
-	//many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
-	if(prob(F.prob_delicate))
-		var/obj/effect/suspension_field/S = locate() in src
-		if(!S || S.field_type != get_responsive_reagent(F.find_type))
-			if(X)
-				visible_message(SPAN_DANGER("[pick("[display_name] crumbles away into dust","[display_name] breaks apart")]."))
-				qdel(X)
+	// //many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
+	// if(prob(F.prob_delicate))
+	// 	var/obj/effect/suspension_field/S = locate() in src
+	// 	if(!S || S.field_type != get_responsive_reagent(F.find_type))
+	// 		if(X)
+	// 			visible_message(SPAN_DANGER("[pick("[display_name] crumbles away into dust","[display_name] breaks apart")]."))
+	// 			qdel(X)
 
-	finds.Remove(F)
+	// finds.Remove(F)
+	// TODO UPDATE XENOARCH
 
 
 /turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
@@ -744,12 +749,13 @@ var/list/asteroid_floor_smooth = list(
 			for(var/obj/item/ore/O in contents)
 				O.attackby(W, user)
 				return
-	else if(istype(W,/obj/item/storage/bag/fossils))
-		var/obj/item/storage/bag/fossils/S = W
-		if(S.collection_mode)
-			for(var/obj/item/fossil/F in contents)
-				F.attackby(W, user)
-				return
+	// else if(istype(W,/obj/item/storage/bag/fossils))
+	// 	var/obj/item/storage/bag/fossils/S = W
+	// 	if(S.collection_mode)
+	// 		for(var/obj/item/fossil/F in contents)
+	// 			F.attackby(W, user)
+	// 			return
+	// TODO UPDATE XENOARCH
 	else
 		..(W, user)
 	return

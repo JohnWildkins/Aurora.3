@@ -69,7 +69,6 @@
 /turf/simulated/floor/reinforced/oxygen,
 /area/engineering/atmos)
 "aao" = (
-/obj/machinery/artifact_harvester,
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
@@ -871,22 +870,6 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/anobattery{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/anobattery{
-	pixel_x = -5;
-	pixel_y = -5
-	},
-/obj/item/anobattery{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/anobattery{
-	pixel_x = -5;
-	pixel_y = 5
-	},
 /turf/simulated/floor/reinforced,
 /area/outpost/research/anomaly_harvest)
 "ach" = (
@@ -898,7 +881,6 @@
 /turf/simulated/floor/plating,
 /area/outpost/engineering/power)
 "aci" = (
-/obj/machinery/artifact_harvester,
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
@@ -1129,7 +1111,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/storage_sublevel)
 "acN" = (
-/obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -1201,7 +1182,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "adc" = (
-/obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/spline/plain{
 	dir = 10
 	},
@@ -1698,7 +1678,6 @@
 "adY" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/emergency,
-/obj/item/storage/box/samplebags,
 /obj/item/nitrilebox,
 /obj/item/storage/box/lights/mixed{
 	pixel_x = 5;
@@ -1712,10 +1691,6 @@
 "aea" = (
 /obj/machinery/light/small{
 	dir = 1
-	},
-/obj/structure/closet/secure_closet/xenoarchaeologist{
-	req_access = null;
-	req_one_access = list(7,47)
 	},
 /turf/simulated/floor/plating,
 /area/rnd/xenoarch_storage)
@@ -1895,15 +1870,10 @@
 /turf/simulated/floor/reinforced/n20,
 /area/engineering/atmos)
 "aev" = (
-/obj/structure/closet/secure_closet/xenoarchaeologist{
-	req_access = null;
-	req_one_access = list(7,47)
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/plating,
 /area/rnd/xenoarch_storage)
 "aex" = (
-/obj/machinery/suspension_gen,
 /turf/simulated/floor/plating,
 /area/rnd/xenoarch_storage)
 "aez" = (
@@ -2135,8 +2105,6 @@
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/mask/gas/half,
 /obj/item/clothing/gloves/latex/nitrile,
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
 /turf/simulated/floor/plating,
 /area/rnd/xenoarch_storage)
 "afg" = (
@@ -2577,7 +2545,6 @@
 /turf/simulated/floor/reinforced,
 /area/rnd/isolation_b)
 "agn" = (
-/obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -2587,7 +2554,6 @@
 /turf/simulated/floor/bluegrid,
 /area/rnd/isolation_b)
 "ago" = (
-/obj/machinery/artifact_analyser,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -3402,7 +3368,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/bookcase/manuals/xenoarchaeology,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenoarch_atrium)
 "ahY" = (
@@ -4986,7 +4951,6 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/xenoarch_atrium)
 "alq" = (
-/obj/machinery/artifact_analyser,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -5223,8 +5187,6 @@
 	pixel_y = -4
 	},
 /obj/item/clothing/gloves/latex/nitrile,
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
 /obj/machinery/door/window{
 	base_state = "right";
 	name = "Suit Storage";
@@ -5278,8 +5240,6 @@
 	pixel_y = -4
 	},
 /obj/item/clothing/gloves/latex/nitrile,
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
 /obj/machinery/door/window{
 	dir = 1;
 	name = "Suit Storage";
@@ -5805,7 +5765,6 @@
 /turf/simulated/floor/plating,
 /area/rnd/xenobiology)
 "amJ" = (
-/obj/machinery/artifact_analyser,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -10395,13 +10354,6 @@
 	c_tag = "Research Sublevel - Exotic Energies Harvesting";
 	network = list("Research Outpost","Anomaly Isolation")
 	},
-/obj/item/anodevice{
-	pixel_x = -4
-	},
-/obj/item/anodevice{
-	pixel_x = 2;
-	pixel_y = 4
-	},
 /turf/simulated/floor/reinforced,
 /area/outpost/research/anomaly_harvest)
 "asV" = (
@@ -10642,8 +10594,6 @@
 	pixel_y = -4
 	},
 /obj/item/clothing/gloves/latex/nitrile,
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
 /obj/machinery/door/window{
 	base_state = "right";
 	name = "Suit Storage";
@@ -10933,7 +10883,6 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/xenoarch_atrium)
 "atV" = (
-/obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
 	},
@@ -10977,9 +10926,7 @@
 /obj/structure/table/steel,
 /obj/item/stack/flag/purple,
 /obj/item/stack/flag/purple,
-/obj/item/storage/box/excavation,
 /obj/item/wrench,
-/obj/item/device/measuring_tape,
 /obj/item/device/suit_cooling_unit,
 /obj/item/device/suit_cooling_unit,
 /obj/item/pickaxe/drill,
@@ -10989,9 +10936,7 @@
 /obj/structure/table/steel,
 /obj/item/stack/flag/green,
 /obj/item/stack/flag/green,
-/obj/item/storage/box/excavation,
 /obj/item/wrench,
-/obj/item/device/measuring_tape,
 /obj/item/pickaxe/drill,
 /turf/simulated/floor/tiled,
 /area/rnd/eva)
@@ -11402,7 +11347,6 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/isolation_a)
 "auF" = (
-/obj/machinery/radiocarbon_spectrometer,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/research/analysis)
 "auG" = (
@@ -12417,14 +12361,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/mixing)
-"awl" = (
-/obj/machinery/suspension_gen{
-	dir = 8
-	},
-/turf/simulated/floor/airless{
-	icon_state = "asteroidplating"
-	},
-/area/mine/unexplored)
 "awm" = (
 /obj/effect/floor_decal/corner/mauve{
 	dir = 6
@@ -13041,7 +12977,6 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/storage/belt/archaeology,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/gloves/latex/nitrile,
 /obj/item/clothing/suit/space/void/sci,
@@ -13166,7 +13101,6 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/storage/belt/archaeology,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/gloves/latex/nitrile,
 /obj/item/clothing/suit/space/void/sci,
@@ -13364,7 +13298,6 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/storage/belt/archaeology,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/gloves/latex/nitrile,
 /obj/item/clothing/suit/space/void/sci,
@@ -14894,10 +14827,6 @@
 /obj/item/device/hand_labeler{
 	pixel_y = 4
 	},
-/obj/item/storage/box/samplebags{
-	pixel_x = 2;
-	pixel_y = -4
-	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenoarch_atrium)
 "aCX" = (
@@ -16423,17 +16352,6 @@
 /area/rnd/xenobiology/cells/alpha)
 "aGQ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/alpha)
-"aGR" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_alpha";
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
 	},
 /turf/simulated/floor/reinforced,
@@ -18535,17 +18453,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/bravo)
-"aKX" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_bravo";
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/bravo)
 "aKY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -20002,17 +19909,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/charlie)
-"aOJ" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_charlie";
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/charlie)
 "aOK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -21101,17 +20997,6 @@
 /area/rnd/xenobiology/cells/delta)
 "aRF" = (
 /obj/machinery/atmospherics/unary/vent_scrubber{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/delta)
-"aRG" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_delta";
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
 	},
 /turf/simulated/floor/reinforced,
@@ -22794,15 +22679,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/hotel)
-"aXA" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_hotel";
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/hotel)
 "aXB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -22820,15 +22696,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/golf)
-"aXD" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_golf";
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/golf)
 "aXE" = (
@@ -22850,15 +22717,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/foxtrot)
-"aXG" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_foxtrot";
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/foxtrot)
 "aXH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -22876,15 +22734,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/reinforced,
-/area/rnd/xenobiology/cells/echo)
-"aXJ" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "xenobio_echo";
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology/cells/echo)
 "aXK" = (
@@ -30069,9 +29918,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/excavation,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/storage/box/samplebags,
 /obj/item/clothing/gloves/latex/nitrile/tajara,
 /obj/item/clothing/gloves/latex/nitrile/unathi,
 /turf/simulated/floor/tiled,
@@ -30606,7 +30453,6 @@
 /turf/simulated/floor/plating,
 /area/outpost/engineering/power)
 "ljj" = (
-/obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
@@ -31763,9 +31609,7 @@
 /turf/simulated/open,
 /area/maintenance/engsublevel)
 "nqY" = (
-/obj/structure/closet/excavation,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/storage/box/samplebags,
 /obj/machinery/camera/network/research_outpost{
 	c_tag = "Research Sublevel - EVA Preparation";
 	dir = 4
@@ -32652,7 +32496,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/anomaly_container,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/research/anomaly_storage)
 "pmn" = (
@@ -33371,9 +33214,7 @@
 /turf/simulated/floor,
 /area/maintenance/substation/engineering_sublevel)
 "qNw" = (
-/obj/structure/closet/excavation,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/storage/box/samplebags,
 /obj/machinery/light_switch{
 	pixel_y = -26
 	},
@@ -33960,7 +33801,6 @@
 /area/medical/patient_wing_picnic)
 "rWw" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/anomaly_container,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/research/anomaly_storage)
 "rXB" = (
@@ -36213,10 +36053,6 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
 /obj/structure/closet{
 	desc = "A dusty old locker.";
 	name = "old suit storage"
@@ -57812,7 +57648,7 @@ aba
 aba
 aqA
 avH
-awl
+ebn
 jlY
 avJ
 avJ
@@ -58069,7 +57905,7 @@ aba
 aba
 aqA
 avI
-awl
+ebn
 jlY
 avJ
 jMR
@@ -60933,7 +60769,7 @@ aUG
 apx
 aWh
 aWS
-aXA
+aWg
 aXZ
 aXZ
 aYO
@@ -61961,7 +61797,7 @@ aUJ
 apA
 aWk
 aWV
-aXD
+aWj
 aYc
 aYc
 aYO
@@ -62989,7 +62825,7 @@ aUM
 aqb
 aWn
 aWY
-aXG
+aWm
 aYf
 aYf
 aYO
@@ -64017,7 +63853,7 @@ aUP
 aqe
 aWq
 aXb
-aXJ
+aWp
 aYi
 aYi
 aYO
@@ -65539,19 +65375,19 @@ aDb
 aDS
 aEX
 wbr
-aGR
+aHT
 aHV
 aIV
 aFV
-aKX
+aLX
 aLZ
 aNa
 aFV
-aOJ
+aPu
 aPw
 aQh
 aFV
-aRG
+aSp
 aSr
 aTj
 aFV
