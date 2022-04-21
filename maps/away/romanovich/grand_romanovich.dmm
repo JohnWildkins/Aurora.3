@@ -6115,13 +6115,6 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /turf/simulated/floor/tiled/dark,
 /area/grand_romanovich)
-"wI" = (
-/obj/structure/flora/grass/brown,
-/obj/structure/boulder,
-/turf/simulated/floor/snow{
-	temperature = 268
-	},
-/area/grand_romanovich/outdoors)
 "wP" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8;
@@ -6327,12 +6320,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/grand_romanovich)
-"AS" = (
-/obj/structure/boulder,
-/turf/simulated/floor/snow{
-	temperature = 268
-	},
-/area/grand_romanovich/outdoors)
 "Bf" = (
 /obj/structure/simple_door/wood,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -40344,7 +40331,7 @@ Vd
 Vd
 Vd
 Vd
-AS
+Vd
 NR
 Vd
 Vd
@@ -40611,7 +40598,7 @@ Vd
 Vd
 Vd
 Vd
-AS
+Vd
 Vd
 Vd
 DW
@@ -45235,7 +45222,7 @@ Vd
 Vd
 Vd
 Vd
-AS
+Vd
 Vd
 Vd
 NR
@@ -48844,7 +48831,7 @@ Vd
 Zi
 Vd
 Vd
-AS
+Vd
 an
 kZ
 kZ
@@ -51406,7 +51393,7 @@ Xs
 Xs
 Vd
 Vd
-wI
+vO
 Vd
 Vd
 Vd
