@@ -7,7 +7,3 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 
 /datum/controller/subsystem/xenoarch/New()
 	NEW_SS_GLOBAL(SSxenoarch)
-
-/datum/controller/subsystem/xenoarch/Initialize(timeofday)
-	//create digsites
-	log_debug("Initialize() in xenoarch.dm called")
