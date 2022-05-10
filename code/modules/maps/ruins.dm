@@ -20,10 +20,43 @@ var/list/banned_ruin_ids = list()
 			continue
 		if(!(SSatlas.current_sector.name in ruin.sectors))
 			continue
+		if(ruin.template_flags & TEMPLATE_FLAG_RUIN_STARTS_DISALLOWED)
+			continue
 		available[ruin] = ruin.spawn_weight
 
 	if (!length(available))
 		UNLINT(WARNING("No ruins available - Not generating ruins"))
+
+	var/obj/effect/overmap/visitable/sector/exoplanet/P = SSmapping.get_planet_by_z(zlevels[1])
+
+	if (SSxenoarch.should_generate_ruins(P))
+		var/datum/map_template/ruin/ruin = SSxenoarch.generate_ruin(P)
+		if(istype(ruin))
+			var/width = TRANSITIONEDGE + RUIN_MAP_EDGE_PAD + round(ruin.width / 2)
+			var/height = TRANSITIONEDGE + RUIN_MAP_EDGE_PAD + round(ruin.height / 2)
+			if (width > maxx - width || height > maxy - height)
+				available -= ruin
+
+			for (var/attempts = 20, attempts > 0, --attempts)
+				var/z = pick(zlevels)
+				var/turf/choice = locate(rand(width, maxx - width), rand(height, maxy - height), z)
+
+				var/valid = TRUE
+				for (var/turf/check in ruin.get_affected_turfs(choice, 1))
+					var/area/check_area = get_area(check)
+					if (!istype(check_area, allowed_area) || check.flags & TURF_NORUINS)
+						valid = FALSE
+						break
+
+				if(valid)
+					log_admin("Xenoarch Ruin \"[ruin.name]\" placed at ([choice.x], [choice.y], [choice.z])!")
+
+					load_ruin(choice, ruin)
+					selected += ruin
+					if (ruin.spawn_cost > 0)
+						remaining -= ruin.spawn_cost
+
+					break
 
 	while (remaining > 0 && length(available))
 		var/datum/map_template/ruin/ruin = pickweight(available)

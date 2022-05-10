@@ -12,6 +12,8 @@ var/datum/controller/subsystem/mapping/SSmapping
 	var/list/submaps = list()
 	var/list/submap_archetypes = list()
 
+	var/list/generated_exoplanets = list()
+
 /datum/controller/subsystem/mapping/New()
 	NEW_SS_GLOBAL(SSmapping)
 
@@ -71,6 +73,15 @@ var/datum/controller/subsystem/mapping/SSmapping
 			space_ruins_templates[MT.name] = MT
 		else if(istype(MT, /datum/map_template/ruin/away_site))
 			away_sites_templates[MT.name] = MT
+
+/datum/controller/subsystem/mapping/proc/get_planet_by_z(var/zlevel)
+	for(var/ex in generated_exoplanets)
+		var/obj/effect/overmap/visitable/sector/exoplanet/E = ex
+		if(!istype(E)) // how
+			continue
+		for(var/z in E.map_z)
+			if(z == zlevel)
+				return E
 
 /proc/generateMapList(filename)
 	var/list/potentialMaps = list()

@@ -276,81 +276,30 @@ var/list/mineral_can_smooth_with = list(
 		playsound(user, P.drill_sound, 20, TRUE)
 		P.drilling = TRUE
 
-		//handle any archaeological finds we might uncover
-		// var/fail_message
-		// if(finds?.len)
-		// 	var/datum/find/F = finds[1]
-		// 	if(excavation_level + P.excavation_amount > F.excavation_required)
-		// 		//Chance to destroy / extract any finds here
-		// 		fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
+		to_chat(user, SPAN_WARNING("You start [P.drill_verb] \the [src]."))
 
-		// if(fail_message)
-		// 	to_chat(user, SPAN_WARNING("You start [P.drill_verb][fail_message ? fail_message : ""]."))
+		if(do_after(user,P.digspeed))
+			if(!istype(src, /turf/simulated/mineral))
+				return
 
-		// if(fail_message && prob(90))
-		// 	if(prob(25))
-		// 		excavate_find(5, finds[1])
-		// 	else if(prob(50))
-		// 		finds.Remove(finds[1])
-		// 		if(prob(50))
-		// 			artifact_debris()
+			P.drilling = FALSE
 
-		// if(do_after(user,P.digspeed))
-		// 	if(!istype(src, /turf/simulated/mineral))
-		// 		return
+			if(prob(50))
+				var/obj/item/ore/O
+				if(prob(25) && (mineral) && (P.excavation_amount >= 30))
+					O = new mineral.ore(src)
+				else
+					O = new /obj/item/ore(src)
+				// if(istype(O))
+				// 	O.geologic_data = get_geodata()
+				addtimer(CALLBACK(O, /atom/movable/.proc/forceMove, user.loc), 1)
 
-		// 	P.drilling = FALSE
+			GetDrilled(TRUE)
+			return
 
-		// 	if(prob(50))
-		// 		var/obj/item/ore/O
-		// 		if(prob(25) && (mineral) && (P.excavation_amount >= 30))
-		// 			O = new mineral.ore(src)
-		// 		else
-		// 			O = new /obj/item/ore(src)
-		// 		if(istype(O))
-		// 			O.geologic_data = get_geodata()
-		// 		addtimer(CALLBACK(O, /atom/movable/.proc/forceMove, user.loc), 1)
-
-		// 	if(finds?.len)
-		// 		var/datum/find/F = finds[1]
-		// 		if(round(excavation_level + P.excavation_amount) == F.excavation_required)
-		// 			//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
-		// 			if(excavation_level + P.excavation_amount > F.excavation_required)
-		// 				//if you can get slightly over, perfect extraction
-		// 				excavate_find(100, F)
-		// 			else
-		// 				excavate_find(80, F)
-
-		// 		else if(excavation_level + P.excavation_amount > F.excavation_required - F.clearance_range)
-		// 			//just pull the surrounding rock out
-		// 			excavate_find(0, F)
-
-		// 	if(excavation_level + P.excavation_amount >= 100)
-		// 		//if players have been excavating this turf, leave some rocky debris behind
-		// 		var/obj/structure/boulder/B
-		// 		if(artifact_find)
-		// 			if(excavation_level > 0 || prob(15))
-		// 				//boulder with an artifact inside
-		// 				B = new(src, "#9c9378") // if we ever get natural walls, edit this
-		// 				if(artifact_find)
-		// 					B.artifact_find = artifact_find
-		// 			else
-		// 				artifact_debris(1)
-		// 		else if(prob(15))
-		// 			//empty boulder
-		// 			B = new(src, "#9c9378") // if we ever get natural walls, edit this
-
-		// 		if(B)
-		// 			GetDrilled(0)
-		// 		else
-		// 			GetDrilled(1)
-		// 		return
-
-		// 	excavation_level += P.excavation_amount
-
-		// else
-		// 	to_chat(user, SPAN_NOTICE("You stop [P.drill_verb] \the [src]."))
-		// 	P.drilling = FALSE
+		else
+			to_chat(user, SPAN_NOTICE("You stop [P.drill_verb] \the [src]."))
+			P.drilling = FALSE
 		// TODO UPDATE XENOARCH
 
 	if(istype(W, /obj/item/autochisel))

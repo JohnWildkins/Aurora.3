@@ -46,6 +46,8 @@
 	var/has_resources
 	var/list/resources
 
+	var/relictype	// /decl/relic typepath
+
 	// Plating data.
 	var/base_name = "plating"
 	var/base_desc = "The naked hull."

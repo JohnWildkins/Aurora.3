@@ -10,13 +10,12 @@
 	features_budget = 6
 	surface_color = "#807d7a"
 	water_color = null
-
-/obj/effect/overmap/visitable/sector/exoplanet/barren/generate_habitability()
-	return HABITABILITY_BAD
+	habitability_class = HABITABILITY_BAD
 
 /obj/effect/overmap/visitable/sector/exoplanet/barren/generate_atmosphere()
 	..()
-	atmosphere.remove_ratio(0.9)
+	if(atmosphere)
+		atmosphere.remove_ratio(0.9)
 
 /datum/random_map/noise/exoplanet/barren
 	descriptor = "barren exoplanet"
@@ -59,6 +58,7 @@
 	rock_colors = null
 	planetary_area = /area/exoplanet/barren/asteroid
 	possible_features = list(/datum/map_template/ruin/exoplanet/abandoned_mining)
+	habitability_class = HABITABILITY_NOATMOS
 
 /obj/effect/overmap/visitable/sector/exoplanet/barren/asteroid/romanovich
 	name = "romanovich cloud asteroid"
@@ -69,10 +69,11 @@
 	descriptor = "asteroid exoplanet"
 	smoothing_iterations = 4
 	land_type = /turf/unsimulated/floor/asteroid/ash
+	flora_prob = 0
 	fauna_prob = 1
 	fauna_types = list(/mob/living/simple_animal/hostile/carp/asteroid, /mob/living/simple_animal/hostile/carp/bloater, /mob/living/simple_animal/hostile/carp/shark/reaver,
 					/mob/living/simple_animal/hostile/carp/shark/reaver/eel, /mob/living/simple_animal/hostile/gnat)
 
 /area/exoplanet/barren/asteroid
-	name = "\improper Asteroi surface"
+	name = "\improper Asteroid surface"
 	base_turf = /turf/unsimulated/floor/asteroid/ash

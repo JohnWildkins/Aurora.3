@@ -2,6 +2,7 @@
 	name = "exoplanet"
 	icon_state = "globe"
 	in_space = 0
+	var/planet_name = "exoplanet"
 	var/area/planetary_area
 	var/list/seeds = list()
 	var/list/animals = list()
@@ -50,6 +51,8 @@
 	var/list/mobs_to_tolerate = list()
 
 /obj/effect/overmap/visitable/sector/exoplanet/proc/generate_habitability()
+	if(habitability_class)
+		return
 	var/roll = rand(1,100)
 	switch(roll)
 		if(1 to 10)
@@ -67,7 +70,8 @@
 	maxy = max_y ? max_y : world.maxy
 	planetary_area = new planetary_area()
 
-	name = "[generate_planet_name()], \a [name]"
+	planet_name = generate_planet_name()
+	name = "[planet_name], \a [name]"
 
 	world.maxz++
 	forceMove(locate(1,1,world.maxz))
@@ -83,6 +87,8 @@
 		if(ruin_tags_blacklist & initial(ruin.ruin_tags))
 			continue
 		possible_features += new ruin
+
+	SSmapping.generated_exoplanets += src
 	..()
 
 /obj/effect/overmap/visitable/sector/exoplanet/proc/build_level()
@@ -93,6 +99,7 @@
 	generate_landing(2)
 	update_biome()
 	generate_daycycle()
+	SSxenoarch.generate_digsites(src)
 	START_PROCESSING(SSprocessing, src)
 
 //attempt at more consistent history generation for xenoarch finds.
@@ -324,6 +331,8 @@
 		new new_type(T)
 
 /obj/effect/overmap/visitable/sector/exoplanet/proc/generate_atmosphere()
+	if(habitability_class == HABITABILITY_NOATMOS)
+		return
 	atmosphere = new
 	if(habitability_class == HABITABILITY_IDEAL)
 		atmosphere.adjust_gas(GAS_OXYGEN, MOLES_O2STANDARD, 0)
