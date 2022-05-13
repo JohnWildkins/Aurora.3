@@ -4639,17 +4639,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/engineering/atmos)
 "dMM" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/refinery)
 "dMS" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/lattice/catwalk/indoor/grate,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor/plating,
 /area/maintenance/hangar/port)
 "dNa" = (
@@ -11320,6 +11326,12 @@
 "jeF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green,
+/obj/machinery/power/apc/low{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/freezer{
 	name = "cold storage tiles";
 	temperature = 278
@@ -15559,6 +15571,27 @@
 	name = "thruster mount"
 	},
 /area/shuttle/intrepid/engine_compartment)
+"mCt" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk/indoor/grate,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/wing/port/deck1)
 "mDd" = (
 /obj/structure/lattice/catwalk/indoor,
 /obj/structure/cable{
@@ -15576,6 +15609,16 @@
 "mDt" = (
 /turf/simulated/wall,
 /area/maintenance/substation/research_sublevel)
+"mDE" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/lattice/catwalk/indoor/grate,
+/turf/simulated/floor/plating,
+/area/maintenance/operations)
 "mDH" = (
 /obj/structure/lattice/catwalk/indoor/grate,
 /obj/machinery/atmospherics/pipe/simple/hidden/purple{
@@ -15731,6 +15774,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering)
+"mKD" = (
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/structure/lattice/catwalk/indoor/grate,
+/turf/simulated/floor/plating,
+/area/maintenance/operations)
 "mMC" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -21768,6 +21818,9 @@
 /area/outpost/mining_main/refinery)
 "rRi" = (
 /obj/structure/plasticflaps/airtight,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
@@ -22283,12 +22336,18 @@
 /turf/simulated/floor/tiled,
 /area/hallway/primary/aft)
 "snA" = (
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "12-0"
+	},
+/obj/structure/lattice/catwalk/indoor/grate,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/lattice/catwalk/indoor/grate,
 /turf/simulated/floor/plating,
 /area/maintenance/hangar/port)
 "snD" = (
@@ -23130,8 +23189,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/mining)
 "sWa" = (
-/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /obj/structure/lattice/catwalk/indoor/grate,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/plating,
 /area/maintenance/operations)
 "sWr" = (
@@ -23701,6 +23763,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/security/checkpoint)
+"ttV" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/lattice/catwalk/indoor/grate,
+/turf/simulated/floor/plating,
+/area/maintenance/operations)
 "tuP" = (
 /turf/simulated/wall/shuttle/scc_space_ship/cardinal,
 /area/engineering/storage/lower)
@@ -26161,8 +26230,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/wing/port/deck1)
 "vul" = (
-/obj/structure/railing/mapped,
 /obj/structure/lattice/catwalk/indoor/grate,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/railing/mapped,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/refinery)
 "vuB" = (
@@ -27608,6 +27680,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/operations/storage)
+"wNx" = (
+/obj/structure/lattice/catwalk/indoor/grate,
+/obj/machinery/power/apc/high{
+	dir = 1;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/structure/railing/mapped,
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/refinery)
 "wNS" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -39943,7 +40027,7 @@ dPJ
 fif
 fif
 wVV
-qBU
+mCt
 fif
 uCB
 fif
@@ -42378,7 +42462,7 @@ oxP
 lRO
 tRQ
 xGe
-dAZ
+mDE
 gvZ
 uzB
 uzB
@@ -42580,7 +42664,7 @@ bGl
 iJR
 pqh
 qkh
-vqU
+feY
 gvZ
 uzB
 dWC
@@ -42782,7 +42866,7 @@ qkh
 qkh
 qkh
 qkh
-vqU
+feY
 gvZ
 yhf
 tMa
@@ -42984,7 +43068,7 @@ fDD
 lIg
 ueg
 icm
-vqU
+feY
 gvZ
 rpj
 nag
@@ -43184,9 +43268,9 @@ evA
 gMp
 fDD
 lIg
-vqU
-vqU
-vqU
+mKD
+ttV
+dAZ
 gvZ
 qqH
 oJc
@@ -45002,7 +45086,7 @@ vqU
 dpK
 vqU
 nnw
-vul
+wNx
 oDv
 tIS
 wkD
