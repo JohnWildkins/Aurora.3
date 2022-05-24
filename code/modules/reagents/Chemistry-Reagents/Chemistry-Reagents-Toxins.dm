@@ -104,13 +104,13 @@
 
 		if(alien == IS_VAURCA && H.species.has_organ[BP_FILTRATION_BIT])
 			metabolism = REM * 20 //vaurcae metabolise phoron faster than other species - good for them if their filter isn't broken.
-			var/obj/item/organ/vaurca/filtrationbit/F = H.internal_organs_by_name[BP_FILTRATION_BIT]
+			var/obj/item/organ/internal/vaurca/filtrationbit/F = H.internal_organs_by_name[BP_FILTRATION_BIT]
 			if(isnull(F))
 				..()
 			else if(F.is_broken())
 				..()
 			else if(H.species.has_organ[BP_PHORON_RESERVE])
-				var/obj/item/organ/vaurca/preserve/P = H.internal_organs_by_name[BP_PHORON_RESERVE]
+				var/obj/item/organ/internal/vaurca/preserve/P = H.internal_organs_by_name[BP_PHORON_RESERVE]
 				if(isnull(P))
 					return
 				else if(P.is_broken())
@@ -610,7 +610,7 @@
 	reagent_state = SOLID
 	color = "#333300"
 	taste_description = "cheap tobacco"
-	strength = 0.004
+	strength = 0
 	taste_mult = 10
 	var/nicotine = 0.2
 
@@ -621,14 +621,12 @@
 	name = "Earth Tobacco"
 	description = "Nicknamed 'Earth Tobacco', this plant is much higher quality than its spacefaring counterpart."
 	taste_description = "luxury tobacco"
-	strength = 0.002
 	nicotine = 0.5
 
 /decl/reagent/toxin/tobacco/fake
 	name = "Cheap Tobacco"
 	description = "This actually appears to be mostly ground up leaves masquerading as tobacco. There's maybe some nicotine in there somewhere..."
 	taste_description = "acrid smoke"
-	strength = 0.008
 	nicotine = 0.1
 
 /decl/reagent/toxin/tobacco/liquid
@@ -714,12 +712,12 @@
 	if(ishuman(M) && !berserked)
 		H.berserk_start()
 		berserked = TRUE
-	else if(ishuman(M) && berserked) 
+	else if(ishuman(M) && berserked)
 		H.berserk_process()
 	M.add_chemical_effect(CE_BERSERK, 1)
 	if(M.a_intent != I_HURT)
 		M.a_intent_change(I_HURT)
-		
+
 /decl/reagent/toxin/spectrocybin/final_effect(mob/living/carbon/human/H, datum/reagents/holder)
 	. = ..()
 	if(istype(H) && H.chem_doses[type] >= get_overdose(H, holder = holder))
@@ -776,7 +774,7 @@
 	reagent_state = LIQUID
 	color = "#002067"
 	spectro_hidden = TRUE
-	metabolism = REM * 0.2
+	metabolism = REM/3
 	strength = 0
 	taste_description = "danger"
 

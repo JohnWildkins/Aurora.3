@@ -99,7 +99,7 @@
 	if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/dipped = W
 		dipped.attempt_apply_coating(src, user)
-		return TRUE
+		return
 	if(!(W.flags & NOBLUDGEON) && (user.a_intent == I_HURT) && fragile && (W.force > fragile))
 		if(do_after(user, 10))
 			if(!QDELETED(src))
@@ -307,6 +307,9 @@
 		return 1
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-	playsound(src, 'sound/effects/pour.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
+	on_pour()
 	return 1
+
+/obj/item/reagent_containers/proc/on_pour()
+	playsound(src, /decl/sound_category/generic_pour_sound, 25, 1)

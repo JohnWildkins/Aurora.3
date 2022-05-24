@@ -242,7 +242,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		var/log_msg = message
 		var/pass = FALSE
 		screen = RCS_SENTFAIL
-		for(var/obj/machinery/message_server/MS in SSmachinery.processing_machines)
+		for(var/obj/machinery/message_server/MS in SSmachinery.processing)
 			if(!MS.active)
 				continue
 			MS.send_rc_message(ckey(href_list["department"]), department, log_msg, msgStamped, msgVerified, priority)
@@ -339,14 +339,14 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			alert("Invalid query. Try again.")
 		var/DBQuery/query = dbcon.NewQuery("SELECT id, name, department, info FROM ss13_forms WHERE id=[whatisid]")
 		query.Execute()
-		var/dat = "<center><b>NanoTrasen Corporate Form</b><br>"
+		var/dat = "<center><b>Stellar Corporate Conglomerate Form</b><br>"
 		while(query.NextRow())
 			var/id = query.item[1]
 			var/name = query.item[2]
 			var/department = query.item[3]
 			var/info = query.item[4]
 
-			dat += "<b>NCF-[id]</b><br><br>"
+			dat += "<b>SCCF-[id]</b><br><br>"
 			dat += "<b>[name]</b><br>"
 			dat += "<b>[department] Department</b><hr>"
 			dat += "[info]"
@@ -414,7 +414,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		return TRUE
 
 /obj/machinery/requests_console/proc/can_send()
-	for(var/obj/machinery/message_server/MS in SSmachinery.processing_machines)
+	for(var/obj/machinery/message_server/MS in SSmachinery.processing)
 		if(!MS.active)
 			continue
 		return TRUE

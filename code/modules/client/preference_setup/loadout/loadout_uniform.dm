@@ -66,6 +66,7 @@
 	skirts["tube skirt"] = /obj/item/clothing/under/skirt/tube
 	skirts["jumper skirt"] = /obj/item/clothing/under/skirt/jumper
 	skirts["jumper dress"] = /obj/item/clothing/under/skirt/jumper_highcut
+	skirts["long straight skirt"] = /obj/item/clothing/under/skirt/straightlong
 	gear_tweaks += new /datum/gear_tweak/path(skirts)
 
 /datum/gear/uniform/suit
@@ -95,16 +96,18 @@
 
 /datum/gear/uniform/scrubs
 	display_name = "scrubs selection"
-	path = /obj/item/clothing/under/rank/medical/black
+	path = /obj/item/clothing/under/rank/medical/surgeon/zavod
 	allowed_roles = list("Scientist","Chief Medical Officer", "Physician", "Surgeon", "Pharmacist", "First Responder", "Medical Intern", "Xenobiologist", "Research Director", "Investigator")
 
 /datum/gear/uniform/scrubs/New()
 	..()
 	var/list/scrubs = list()
-	scrubs["scrubs, black"] = /obj/item/clothing/under/rank/medical/black
-	scrubs["scrubs, blue"] = /obj/item/clothing/under/rank/medical/blue
-	scrubs["scrubs, green"] = /obj/item/clothing/under/rank/medical/green
-	scrubs["scrubs, purple"] = /obj/item/clothing/under/rank/medical/purple
+	scrubs["scrubs, nanotrasen navy blue"] = /obj/item/clothing/under/rank/medical/surgeon
+	scrubs["scrubs, zeng-hu purple"] = /obj/item/clothing/under/rank/medical/surgeon/zeng
+	scrubs["scrubs, PMCG blue"] = /obj/item/clothing/under/rank/medical/surgeon/pmc
+	scrubs["scrubs, zavodskoi black"] = /obj/item/clothing/under/rank/medical/surgeon/zavod
+	scrubs["scrubs, idris green"] = /obj/item/clothing/under/rank/medical/surgeon/idris
+
 	gear_tweaks += new /datum/gear_tweak/path(scrubs)
 
 /datum/gear/uniform/dress
@@ -214,6 +217,7 @@
 	description = "A selection of Dominian clothing."
 	path = /obj/item/clothing/under/dominia
 	flags = GEAR_HAS_DESC_SELECTION
+	culture_restriction = list(/decl/origin_item/culture/dominia, /decl/origin_item/culture/dominian_unathi)
 
 /datum/gear/uniform/dominia/New()
 	..()
@@ -230,6 +234,7 @@
 	display_name = "dominian dress selection"
 	description = "A selection of fancy Dominian dresses."
 	path = /obj/item/clothing/under/dominia/dress
+	culture_restriction = list(/decl/origin_item/culture/dominia, /decl/origin_item/culture/dominian_unathi)
 
 /datum/gear/uniform/dominia_dress/New()
 	..()
@@ -244,6 +249,7 @@
 	description = "A selection of Dominian clothing belonging to the Diplomatic Service."
 	path = /obj/item/clothing/under/dominia/consular
 	allowed_roles = list("Consular Officer")
+	culture_restriction = list(/decl/origin_item/culture/dominia, /decl/origin_item/culture/dominian_unathi)
 
 /datum/gear/uniform/dominia_consular/New()
 	..()
@@ -256,6 +262,7 @@
 	display_name = "fisanduhian sweater"
 	path = /obj/item/clothing/under/dominia/sweater
 	flags = GEAR_HAS_DESC_SELECTION
+	culture_restriction = list(/decl/origin_item/culture/dominia, /decl/origin_item/culture/dominian_unathi)
 
 /datum/gear/uniform/elyra_holo
 	display_name = "elyran holographic suit selection"
@@ -274,21 +281,6 @@
 	display_name = "kimono"
 	path = /obj/item/clothing/under/kimono
 	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION | GEAR_HAS_COLOR_SELECTION
-
-/datum/gear/uniform/detective
-	display_name = "uniforms, (Investigations)"
-	description = "A selection of Investigations staff uniforms."
-	path = /obj/item/clothing/under/det
-	allowed_roles = list("Investigator")
-
-/datum/gear/uniform/detective/New()
-	..()
-	var/list/uniform = list()
-	uniform["investigator uniform, tan"] = /obj/item/clothing/under/det
-	uniform["investigator uniform, grey"] = /obj/item/clothing/under/det/forensics
-	uniform["investigator uniform, black"] = /obj/item/clothing/under/det/black
-	uniform["investigator uniform, brown"] = /obj/item/clothing/under/det/classic
-	gear_tweaks += new /datum/gear_tweak/path(uniform)
 
 /datum/gear/uniform/circuitry
 	display_name = "jumpsuit, circuitry (empty)"
@@ -323,6 +315,22 @@
 	path = /obj/item/clothing/under/konyangdress
 	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION
 
+/datum/gear/uniform/konyangtraditional
+	display_name = "traditional konyanger dress selection"
+	description = "A selection of traditional Konyanger formal and religious wear."
+	path = /obj/item/clothing/under/konyangdresstraditional
+	flags = GEAR_HAS_NAME_SELECTION | GEAR_HAS_DESC_SELECTION
+
+/datum/gear/uniform/konyangtraditional/New()
+	..()
+	var/list/konyangtraditional = list()
+	konyangtraditional["pink traditional konyanger dress"] = /obj/item/clothing/under/konyangdresstraditional
+	konyangtraditional["green traditional konyanger dress"] = /obj/item/clothing/under/konyangdresstraditional/green
+	konyangtraditional["blue traditional konyanger dress"] = /obj/item/clothing/under/konyangdresstraditional/blue
+	konyangtraditional["national-colored traditional konyanger dress"] = /obj/item/clothing/under/konyangdresstraditional/national
+	konyangtraditional["national-colored traditional konyanger dress with vest"] = /obj/item/clothing/under/konyangdresstraditional/national/vest
+	gear_tweaks += new /datum/gear_tweak/path(konyangtraditional)
+
 /datum/gear/uniform/zhongshan
 	display_name = "zhongshan suit"
 	path = /obj/item/clothing/under/zhongshan
@@ -332,6 +340,7 @@
 	display_name = "gadpathurian fatigues"
 	path = /obj/item/clothing/under/uniform/gadpathur
 	flags = GEAR_HAS_DESC_SELECTION
+	origin_restriction = list(/decl/origin_item/origin/gadpathur)
 
 /datum/gear/uniform/miscellaneous/qipao
 	display_name = "qipao"

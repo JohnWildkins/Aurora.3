@@ -54,8 +54,7 @@ var/datum/controller/subsystem/ticker/SSticker
 		'sound/music/space.ogg',
 		'sound/music/traitor.ogg',
 		'sound/music/title2.ogg',
-		'sound/music/clouds.s3m',
-		'sound/music/space_oddity.ogg'
+		'sound/music/clouds.s3m'
 	)
 
 	var/lobby_ready = FALSE
@@ -174,12 +173,9 @@ var/datum/controller/subsystem/ticker/SSticker
 	if(force_end)
 		game_finished = TRUE
 		mode_finished = TRUE
-	else if(config.continous_rounds)
+	else
 		game_finished = (evacuation_controller.round_over() || mode.station_was_nuked)
 		mode_finished = (!post_game && mode.check_finished())
-	else
-		game_finished = (mode.check_finished() || (evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)) || universe_has_ended
-		mode_finished = game_finished
 
 	if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
 		current_state = GAME_STATE_FINISHED
@@ -227,19 +223,6 @@ var/datum/controller/subsystem/ticker/SSticker
 					to_world("<span class='notice'><b>An admin has delayed the round end</b></span>")
 			else if(!delay_notified)
 				to_world("<span class='notice'><b>An admin has delayed the round end</b></span>")
-
-	else if (mode_finished)
-		post_game = 1
-
-		mode.cleanup()
-
-		//call a transfer shuttle vote
-		spawn(50)
-			if(!round_end_announced && !config.continous_rounds) // Spam Prevention. Now it should announce only once.
-				to_world("<span class='danger'>The round has ended!</span>")
-				round_end_announced = 1
-				SSvote.autotransfer()
-
 	return 1
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
@@ -330,8 +313,8 @@ var/datum/controller/subsystem/ticker/SSticker
 	return 1
 
 /datum/controller/subsystem/ticker/proc/update_ready_list(var/mob/abstract/new_player/NP, force_rdy = FALSE, force_urdy = FALSE)
-	if(current_state >= GAME_STATE_PLAYING || SSjobs?.init_state < SS_INITSTATE_DONE)
-		return FALSE // don't bother once the game has started
+	if(current_state >= GAME_STATE_PLAYING || !SSjobs.bitflag_to_job.len)
+		return FALSE // don't bother once the game has started or before SSjobs is available
 
 	if(!LAZYLEN(ready_player_jobs))
 		ready_player_jobs = DEPARTMENTS_LIST_INIT
@@ -358,7 +341,7 @@ var/datum/controller/subsystem/ticker/SSticker
 		. = TRUE
 
 	if(.)
-		total_players_ready++
+		update_ready_count()
 
 /datum/controller/subsystem/ticker/proc/unready_player(var/ident, var/force_name = FALSE)
 	if(isnull(ident))
@@ -368,26 +351,36 @@ var/datum/controller/subsystem/ticker/SSticker
 	if(!istype(prefs) || force_name)
 		// trawl the whole list - we only do this on logout or job swap, aka when we can't guarantee the job datum being accurate
 		for(var/dept in ready_player_jobs)
-			if(ready_player_jobs[dept][ident])
+			if(!. && LAZYISIN(ready_player_jobs[dept], ident))
 				. = TRUE
 			ready_player_jobs[dept] -= ident
 		if(.)
-			total_players_ready--
+			update_ready_count()
 		return
 
 	var/datum/job/ready_job = prefs.return_chosen_high_job()
 
+	if(!istype(ready_job))
+		// literally how
+		return FALSE
+
 	for(var/dept in ready_job.departments)
-		if(ready_player_jobs[dept][prefs.real_name])
+		if(!. && ready_player_jobs[dept][prefs.real_name])
 			. = TRUE
-		LAZYREMOVE(ready_player_jobs[dept], prefs.real_name)
+		ready_player_jobs[dept] -= prefs.real_name
 
 	if(.)
-		total_players_ready--
+		update_ready_count()
+
+/datum/controller/subsystem/ticker/proc/update_ready_count()
+	total_players_ready = 0
+	for(var/mob/abstract/new_player/NP in player_list)
+		if(NP.ready)
+			total_players_ready++
 
 /datum/controller/subsystem/ticker/proc/cycle_player(var/mob/abstract/new_player/NP, var/datum/job/job)
 	// exclusively used for occupation.dm, when players swap job priority while readied
-	if(current_state >= GAME_STATE_PLAYING || SSjobs?.init_state < SS_INITSTATE_DONE || !NP.ready)
+	if(current_state >= GAME_STATE_PLAYING || !SSjobs.bitflag_to_job.len || !NP.ready)
 		return FALSE
 
 	update_ready_list(NP, force_urdy = TRUE)

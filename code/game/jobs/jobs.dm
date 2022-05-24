@@ -1,4 +1,6 @@
 var/const/NUM_JOB_DEPTS     = 3 //ENGSEC, MEDSCI and SERVICE
+
+// ENGSEC
 var/const/ENGSEC			=(1<<0)
 
 var/const/CAPTAIN			=(1<<0)
@@ -16,6 +18,7 @@ var/const/INTERN_ENG		=(1<<11)
 var/const/BRIDGE_CREW		=(1<<12)
 var/const/OPERATIONS_MANAGER =(1<<13)
 
+// MEDSCI
 var/const/MEDSCI			=(1<<1)
 
 var/const/RD				=(1<<0)
@@ -31,8 +34,9 @@ var/const/XENOBIOLOGIST		=(1<<9)
 var/const/MED_TECH			=(1<<10)
 var/const/INTERN_MED		=(1<<11)
 var/const/INTERN_SCI		=(1<<12)
+var/const/XENOBOTANIST		=(1<<13)
 
-
+// SERVICE
 var/const/SERVICE			=(1<<2)
 
 var/const/XO				=(1<<0)
@@ -52,7 +56,7 @@ var/const/MERCHANT			=(1<<13)
 var/const/JOURNALIST		=(1<<14)
 var/const/ASSISTANT			=(1<<15)
 
-
+// Positions Lists
 var/list/command_positions = list(
 	"Captain",
 	"Executive Officer",
@@ -63,14 +67,12 @@ var/list/command_positions = list(
 	"Operations Manager"
 )
 
-
 var/list/engineering_positions = list(
 	"Chief Engineer",
 	"Engineer",
 	"Atmospheric Technician",
 	"Engineering Apprentice"
 )
-
 
 var/list/medical_positions = list(
 	"Chief Medical Officer",
@@ -82,15 +84,14 @@ var/list/medical_positions = list(
 	"Medical Intern"
 )
 
-
 var/list/science_positions = list(
 	"Research Director",
 	"Scientist",
 	"Xenobiologist",
+	"Xenobotanist",
 	"Lab Assistant"
 )
 
-//BS12 EDIT
 var/list/cargo_positions = list(
 	"Operations Manager",
 	"Hangar Technician",
@@ -108,12 +109,15 @@ var/list/service_positions = list(
 	"Librarian",
 	"Corporate Reporter",
 	"Chaplain",
-	"Assistant",
-	"Bridge Crew",
-	"Off-Duty Crew Member",
-	"Passenger"
+	"Bridge Crew"
 )
 
+var/list/civilian_positions = list(
+	"Assistant",
+	"Off-Duty Crew Member",
+	"Passenger",
+	"Merchant"
+)
 
 var/list/security_positions = list(
 	"Head of Security",
@@ -126,8 +130,7 @@ var/list/security_positions = list(
 var/list/nonhuman_positions = list(
 	"AI",
 	"Cyborg",
-	"pAI",
-	"Merchant"
+	"pAI"
 )
 
 /proc/guest_jobbans(var/job)
@@ -153,5 +156,3 @@ var/list/nonhuman_positions = list(
 			titles = J.alt_titles
 
 	return titles
-
-//Mahzel : Job preview not added because code don't exist in BS12

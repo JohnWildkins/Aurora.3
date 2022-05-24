@@ -33,6 +33,9 @@ INITIALIZE_IMMEDIATE(/mob/abstract/new_player)
 	if(statpanel("Lobby"))
 		stat("Game ID:", game_id)
 
+		if(!istype(SSticker))
+			return
+
 		if(SSticker.hide_mode == ROUNDTYPE_SECRET)
 			stat("Game Mode:", "Secret")
 		else if (SSticker.hide_mode == ROUNDTYPE_MIXED_SECRET)
@@ -43,7 +46,7 @@ INITIALIZE_IMMEDIATE(/mob/abstract/new_player)
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [length(player_list)]", "Players Ready: [SSticker.total_players_ready]")
-			if(SSjobs.init_state >= SS_INITSTATE_DONE)
+			if(LAZYLEN(SSticker.ready_player_jobs))
 				for(var/dept in SSticker.ready_player_jobs)
 					if(LAZYLEN(SSticker.ready_player_jobs[dept]))
 						stat(uppertext(dept), null)
@@ -234,6 +237,9 @@ INITIALIZE_IMMEDIATE(/mob/abstract/new_player)
 	if(!IsJobAvailable(rank))
 		to_chat(usr, "<span class='notice'>[rank] is not available. Please try another.</span>")
 		return 0
+	if(!(spawning_at in current_map.allowed_spawns))
+		to_chat(usr, SPAN_NOTICE("Spawn location [spawning_at] invalid for [current_map]. Defaulting to [current_map.default_spawn]."))
+		spawning_at = current_map.default_spawn
 
 	spawning = 1
 	close_spawn_windows()
@@ -243,7 +249,7 @@ INITIALIZE_IMMEDIATE(/mob/abstract/new_player)
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 
 	SSjobs.EquipAugments(character, character.client.prefs)
-	character = SSjobs.EquipPersonal(character, rank, 1,spawning_at)					//equips the human
+	character = SSjobs.EquipRank(character, rank, TRUE, spawning_at)					//equips the human
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(character.mind.assigned_role == "AI")

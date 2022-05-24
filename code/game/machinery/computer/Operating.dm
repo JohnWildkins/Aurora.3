@@ -32,7 +32,7 @@
 	if(!internal_bodyscanner) // So it can scan correctly
 		var/obj/machinery/body_scanconsole/S = new (src)
 		S.forceMove(src)
-		S.use_power = FALSE
+		S.update_use_power(POWER_USE_OFF)
 		internal_bodyscanner = S
 
 /obj/machinery/computer/operating/Destroy()
@@ -157,7 +157,7 @@
 				usr.visible_message("\The [src] beeps, printing a new [input_scan] after a moment.")
 	return
 
-/obj/machinery/computer/operating/machinery_process()
+/obj/machinery/computer/operating/process()
 	if(operable())
 		src.updateDialog()
 	if(src.stat & BROKEN)
@@ -287,7 +287,7 @@
 			lung_ruptured = "Lung ruptured."
 		if(e.status & ORGAN_SPLINTED)
 			splint = "Splinted."
-		if(e.is_dislocated())
+		if(ORGAN_IS_DISLOCATED(e))
 			dislocated = "Dislocated."
 		if(e.status & ORGAN_BLEEDING)
 			bled = "Bleeding."
@@ -314,7 +314,7 @@
 			if(unknown_body)
 				imp += "Unknown body present:"
 
-		if(!AN && !open && !infected & !imp)
+		if(!AN && !open && !infected && !imp)
 			AN = "None:"
 		if(!e.is_stump())
 			dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[get_severity(e.brute_dam, TRUE)]</td><td>[robot][bled][AN][splint][open][infected][imp][dislocated][internal_bleeding][severed_tendon][lung_ruptured]</td>"

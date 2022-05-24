@@ -232,6 +232,9 @@
 	var/sound/S = playsound_get_sound(soundin, volume, falloff, frequency)
 	return playsound_to(source ? get_turf(source) : null, S, use_random_freq, use_pressure = use_pressure, required_preferences = required_preferences, required_asfx_toggles = required_asfx_toggles)
 
+/proc/playsound_in(atom/source, soundin, vol, vary, extrarange, falloff, is_global, usepressure = 1, environment = -1, required_preferences = 0, required_asfx_toggles = 0, frequency = 0, time)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/playsound, source, soundin, vol, vary, extrarange, falloff, is_global, usepressure, environment, required_preferences, required_asfx_toggles, frequency), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
+
 /client/proc/playtitlemusic()
 	if(!SSticker.login_music)
 		return
@@ -565,6 +568,12 @@
 		'sound/items/wield/generic3.ogg'
 	)
 
+/decl/sound_category/generic_pour_sound
+	sounds = list(
+		'sound/effects/pour1.ogg',
+		'sound/effects/pour2.ogg'
+	)
+
 /decl/sound_category/wield_generic_sound
 	sounds = list(
 		'sound/items/wield/generic1.ogg',
@@ -684,6 +693,22 @@
 	'sound/weapons/laserstrong.ogg'
 )
 
+/decl/sound_category/shaker_shaking
+	sounds = list(
+		'sound/items/shaking1.ogg',
+		'sound/items/shaking2.ogg',
+		'sound/items/shaking3.ogg',
+		'sound/items/shaking4.ogg',
+		'sound/items/shaking5.ogg',
+		'sound/items/shaking6.ogg'
+	)
+
+/decl/sound_category/shaker_lid_off
+	sounds = list(
+		'sound/items/shaker_lid_off1.ogg',
+		'sound/items/shaker_lid_off2.ogg'
+	)
+
 /decl/sound_category/quick_arcade // quick punchy arcade sounds
 	sounds = list(
 		'sound/arcade/get_fuel.ogg',
@@ -703,4 +728,19 @@
 		'sound/effects/footstep_skrell4.ogg',
 		'sound/effects/footstep_skrell5.ogg',
 		'sound/effects/footstep_skrell6.ogg'
+	)
+
+/decl/sound_category/hammer_sound
+	sounds = list(
+		'sound/items/tools/hammer1.ogg',
+		'sound/items/tools/hammer2.ogg',
+		'sound/items/tools/hammer3.ogg',
+		'sound/items/tools/hammer4.ogg'
+	)
+
+/decl/sound_category/shovel_sound
+	sounds = list(
+		'sound/items/tools/shovel1.ogg',
+		'sound/items/tools/shovel2.ogg',
+		'sound/items/tools/shovel3.ogg'
 	)
