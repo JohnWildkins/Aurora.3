@@ -323,7 +323,7 @@
 			if(prob(75)) //likely because its a mining tool
 				var/turf/simulated/mineral/M = A
 				if(prob(10))
-					M.GetDrilled(1)
+					M.GetDrilled()
 				else if(!M.emitter_blasts_taken)
 					M.emitter_blasts_taken += 1
 				else if(prob(33))
@@ -350,7 +350,7 @@
 			if(prob(75)) //likely because its a mining tool
 				var/turf/simulated/mineral/M = A
 				if(prob(33))
-					M.GetDrilled(1)
+					M.GetDrilled()
 				else if(!M.emitter_blasts_taken)
 					M.emitter_blasts_taken += 2
 				else if(prob(66))

@@ -41,8 +41,6 @@
 
 	var/rel_grade = pickweight(grade_weight)
 	var/list/decl/relictypes = RC.relics[rel_grade]
-	while(!length(relictypes))
-		relictypes = pick(RC.relics)
 
 	return pick(relictypes)
 

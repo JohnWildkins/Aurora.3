@@ -84,6 +84,8 @@
 	var/digspeed_wielded = 5
 	var/drilling = FALSE
 
+	var/relic_chance = 50
+
 	action_button_name = "Wield pick/drill"
 
 /obj/item/pickaxe/can_swap_hands(mob/user)
@@ -230,6 +232,8 @@
 	icon_state = "sledgehammer"
 	icon = 'icons/obj/weapons.dmi'
 
+	relic_chance = 0
+
 /obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
@@ -256,6 +260,8 @@
 	digspeed_unwielded = 15
 	force_unwielded = 15.0
 	excavation_amount = 100
+
+	relic_chance = 30
 
 	can_wield = FALSE
 	force = 15.0
@@ -290,6 +296,8 @@
 
 	can_wield = FALSE
 	force = 25.0
+
+	relic_chance = 0
 
 	action_button_name = null
 
@@ -355,6 +363,8 @@
 	can_wield = FALSE
 	force = 15.0
 	excavation_amount = 100
+
+	relic_chance = 30
 
 	action_button_name = null
 
@@ -1126,7 +1136,7 @@ var/list/total_extraction_beacons = list()
 	playsound(src,'sound/weapons/resonator_blast.ogg',50,1)
 	if(istype(T, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = T
-		M.GetDrilled(1)
+		M.GetDrilled()
 	for(var/mob/living/L in T)
 		if(creator)
 			add_logs(creator, L, "used a resonator field on", "resonator")
@@ -1464,7 +1474,7 @@ var/list/total_extraction_beacons = list()
 		for(var/atom/A in range(4,location))
 			if(istype(A,/turf/simulated/mineral))
 				var/turf/simulated/mineral/M = A
-				M.GetDrilled(1)
+				M.GetDrilled()
 			else if(istype(A, /turf/simulated/wall) && prob(66))
 				var/turf/simulated/wall/W = A
 				W.ex_act(2)
@@ -1488,4 +1498,4 @@ var/list/total_extraction_beacons = list()
 /obj/item/plastique/seismic/proc/drill(var/turf/drill_loc)
 	for(var/turf/simulated/mineral/M in range(7,drill_loc))
 		if(prob(75))
-			M.GetDrilled(1)
+			M.GetDrilled()

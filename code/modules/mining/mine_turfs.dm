@@ -38,18 +38,11 @@ var/list/mineral_can_smooth_with = list(
 	density = TRUE
 	blocks_air = TRUE
 	temperature = T0C
-	var/mined_turf = /turf/unsimulated/floor/asteroid/ash/rocky
+	var/mined_turf = /turf/unsimulated/floor/asteroid/ash
 	var/ore/mineral
 	var/mined_ore = 0
 	var/last_act = 0
 	var/emitter_blasts_taken = 0 // EMITTER MINING! Muhehe.
-
-	var/datum/geosample/geologic_data
-	var/excavation_level = 0
-	var/list/finds
-	var/archaeo_overlay = ""
-	var/obj/item/last_find
-	var/datum/artifact_find/artifact_find
 
 	var/obj/effect/mineral/my_mineral
 
@@ -60,7 +53,7 @@ var/list/mineral_can_smooth_with = list(
 /turf/simulated/mineral/proc/kinetic_hit(var/damage)
 	rock_health -= damage
 	if(rock_health <= 0)
-		GetDrilled(TRUE)
+		GetDrilled()
 
 // Copypaste parent call for performance.
 /turf/simulated/mineral/Initialize(mapload)
@@ -235,52 +228,25 @@ var/list/mineral_can_smooth_with = list(
 	name = "\improper [mineral.display_name] deposit"
 	new /obj/effect/mineral(src, mineral)
 
-//Not even going to touch this pile of spaghetti //motherfucker - geeves
 /turf/simulated/mineral/attackby(obj/item/W, mob/user)
-	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
-		return
-
-	// if(istype(W, /obj/item/device/core_sampler))
-	// 	var/obj/item/device/core_sampler/C = W
-	// 	C.sample_item(src, user)
-	// 	return
-
-	// if(istype(W, /obj/item/device/depth_scanner))
-	// 	var/obj/item/device/depth_scanner/C = W
-	// 	C.scan_atom(user, src)
-	// 	return
-
-	// if(istype(W, /obj/item/device/measuring_tape))
-	// 	var/obj/item/device/measuring_tape/P = W
-	// 	user.visible_message(SPAN_NOTICE("\The [user] extends \the [P] towards \the [src].") , SPAN_NOTICE("You extend \the [P] towards \the [src]."))
-	// 	if(do_after(user,25))
-	// 		if(!istype(src, /turf/simulated/mineral))
-	// 			return
-	// 		to_chat(user, SPAN_NOTICE("[icon2html(P, user)] \The [src] has been excavated to a depth of [2 * excavation_level]cm."))
-	// 	return
-	// TODO UPDATE XENOARCH
+	if(use_check_and_message(user))
+		return FALSE
 
 	if(istype(W, /obj/item/pickaxe) && W.simulated)	// Pickaxe offhand is not simulated.
-		var/turf/T = user.loc
-		if(!(istype(T, /turf)))
-			return
+		var/turf/T = get_turf(user)
+		if(!istype(T))
+			return TRUE
 		var/obj/item/pickaxe/P = W
-		if(last_act + P.digspeed > world.time)//prevents message spam
-			return
 		if(P.drilling)
-			return
+			return TRUE
 
-		last_act = world.time
-
-		playsound(user, P.drill_sound, 20, TRUE)
 		P.drilling = TRUE
 
 		to_chat(user, SPAN_WARNING("You start [P.drill_verb] \the [src]."))
 
-		if(do_after(user,P.digspeed))
+		if(P.use_tool(src, user, P.digspeed, volume = 20))
 			if(!istype(src, /turf/simulated/mineral))
-				return
+				return TRUE
 
 			P.drilling = FALSE
 
@@ -290,12 +256,10 @@ var/list/mineral_can_smooth_with = list(
 					O = new mineral.ore(src)
 				else
 					O = new /obj/item/ore(src)
-				// if(istype(O))
-				// 	O.geologic_data = get_geodata()
 				addtimer(CALLBACK(O, /atom/movable/.proc/forceMove, user.loc), 1)
 
-			GetDrilled(TRUE)
-			return
+			GetDrilled(P.relic_chance)
+			return TRUE
 
 		else
 			to_chat(user, SPAN_NOTICE("You stop [P.drill_verb] \the [src]."))
@@ -303,21 +267,17 @@ var/list/mineral_can_smooth_with = list(
 		// TODO UPDATE XENOARCH
 
 	if(istype(W, /obj/item/autochisel))
-		if(last_act + 80 > world.time)//prevents message spam
-			return
-		last_act = world.time
-
 		to_chat(user, SPAN_NOTICE("You start chiselling \the [src] into a sculptable block."))
 
-		if(!W.use_tool(src, user, 80, volume = 50))
-			return
+		if(!W.use_tool(src, user, 8 SECONDS, volume = 50))
+			return TRUE
 
 		if(!istype(src, /turf/simulated/mineral))
-			return
+			return TRUE
 
-		to_chat(user, SPAN_NOTICE("You finish chiselling [src] into a sculptable block."))
+		to_chat(user, SPAN_NOTICE("You finish chiselling \the [src] into a sculptable block."))
 		new /obj/structure/sculpting_block(src)
-		GetDrilled(1)
+		GetDrilled()
 
 // /turf/simulated/mineral/proc/get_geodata()
 // 	if(!geologic_data)
@@ -341,11 +301,18 @@ var/list/mineral_can_smooth_with = list(
 	// TODO UPDATE XENOARCH
 	return O
 
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/simulated/mineral/proc/GetDrilled(var/relic_prob = 0)
+	// GetDrilled now takes a probability of getting an intact relic
+	// turf/simulated/mineral/attackby will pass the tool's probability
+	// Otherwise, defaults to destroying the relic 100% of the time
 	if(mineral?.result_amount)
 		//if the turf has already been excavated, some of it's ore has been removed
 		for(var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
+
+	if(relictype)
+		var/decl/relic/R = decls_repository.get_decl(relictype)
+		excavate_find(R, relic_prob)
 
 	//Add some rubble, you did just clear out a big chunk of rock.
 
@@ -365,65 +332,15 @@ var/list/mineral_can_smooth_with = list(
 		visible_message(SPAN_NOTICE("An old dusty crate was buried within!"))
 		new /obj/structure/closet/crate/secure/loot(src)
 
-/turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
-	//with skill and luck, players can cleanly extract finds
-	//otherwise, they come out inside a chunk of rock
-	// var/obj/item/X
-	// if(prob_clean)
-	// 	X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
-	// else
-	// 	var/obj/item/ore/strangerock/SR = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
-	// 	SR.geologic_data = get_geodata()
-	// 	X = SR
+/turf/simulated/mineral/proc/excavate_find(var/decl/relic/R, var/relic_prob)
+	if(!istype(R))
+		return
 
-	// //some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
-	// //yuck //yuck indeed. //yuck ultra
-	// var/display_name = "something"
-	// if(!X)
-	// 	X = last_find
-	// if(X)
-	// 	display_name = X.name
+	if(!relic_prob || !prob(relic_prob))
+		visible_message(SPAN_WARNING("Something crumbles to dust inside the rock!"))
+		return
 
-	// //many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
-	// if(prob(F.prob_delicate))
-	// 	var/obj/effect/suspension_field/S = locate() in src
-	// 	if(!S || S.field_type != get_responsive_reagent(F.find_type))
-	// 		if(X)
-	// 			visible_message(SPAN_DANGER("[pick("[display_name] crumbles away into dust","[display_name] breaks apart")]."))
-	// 			qdel(X)
-
-	// finds.Remove(F)
-	// TODO UPDATE XENOARCH
-
-
-/turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
-
-	//Give a random amount of loot from 1 to 3 or 5, varying on severity.
-	for(var/j in 1 to rand(1, 3 + max(min(severity, 1), 0) * 2))
-		switch(rand(1,7))
-			if(1)
-				var/obj/item/stack/rods/R = new(src)
-				R.amount = rand(5, 25)
-			if(2)
-				var/obj/item/stack/material/plasteel/R = new(src)
-				R.amount = rand(5, 25)
-			if(3)
-				var/obj/item/stack/material/steel/R = new(src)
-				R.amount = rand(5, 25)
-			if(4)
-				var/obj/item/stack/material/plasteel/R = new(src)
-				R.amount = rand(5, 25)
-			if(5)
-				var/quantity = rand(1, 3)
-				for(var/i = 0, i < quantity, i++)
-					new /obj/item/material/shard/shrapnel(src)
-			if(6)
-				var/quantity = rand(1, 3)
-				for(var/i = 0, i < quantity, i++)
-					new /obj/item/material/shard/phoron(src)
-			if(7)
-				var/obj/item/stack/material/uranium/R = new(src)
-				R.amount = rand(5, 25)
+	R.spawn_relic(src)
 
 /turf/simulated/mineral/random
 	name = "mineral deposit"
