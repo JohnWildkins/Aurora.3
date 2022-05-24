@@ -126,7 +126,7 @@
 
 	// sanity check
 	for(var/T in technology_levels)
-		technology_levels[T] = Clamp(technology_levels[T], XENOTECH_NONE, XENOTECH_MASTER)
+		technology_levels[T] = Clamp(technology_levels[T], TL_NONE, TL_MASTER)
 
 /datum/society/proc/get_tech_level(var/tech)
 	return (tech in technology_levels) ? technology_levels[tech] : null

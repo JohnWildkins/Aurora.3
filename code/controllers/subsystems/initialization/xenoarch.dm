@@ -27,11 +27,11 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 			planet_societies[planet] = planet_societies[existing]
 			break
 		var/datum/society/S = planet_societies[existing]
-		if(S.get_tech_level(XENOTECH_TRAVEL) >= XENOTECH_ADV && prob(50))
+		if(S.get_tech_level(XENOTECH_TRAVEL) >= TL_ADV && prob(50))
 			// They had space travel capabilities, so at least some trace of them is expected
 			planet_societies[planet] = planet_societies[existing]
 			break
-		if(S.get_tech_level(XENOTECH_ENV) >= XENOTECH_EXPERT && prob(75))
+		if(S.get_tech_level(XENOTECH_ENV) >= TL_EXPERT && prob(75))
 			// They had the capabilities terraform or otherwise habitate the planet
 			planet_societies[planet] = planet_societies[existing]
 			break

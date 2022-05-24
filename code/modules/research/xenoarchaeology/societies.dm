@@ -10,7 +10,7 @@
 	name = "Military State"
 	primary_stratum = RELIC_MILITARY
 	desc = "This alien civilization valued the might of military arms above all else."
-	req_tech_levels = list(XENOTECH_MIL = XENOTECH_BASIC)
+	req_tech_levels = list(XENOTECH_MIL = TL_BASIC)
 
 /decl/society_background/civ
 	name = "Social Democracy"
@@ -26,7 +26,7 @@
 	name = "Oligarchy"
 	primary_stratum = RELIC_INDUSTRIAL
 	desc = "This alien civilization sought material wealth and economic prosperity, awarding much to very few."
-	req_tech_levels = list(XENOTECH_ELEC = XENOTECH_ADV, XENOTECH_TRAVEL = XENOTECH_BASIC)
+	req_tech_levels = list(XENOTECH_ELEC = TL_ADV, XENOTECH_TRAVEL = TL_BASIC)
 
 /decl/society_background/xen
 	name = "Untamed Wilds"
@@ -46,12 +46,12 @@
 /decl/society_background/mil/ind
 	name = "Military-Industrial Complex"
 	stratum_whitelist = list(RELIC_INDUSTRIAL)
-	desc = "Seemingly a capable military power in its own right, this civilization seemed to use its penchant for high-quality arms as its primary source of revenue."
-	req_tech_levels = list(XENOTECH_MIL = XENOTECH_BASIC, XENOTECH_ELEC = XENOTECH_ADV)
+	desc = "A capable military power in its own right, this civilization seemed to use its penchant for high-quality arms as its primary source of revenue."
+	req_tech_levels = list(XENOTECH_MIL = TL_BASIC, XENOTECH_ELEC = TL_ADV)
 
 /decl/society_background/mil/xen
 	name = "Tamed Wilds"
 	stratum_whitelist = list(RELIC_XENOLIFE)
 	desc = "Throughout the remains of this civilization lies the evidence of a great culling, as though these aliens rose from nothing to tame the wilderness around them... \
 	only to find themselves reclaimed by nature when they inevitably fell."
-	req_tech_levels = list(XENOTECH_MIL = XENOTECH_ADV, XENOTECH_ENV = XENOTECH_BASIC)
+	req_tech_levels = list(XENOTECH_MIL = TL_ADV, XENOTECH_ENV = TL_BASIC)

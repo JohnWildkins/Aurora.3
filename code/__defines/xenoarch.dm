@@ -55,12 +55,12 @@
 	bring the refinement of interplanetary and interstellar travel respectively,
 	and the anomalous tier... is for everything that's difficult to explain.
 */
-#define XENOTECH_NONE	0
-#define XENOTECH_BASIC	1
-#define XENOTECH_ADV	2
-#define XENOTECH_EXPERT	3
-#define XENOTECH_MASTER	4
-#define XENOTECH_ANOM	5
+#define TL_NONE	0
+#define TL_BASIC	1
+#define TL_ADV	2
+#define TL_EXPERT	3
+#define TL_MASTER	4
+#define TL_ANOM	5
 
 #define XENOTECH_ENV	"environmental"
 #define XENOTECH_TRAVEL	"transportation"
