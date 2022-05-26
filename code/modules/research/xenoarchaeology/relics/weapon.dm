@@ -3,4 +3,3 @@
     desc = "This is an example of a weapon relic."
     item_path = /obj/random/loot
     grade = RELIC_UNCOMMON
-    strata = RELIC_MILITARY

@@ -3,7 +3,6 @@
     desc = "This is an example of a curio."
     item_path = /obj/random/loot
     grade = RELIC_MUNDANE
-    strata = RELIC_CIVILIAN
 
 /decl/relic/curio/coin
     name = "ancient coin"
