@@ -29,10 +29,10 @@
 		return
 
 	var/rel_grade = pickweight(grade_weight)
-	if(!ispath(rel_grade))
+	if(!rel_grade)
 		return
 
-	var/list/decl/avail_relics
+	var/list/decl/avail_relics = list()
 	if(length(relic_whitelist))
 		for(var/RT in relic_whitelist)
 			var/decl/relic/R = decls_repository.get_decl(RT)
@@ -52,18 +52,13 @@
 
 /decl/digsite/debug
 	name = "Debug Zone"
+	digsite_type = DIGSITE_BURIED
+	density = 50
 	min_size = list("x" = 10, "y" = 10)
 	max_size = list("x" = 20, "y" = 20)
+	spawn_weight = 100
 	type_weight = list(
-		RELIC_TRAP = 10,
-		RELIC_CURIO = 10,
-		RELIC_MEDICAL = 10,
-		RELIC_TOOL = 10,
-		RELIC_POWER = 10,
-		RELIC_WEAPON = 10,
-		RELIC_DEVICE = 10,
-		RELIC_VEHICLE = 10,
-		RELIC_REMAINS = 10
+		RELIC_CURIO = 100
 	)
 
 /decl/digsite/forest

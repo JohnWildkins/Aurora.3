@@ -1,9 +1,9 @@
 // Relic Grades
-#define RELIC_MUNDANE 		0
-#define RELIC_UNCOMMON		1
-#define RELIC_RARE			2
-#define RELIC_ANTAG			3
-#define RELIC_SPECIAL		4
+#define RELIC_MUNDANE 		"mu"
+#define RELIC_UNCOMMON		"un"
+#define RELIC_RARE			"ra"
+#define RELIC_ANTAG			"an"
+#define RELIC_SPECIAL		"sp"
 
 // Relic Type
 #define RELIC_TRAP      /decl/relic/trap 		// Trap 'relics' -- should only be included on more dangerous digsites
@@ -33,7 +33,7 @@
 #define ALWAYS_ACTIVE       (1<<8)
 
 // Digsite Defines
-#define DIGSITE_OPEN		0	// Primarily involves cleaning already-surfaced relics; low-tier
-#define DIGSITE_BURIED		1	// Requires digging through rock; low - mid tier
-#define DIGSITE_RUIN		2	// Uses a pre-built ruin as a digsite; mid - high tier
-#define DIGSITE_AWAY		3	// Uses a pre-built away site as a digsite; high tier
+#define DIGSITE_OPEN		"op"	// Primarily involves cleaning already-surfaced relics; low-tier
+#define DIGSITE_BURIED		"bu"	// Requires digging through rock; low - mid tier
+#define DIGSITE_RUIN		"ru"	// Uses a pre-built ruin as a digsite; mid - high tier
+#define DIGSITE_AWAY		"aw" // Uses a pre-built away site as a digsite; high tier

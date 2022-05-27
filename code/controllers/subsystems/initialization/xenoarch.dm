@@ -23,7 +23,7 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 		log_debug("Invalid exoplanet [planet] attempted to queue SSxenoarch ruin generation pre-check")
 		return
 
-	return !(Clamp(length(digsites_by_tier[DIGSITE_RUIN]), 0, 1))
+	return length(digsites_by_tier[DIGSITE_RUIN]) < 2
 
 /datum/controller/subsystem/xenoarch/proc/generate_ruin(var/obj/effect/overmap/visitable/sector/exoplanet/planet)
 	if(!istype(planet))
@@ -71,9 +71,7 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 	for(var/i in 1 to rand(1, 3))
 		to_generate += pickweight(available_open)
 
-	var/remaining_digs = min(rand(2, 4) - length(to_generate), 1)
-
-	for(var/i in 1 to remaining_digs)
+	for(var/i in 1 to rand(1, 3))
 		to_generate += pickweight(available_mine)
 
 	for(var/decl/digsite/D in to_generate)
@@ -87,6 +85,8 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 		if (width > max_x - width || height > max_y - height)
 			log_debug("Digsite [D] failed to be placed: available area too small")
 			continue
+
+		digsites_by_tier[D.digsite_type] += D
 
 		var/list/turf/digsite_turfs = list()
 
@@ -102,9 +102,9 @@ var/datum/controller/subsystem/xenoarch/SSxenoarch
 					break
 
 			if(valid)
-				log_debug("Digsite \"[D.name]\" placed at ([choice.x], [choice.y], [choice.z])!")
+				log_debug("Digsite \"[D.name]\" placed at ([choice.x], [choice.y], [choice.z]) -> ([choice.x + width-1], [choice.y + height-1], [choice.z])!")
 				for(var/turf/T in digsite_turfs)
-					// TODO UPDATE XENOARCH: make this not demolish ruins (aka set TURF_NORUINS on existing ruins)
+					T.flags |= TURF_NORUINS
 					if(D.digsite_type == DIGSITE_OPEN)
 						if(T.density)
 							T.ChangeTurf(get_base_turf_by_area(T))
