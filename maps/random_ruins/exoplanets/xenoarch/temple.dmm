@@ -1,0 +1,1722 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ai" = (
+/obj/item/stack/material/wood,
+/obj/item/stack/material/wood,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"bd" = (
+/obj/machinery/door/airlock/vault/bolted,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/storage)
+"bC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"cV" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict)
+"eD" = (
+/obj/effect/decal/remains/xeno/burned,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"eH" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"eU" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"eV" = (
+/obj/machinery/power/apc/vault{
+	pixel_y = 24;
+	dir = 1
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"fP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"gq" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"gS" = (
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"iM" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"iR" = (
+/turf/simulated/floor/airless,
+/area/derelict)
+"iT" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"jV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating/asteroid,
+/area/derelict)
+"km" = (
+/obj/structure/barricade,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"lg" = (
+/obj/structure/barricade,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"ls" = (
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"my" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"ne" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"nC" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"nL" = (
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"of" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating/asteroid,
+/area/derelict/hallway)
+"pe" = (
+/turf/unsimulated/floor/asteroid/ash,
+/area/exoplanet/barren/asteroid)
+"pq" = (
+/obj/effect/decal/remains/xeno/burned,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"ps" = (
+/turf/simulated/wall/cult,
+/area/derelict/solar_control)
+"qV" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"ru" = (
+/turf/simulated/wall/cult,
+/area/derelict)
+"rT" = (
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"si" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"sn" = (
+/turf/simulated/floor/lino/grey,
+/area/derelict)
+"sz" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"sT" = (
+/turf/simulated/mineral,
+/area/derelict)
+"ts" = (
+/obj/machinery/door/airlock/vault/bolted,
+/turf/simulated/floor/plating,
+/area/derelict/storage)
+"tG" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"tI" = (
+/obj/effect/decal/remains/xeno/burned,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"tQ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"uB" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"uL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"vf" = (
+/obj/item/stack/rods,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"vs" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"vt" = (
+/turf/simulated/wall/cult,
+/area/derelict/hallway/secondary)
+"wH" = (
+/obj/effect/gibspawner/xeno,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"wT" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"wX" = (
+/obj/effect/gibspawner/xeno,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"xo" = (
+/obj/effect/decal/remains/xeno/burned,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"xR" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"yq" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"yt" = (
+/obj/item/material/twohanded/spear/bone,
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"za" = (
+/obj/effect/decal/remains/xeno/burned,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"zd" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"zk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"AU" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"AY" = (
+/obj/structure/table/stone/marble,
+/turf/simulated/floor/gold,
+/area/derelict/storage)
+"Bg" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"BJ" = (
+/obj/item/material/twohanded/spear/bone,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"Cp" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"Fs" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"FE" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"Gw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"GG" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"Hd" = (
+/obj/effect/gibspawner/xeno,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"Hu" = (
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"HO" = (
+/obj/effect/decal/remains/xeno/burned,
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"Ir" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"IC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"Jt" = (
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"Ki" = (
+/turf/simulated/wall/cult_reinforced,
+/area/derelict/storage)
+"Kx" = (
+/obj/effect/map_effect/airlock/long/square,
+/turf/simulated/wall/cult,
+/area/derelict)
+"KM" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -24
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"Lg" = (
+/obj/structure/barricade,
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"LL" = (
+/obj/machinery/light,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"LM" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"LW" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"Mg" = (
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"MK" = (
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"Nn" = (
+/obj/item/material/twohanded/spear/bone,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"NB" = (
+/obj/effect/gibspawner/xeno,
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"Os" = (
+/obj/effect/decal/remains/xeno/burned,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"OJ" = (
+/obj/effect/decal/remains/xeno/burned,
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"OL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"PG" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"PX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/lino/grey,
+/area/derelict/crew_quarters)
+"Qs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"QR" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"QX" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"Sx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"Sy" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating/asteroid,
+/area/derelict)
+"Sz" = (
+/obj/item/material/twohanded/spear/bone,
+/obj/machinery/light/small/red,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"Tr" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"TV" = (
+/obj/effect/gibspawner/xeno,
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"Ui" = (
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/machinery/power/terminal,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/carpet/rubber,
+/area/derelict/medical/chapel)
+"Uj" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"VL" = (
+/obj/machinery/power/smes,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+"Wd" = (
+/obj/machinery/light,
+/turf/simulated/floor/cult,
+/area/derelict/storage)
+"Wj" = (
+/obj/item/material/twohanded/spear/bone,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"Wn" = (
+/turf/simulated/floor/carpet/art,
+/area/derelict/storage)
+"Wo" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"Wy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"XN" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"XO" = (
+/obj/machinery/light/small/red,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"YT" = (
+/obj/effect/map_effect/wingrille_spawn/reinforced_phoron,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/wall/cult,
+/area/derelict/storage)
+"YZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/derelict/hallway/secondary)
+"ZI" = (
+/obj/structure/railing/mapped,
+/turf/simulated/floor/cult,
+/area/derelict/hallway)
+"ZT" = (
+/turf/simulated/floor/cult,
+/area/derelict/solar_control)
+
+(1,1,1) = {"
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+"}
+(2,1,1) = {"
+pe
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(3,1,1) = {"
+pe
+ru
+rT
+wH
+rT
+gS
+rT
+rT
+rT
+gS
+rT
+rT
+wH
+za
+rT
+gS
+rT
+rT
+za
+rT
+rT
+rT
+gS
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(4,1,1) = {"
+pe
+ru
+za
+rT
+tG
+tG
+rT
+tG
+Wo
+iT
+iT
+iT
+iT
+iT
+iT
+vs
+tI
+iT
+iT
+iT
+tI
+LW
+rT
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(5,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Jt
+Jt
+tQ
+ru
+ru
+ru
+ru
+ru
+sn
+cV
+ru
+ru
+ru
+ru
+vt
+Tr
+vt
+wH
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(6,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Jt
+Jt
+tQ
+ru
+Hu
+PX
+Hu
+Hu
+Hu
+bC
+Hu
+Hu
+PX
+Hu
+vt
+YZ
+vt
+rT
+Sz
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(7,1,1) = {"
+pe
+ru
+MK
+ZI
+Jt
+Jt
+xo
+Jt
+tQ
+ru
+Hu
+Hu
+Hu
+Hu
+Hu
+bC
+Hu
+NB
+Hu
+Hu
+vt
+vf
+vt
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(8,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Jt
+Jt
+tQ
+ru
+Hu
+Hu
+NB
+Hu
+NB
+bC
+Hu
+Hu
+Hu
+Hu
+vt
+YZ
+vt
+Nn
+za
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(9,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+BJ
+Jt
+xo
+AU
+ru
+FE
+GG
+GG
+GG
+GG
+eU
+Hu
+Hu
+NB
+Hu
+vt
+lg
+vt
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(10,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Hd
+Jt
+tQ
+ru
+Hu
+Hu
+Hu
+Hu
+yt
+NB
+Hu
+Hu
+Hu
+Hu
+vt
+YZ
+vt
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(11,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Jt
+Jt
+tQ
+ru
+Hu
+Hu
+Hu
+Hu
+Hu
+Hu
+Hu
+Hu
+Hu
+Hu
+vt
+Wy
+vt
+rT
+XO
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(12,1,1) = {"
+pe
+ru
+rT
+ZI
+xo
+Jt
+Jt
+Jt
+tQ
+ru
+Ki
+Ki
+Ki
+Ki
+Ki
+Ki
+Ki
+Ki
+Ki
+Ki
+vt
+YZ
+vt
+rT
+rT
+rT
+rT
+ru
+ru
+ru
+ru
+pe
+"}
+(13,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+xo
+Jt
+tQ
+ru
+Ki
+Mg
+Mg
+Gw
+Mg
+Mg
+Mg
+Mg
+Mg
+Ki
+LM
+YZ
+vt
+rT
+wH
+za
+rT
+ru
+ru
+ru
+ru
+pe
+"}
+(14,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Hd
+Jt
+Jt
+Ui
+ru
+Ki
+Mg
+QR
+QX
+QX
+QX
+QX
+YT
+Mg
+Ki
+Lg
+YZ
+vt
+za
+rT
+rT
+wH
+ru
+ru
+ru
+ru
+pe
+"}
+(15,1,1) = {"
+pe
+ru
+wH
+ZI
+Jt
+Jt
+Jt
+Hd
+Jt
+ru
+Ki
+Mg
+iM
+Wn
+Wn
+Wn
+Wn
+iM
+Wd
+Ki
+nL
+YZ
+vt
+rT
+rT
+Nn
+rT
+ru
+ru
+ru
+Kx
+pe
+"}
+(16,1,1) = {"
+pe
+ru
+Nn
+ZI
+Jt
+Jt
+Jt
+Jt
+Jt
+ru
+Ki
+Mg
+iM
+Wn
+AY
+AY
+Wn
+iM
+Mg
+ts
+HO
+lg
+vt
+rT
+wH
+rT
+wH
+iR
+iR
+iR
+iR
+pe
+"}
+(17,1,1) = {"
+pe
+ru
+MK
+ZI
+Jt
+Jt
+Jt
+Jt
+LL
+ru
+Ki
+eV
+iM
+Wn
+AY
+AY
+Wn
+iM
+sz
+bd
+km
+XN
+vt
+uB
+wH
+rT
+wH
+iR
+iR
+iR
+iR
+pe
+"}
+(18,1,1) = {"
+pe
+ru
+rT
+ZI
+Jt
+Jt
+Jt
+Jt
+Jt
+ru
+Ki
+xR
+iM
+Wn
+Wn
+Wn
+Wn
+iM
+IC
+Ki
+nL
+pq
+vt
+Bg
+rT
+rT
+rT
+ru
+ru
+ru
+ru
+pe
+"}
+(19,1,1) = {"
+pe
+ru
+OL
+zk
+Jt
+Sx
+Jt
+Jt
+Jt
+ru
+Ki
+xR
+ne
+QX
+PG
+QX
+QX
+Uj
+xR
+Ki
+HO
+lg
+vt
+Os
+rT
+za
+wH
+ru
+ru
+ru
+ru
+pe
+"}
+(20,1,1) = {"
+pe
+ru
+OL
+zk
+Jt
+Jt
+Jt
+Jt
+Jt
+ru
+Ki
+Fs
+wT
+yq
+Ir
+wT
+wT
+wT
+nC
+Ki
+ls
+YZ
+vt
+Bg
+wH
+rT
+rT
+ru
+ru
+ru
+ru
+pe
+"}
+(21,1,1) = {"
+pe
+ru
+OL
+OL
+Jt
+Sx
+fP
+Sx
+Jt
+ru
+Ki
+Ki
+Ki
+Ki
+xR
+qV
+Ki
+Ki
+Ki
+Ki
+vt
+ai
+vt
+Bg
+rT
+rT
+rT
+ru
+ru
+ru
+ru
+pe
+"}
+(22,1,1) = {"
+pe
+ru
+OL
+of
+jV
+Sy
+Sx
+Jt
+Jt
+ru
+ru
+ps
+ps
+KM
+Cp
+ZT
+ZT
+ps
+ru
+ru
+vt
+eD
+vt
+Bg
+XO
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(23,1,1) = {"
+pe
+ru
+sT
+Sy
+jV
+jV
+sT
+ru
+ru
+ru
+ru
+ps
+gq
+uL
+si
+ZT
+ZT
+ZT
+ru
+ru
+vt
+YZ
+vt
+Bg
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(24,1,1) = {"
+pe
+sT
+sT
+sT
+Sy
+Sy
+Sy
+sT
+ru
+ru
+ru
+ps
+VL
+ZT
+OJ
+TV
+ZT
+ZT
+ru
+ru
+vt
+YZ
+vt
+Bg
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(25,1,1) = {"
+pe
+sT
+sT
+sT
+sT
+Sy
+jV
+sT
+sT
+ru
+ru
+ps
+ps
+ZT
+ZT
+ZT
+ZT
+ps
+ru
+ru
+vt
+ai
+vt
+Bg
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(26,1,1) = {"
+pe
+pe
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+vt
+vf
+vt
+Bg
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(27,1,1) = {"
+pe
+pe
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+sT
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+vt
+YZ
+vt
+Bg
+XO
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(28,1,1) = {"
+pe
+sT
+sT
+sT
+sT
+sT
+sT
+Sy
+sT
+sT
+sT
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+vt
+Tr
+vt
+Bg
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(29,1,1) = {"
+pe
+pe
+sT
+sT
+sT
+sT
+sT
+Sy
+of
+of
+Qs
+Qs
+Qs
+wX
+iT
+iT
+iT
+iT
+iT
+iT
+Wj
+eH
+iT
+zd
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(30,1,1) = {"
+pe
+pe
+pe
+sT
+sT
+sT
+sT
+sT
+of
+of
+of
+OL
+my
+rT
+rT
+rT
+rT
+rT
+rT
+my
+wH
+rT
+za
+rT
+rT
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(31,1,1) = {"
+pe
+pe
+pe
+pe
+sT
+sT
+sT
+sT
+sT
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+ru
+pe
+"}
+(32,1,1) = {"
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+pe
+"}
