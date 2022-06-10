@@ -2871,6 +2871,7 @@
 #include "code\modules\research\xenoarchaeology\digsite.dm"
 #include "code\modules\research\xenoarchaeology\finds.dm"
 #include "code\modules\research\xenoarchaeology\tools.dm"
+#include "code\modules\research\xenoarchaeology\xenotrain.dm"
 #include "code\modules\research\xenoarchaeology\relics\clothing.dm"
 #include "code\modules\research\xenoarchaeology\relics\curio.dm"
 #include "code\modules\research\xenoarchaeology\relics\device.dm"
