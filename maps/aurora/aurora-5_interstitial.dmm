@@ -8153,7 +8153,7 @@
 /obj/structure/track{
 	icon_state = "track12"
 	},
-/obj/vehicle/train/cargo/engine/mining{
+/obj/vehicle/train/engine/mining{
 	dir = 2
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -9076,7 +9076,7 @@
 /obj/structure/track{
 	icon_state = "track12"
 	},
-/obj/vehicle/train/cargo/trolley/mining,
+/obj/vehicle/train/trolley/mining,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},

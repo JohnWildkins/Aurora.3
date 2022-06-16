@@ -1695,7 +1695,7 @@
 /turf/simulated/floor/shuttle/dark_blue,
 /area/racers)
 "iwj" = (
-/obj/vehicle/train/cargo/engine/pussywagon,
+/obj/vehicle/train/engine/pussywagon,
 /turf/simulated/floor/tiled/steel,
 /area/racers)
 "iwl" = (
@@ -2251,7 +2251,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/racers)
 "kOW" = (
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine/cargo,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/tiled/steel/airless,
 /area/racers)
@@ -3391,7 +3391,7 @@
 /turf/simulated/floor/tiled/white,
 /area/racers)
 "qGO" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /turf/simulated/floor/tiled/steel/airless,
 /area/racers)
 "qHu" = (
@@ -3789,7 +3789,7 @@
 /turf/simulated/floor/carpet,
 /area/racers)
 "soI" = (
-/obj/vehicle/train/cargo/trolley/pussywagon,
+/obj/vehicle/train/trolley/pussywagon,
 /turf/simulated/floor/tiled/steel,
 /area/racers)
 "sqL" = (

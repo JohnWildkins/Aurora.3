@@ -19,10 +19,16 @@
     <div v-else>
       There is no cell installed. <vui-tooltip label="?">The cell can be installed by using a screwdriver to open the maintenance panel, then clicking on the engine with a compatible power cell.</vui-tooltip>
     </div>
-    <div v-if="is_towing">
-      This engine is currently towing the {{ tow }}. <vui-button :params="{ unlatch: 1}">Unlatch</vui-button>
+    <div v-if="can_switch">
+      This engine is currently not driving the train. <vui-button :disabled="!can_switch" class="danger" :params="{ take_control: 1 }">Take Control</vui-button>
     </div>
-    <div v-else>
+    <div v-if="tow">
+      This engine is currently towing the {{ tow }}. <vui-button :params="{ untow: 1 }">Unlatch</vui-button>
+    </div>
+    <div v-if="lead">
+      This engine is being towed by the {{ lead }}. <vui-button :params="{ unlead: 1 }">Unlatch</vui-button>
+    </div>
+    <div v-if="!tow && !lead">
       This engine isn't towing anything currently. <vui-tooltip label="?">You can latch vehicles together by dragging from the vehicle you want to be the anchor point, to the trolley you wish to latch.</vui-tooltip>
     </div>
   </div>

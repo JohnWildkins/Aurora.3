@@ -4,7 +4,7 @@
 
 /obj/item/circuitboard/cargo_trolley
 	name = T_BOARD("cargo trolley")
-	build_path = /obj/vehicle/train/cargo/trolley
+	build_path = /obj/vehicle/train/trolley/cargo
 	board_type = BOARD_MACHINE
 	origin_tech = list(TECH_ENGINEERING = 2)
 	req_components = list(

@@ -3,11 +3,11 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/vehicle/train/cargo/trolley/mining,
+/obj/vehicle/train/trolley/mining,
 /turf/template_noop,
 /area/template_noop)
 "F" = (
-/obj/vehicle/train/cargo/engine/mining,
+/obj/vehicle/train/engine/mining,
 /turf/template_noop,
 /area/template_noop)
 

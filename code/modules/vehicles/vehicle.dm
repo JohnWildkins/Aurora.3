@@ -8,32 +8,32 @@
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
-	density = 1
-	anchored = 1
-	animate_movement=1
+	density = TRUE
+	anchored = TRUE
+	animate_movement = FORWARD_STEPS
 	light_range = 3
 
-	buckle_movable = 1
-	buckle_lying = 0
+	buckle_movable = TRUE
+	buckle_lying = FALSE
 
 	var/attack_log = null
-	var/on = 0
+	var/on = FALSE
 	var/health = 0	//do not forget to set health for your vehicle!
 	var/maxhealth = 0
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
-	var/open = 0	//Maint panel
-	var/locked = 1
-	var/stat = 0
-	var/emagged = 0
-	var/powered = 0		//set if vehicle is powered and should use fuel when moving
+	var/open = FALSE	//Maint panel
+	var/locked = TRUE
+	var/stat = FALSE
+	var/emagged = FALSE
+	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
 	var/atom/movable/load		//all vehicles can take a load, since they should all be a least drivable
-	var/load_item_visible = 1	//set if the loaded item should be overlayed on the vehicle sprite
+	var/load_item_visible = TRUE	//set if the loaded item should be overlayed on the vehicle sprite
 	var/load_offset_x = 0		//pixel_x offset for item overlay
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
@@ -50,32 +50,32 @@
 	LAZYADD(can_buckle, /mob/living)
 
 /obj/vehicle/Move()
-	if(world.time > l_move_time + move_delay)
-		var/old_loc = get_turf(src)
-		if(on && powered && cell.charge < charge_use)
-			turn_off()
+	if(world.time <= l_move_time + move_delay)
+		return FALSE
 
-		var/init_anc = anchored
-		anchored = 0
-		if(!..())
-			anchored = init_anc
-			return 0
+	var/old_loc = get_turf(src)
+	if(on && powered && cell.charge < charge_use)
+		turn_off()
 
-		set_dir(get_dir(old_loc, loc))
+	var/init_anc = anchored
+	anchored = FALSE
+	if(!..())
 		anchored = init_anc
+		return FALSE
 
-		if(on && powered)
-			cell.use(charge_use)
+	set_dir(get_dir(old_loc, loc))
+	anchored = init_anc
 
-		//Dummy loads do not have to be moved as they are just an overlay
-		//See load_object() proc in cargo_trains.dm for an example
-		if(load && !istype(load, /datum/vehicle_dummy_load))
-			load.forceMove(loc)
-			load.set_dir(dir)
+	if(on && powered)
+		cell.use(charge_use)
 
-		return 1
-	else
-		return 0
+	//Dummy loads do not have to be moved as they are just an overlay
+	//See load_object() proc in cargo_trains.dm for an example
+	if(load && !istype(load, /datum/vehicle_dummy_load))
+		load.forceMove(loc)
+		load.set_dir(dir)
+
+	return TRUE
 
 /obj/vehicle/proc/create_vehicle_overlay()
 	return

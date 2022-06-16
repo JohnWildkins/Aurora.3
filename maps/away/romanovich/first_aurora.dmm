@@ -3279,11 +3279,11 @@
 /turf/template_noop,
 /area/template_noop)
 "lr" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /turf/simulated/floor/tiled/airless,
 /area/derelict/hallway/southwest)
 "ls" = (
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine/cargo,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/airless,
 /area/derelict/hallway/southwest)
@@ -3412,11 +3412,11 @@
 /turf/simulated/floor/airless,
 /area/derelict/hallway/southwest)
 "lK" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /turf/template_noop,
 /area/template_noop)
 "lL" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /turf/simulated/floor/airless,
 /area/derelict/hallway/southwest)
 "lM" = (

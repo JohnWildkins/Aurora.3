@@ -14,7 +14,7 @@
       <vui-button :disabled="!s.is_on || s.amplitude <= 0" :params="{ amp: -1}" icon="arrow-down" icon-only />
       <vui-button :disabled="!s.is_on || s.frequency <= 0.01" :params="{ frq: -1}" icon="arrow-left" icon-only />
       <vui-button :disabled="!s.is_on || s.frequency >= 0.1" :params="{ frq: 1}" icon="arrow-right" icon-only />
-      <vui-button :disabled="!checkTarget" class={ on: check-target } :params="{ tgt: 1}" icon="play">Lock In</vui-button>
+      <vui-button :disabled="!checkTarget" :class="{ on: check-target }" :params="{ tgt: 1}" icon="play">Lock In</vui-button>
     </div>
   </div>
 </template>

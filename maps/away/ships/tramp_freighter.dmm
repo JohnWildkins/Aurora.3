@@ -1230,7 +1230,7 @@
 /area/shuttle/tramp_freighter)
 "ifO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /turf/simulated/floor,
 /area/shuttle/tramp_freighter)
 "iiZ" = (
@@ -1339,7 +1339,7 @@
 /area/shuttle/freighter_shuttle)
 "kMq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine/cargo,
 /turf/simulated/floor,
 /area/shuttle/tramp_freighter)
 "kSj" = (

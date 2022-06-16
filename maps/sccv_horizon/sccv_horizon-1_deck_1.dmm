@@ -9752,7 +9752,7 @@
 "hLw" = (
 /obj/machinery/light,
 /obj/machinery/light/small,
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine/cargo,
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
@@ -11955,7 +11955,7 @@
 	c_tag = "Operations - Lower Warehouse 4";
 	dir = 1
 	},
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
@@ -18364,7 +18364,7 @@
 /turf/simulated/floor/tiled,
 /area/hangar/operations)
 "pfb" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
@@ -20378,7 +20378,7 @@
 /turf/simulated/floor/tiled,
 /area/operations/loading)
 "qDK" = (
-/obj/vehicle/train/cargo/engine/pussywagon,
+/obj/vehicle/train/engine/pussywagon,
 /turf/simulated/floor/tiled/dark,
 /area/janitor)
 "qDN" = (
@@ -22568,7 +22568,7 @@
 /turf/simulated/floor/airless,
 /area/hangar/operations)
 "suA" = (
-/obj/vehicle/train/cargo/trolley/pussywagon,
+/obj/vehicle/train/trolley/pussywagon,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},

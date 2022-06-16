@@ -1,7 +1,7 @@
 //
 // Custodial Truck a.k.a. Pussy Wagon
 // 
-/obj/vehicle/train/cargo/engine/pussywagon
+/obj/vehicle/train/engine/pussywagon
 	name = "\improper C8000 deluxe custodial truck"
 	desc = "A C8000 deluxe custodial truck. The bread to the custodians' butter."
 	desc_info = "Click-drag yourself onto the truck to climb onto it.<br>\
@@ -9,11 +9,11 @@
 		- ALT-click the truck to remove the key from the ignition.<br>\
 		- Click the truck to open a UI menu.<br>\
 		- Click the resist button or type \"resist\" in the command bar at the bottom of your screen to get off the truck."
-	icon = 'icons/obj/vehicles.dmi'
+
 	icon_state = "janicart_off"
 	light_range = 0 // Turn off the light inherited from the parent.
 	move_delay = 3
-	mob_offset_y = 7
+
 	load_offset_x = -13
 	vueui_template = "pussywagon"
 
@@ -21,18 +21,18 @@
 	var/cart_icon = "janicart"
 	var/ignition = FALSE
 
-/obj/vehicle/train/cargo/engine/pussywagon/setup_engine()
+/obj/vehicle/train/engine/pussywagon/setup_engine()
 	cell = new /obj/item/cell/high(src)
 	key = null
 	update_icon()
 	toggle_ignition()
 
-/obj/vehicle/train/cargo/engine/pussywagon/vueui_data_change(list/data, mob/user, datum/vueui/ui)
+/obj/vehicle/train/engine/pussywagon/vueui_data_change(list/data, mob/user, datum/vueui/ui)
 	data = ..()
 	data["has_proper_trolley"] = FALSE
-	if(istype(tow, /obj/vehicle/train/cargo/trolley/pussywagon))
+	if(istype(tow, /obj/vehicle/train/trolley/pussywagon))
 		data["has_proper_trolley"] = TRUE
-		var/obj/vehicle/train/cargo/trolley/pussywagon/PT = tow
+		var/obj/vehicle/train/trolley/pussywagon/PT = tow
 		data["is_hoovering"] = PT.hoover
 		data["vacuum_capacity"] = PT.vacuum_capacity
 		data["max_vacuum_capacity"] = PT.max_vacuum_capacity
@@ -45,7 +45,7 @@
 			data["max_bucket_capacity"] = B.volume
 	return data
 
-/obj/vehicle/train/cargo/engine/pussywagon/Topic(href, href_list, datum/topic_state/state)
+/obj/vehicle/train/engine/pussywagon/Topic(href, href_list, datum/topic_state/state)
 	. = ..()
 	if(.)
 		return TRUE
@@ -53,13 +53,13 @@
 	if(href_list["toggle_hoover"])
 		toggle_hoover(usr)
 	if(href_list["empty_hoover"])
-		var/obj/vehicle/train/cargo/trolley/pussywagon/PT = tow
+		var/obj/vehicle/train/trolley/pussywagon/PT = tow
 		PT.empty_hoover(usr)
 	if(href_list["toggle_mop"])
 		toggle_mop(usr)
 	SSvueui.check_uis_for_change(src)
 
-/obj/vehicle/train/cargo/engine/pussywagon/attackby(obj/item/W, mob/user)
+/obj/vehicle/train/engine/pussywagon/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/key/janicart))
 		if(!key)
 			user.drop_from_inventory(W, src)
@@ -71,7 +71,7 @@
 		return
 	..()
 
-/obj/vehicle/train/cargo/engine/pussywagon/CtrlClick(mob/user)
+/obj/vehicle/train/engine/pussywagon/CtrlClick(mob/user)
 	if(load && load != user)
 		to_chat(user, SPAN_WARNING("You can't interact with \the [src] while its in use."))
 		return
@@ -91,13 +91,13 @@
 		if("Toggle Vacuuming")
 			toggle_hoover(user)
 
-/obj/vehicle/train/cargo/engine/pussywagon/AltClick(mob/user)
+/obj/vehicle/train/engine/pussywagon/AltClick(mob/user)
 	if(Adjacent(user))
 		remove_key(user)
 	else
 		return ..()
 
-/obj/vehicle/train/cargo/engine/pussywagon/remove_key(mob/user)
+/obj/vehicle/train/engine/pussywagon/remove_key(mob/user)
 	if(!key)
 		to_chat(user, SPAN_NOTICE("There is no key in \the [src]'s ignition."))
 		return
@@ -115,7 +115,7 @@
 	if(ignition)
 		toggle_ignition()
 
-/obj/vehicle/train/cargo/engine/pussywagon/proc/toggle_ignition(mob/user)
+/obj/vehicle/train/engine/pussywagon/proc/toggle_ignition(mob/user)
 	if(!ignition)
 		if(!key)
 			to_chat(user, SPAN_NOTICE("There is no key in \the [src]'s ignition."))
@@ -142,14 +142,14 @@
 		update_icon()
 
 		if(tow)
-			if(istype(tow, /obj/vehicle/train/cargo/trolley/pussywagon))
-				var/obj/vehicle/train/cargo/trolley/pussywagon/PW = tow
+			if(istype(tow, /obj/vehicle/train/trolley/pussywagon))
+				var/obj/vehicle/train/trolley/pussywagon/PW = tow
 				PW.trolley_off()
 
-/obj/vehicle/train/cargo/engine/pussywagon/proc/toggle_mop(mob/user)
+/obj/vehicle/train/engine/pussywagon/proc/toggle_mop(mob/user)
 	if(on && tow)
-		if(istype(tow, /obj/vehicle/train/cargo/trolley/pussywagon))
-			var/obj/vehicle/train/cargo/trolley/pussywagon/PW = tow
+		if(istype(tow, /obj/vehicle/train/trolley/pussywagon))
+			var/obj/vehicle/train/trolley/pussywagon/PW = tow
 			if(!PW.bucket)
 				to_chat(user, SPAN_NOTICE("You must insert a reagent container first."))
 				return
@@ -159,21 +159,23 @@
 				to_chat(user, SPAN_NOTICE("You turn off \the [src]'s rotary mop."))
 			PW.toggle_mop()
 
-/obj/vehicle/train/cargo/engine/pussywagon/proc/toggle_hoover(mob/user)
+/obj/vehicle/train/engine/pussywagon/proc/toggle_hoover(mob/user)
 	if(use_check_and_message(user))
 		return
 
 	if(on && tow)
-		if(istype(tow, /obj/vehicle/train/cargo/trolley/pussywagon))
-			var/obj/vehicle/train/cargo/trolley/pussywagon/PW = tow
+		if(istype(tow, /obj/vehicle/train/trolley/pussywagon))
+			var/obj/vehicle/train/trolley/pussywagon/PW = tow
 			if(!PW.hoover)
 				to_chat(user, SPAN_NOTICE("You turn on \the [src]'s vacuum cleaner."))
 			else
 				to_chat(user, SPAN_NOTICE("You turn off \the [src]'s vacuum cleaner."))
 			PW.toggle_hoover()
 
-/obj/vehicle/train/cargo/engine/pussywagon/update_icon()
+/obj/vehicle/train/engine/pussywagon/update_icon()
 	cut_overlays()
+
+	update_offset(dir)
 
 	if(on)
 		add_overlay(image('icons/obj/vehicles.dmi', "[cart_icon]_on_overlay", MOB_LAYER + 1))
@@ -183,31 +185,26 @@
 		icon_state = "[cart_icon]_off"
 	..()
 
-/obj/vehicle/train/cargo/engine/pussywagon/Move(var/turf/destination)
+/obj/vehicle/train/engine/pussywagon/update_offset(var/dir)
 	switch(dir)
 		if(NORTH)
 			mob_offset_y = 7
 			load_offset_x = 0
-			load.pixel_y = mob_offset_y
-			load.pixel_x = load_offset_x
 		if(SOUTH)
 			mob_offset_y = 7
 			load_offset_x = 0
-			load.pixel_y = mob_offset_y
-			load.pixel_x = load_offset_x
 		if(EAST)
 			mob_offset_y = 7
 			load_offset_x = -13
-			load.pixel_y = mob_offset_y
-			load.pixel_x = load_offset_x
 		if(WEST)
 			mob_offset_y = 7
 			load_offset_x = 13
-			load.pixel_y = mob_offset_y
-			load.pixel_x = load_offset_x
-	..()
 
-/obj/vehicle/train/cargo/trolley/pussywagon
+	if(load)
+		load.pixel_y = mob_offset_y
+		load.pixel_x = load_offset_x
+
+/obj/vehicle/train/trolley/pussywagon
 	name = "\improper C8000 deluxe custodial trolley"
 	desc = "The trolley of the C8000 deluxe custodial truck, equipped with a dual rotary mop and a industrial vacuum cleaner."
 	icon = 'icons/obj/vehicles.dmi'
@@ -221,7 +218,7 @@
 	var/mopping = 0
 	var/hoover = 0
 
-/obj/vehicle/train/cargo/trolley/pussywagon/attackby(obj/item/W, mob/user)
+/obj/vehicle/train/trolley/pussywagon/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_containers))
 		if(!open)
 			to_chat(user, SPAN_WARNING("\The [src]'s maintenance panel isn't open."))
@@ -254,13 +251,13 @@
 		return
 	..()
 
-/obj/vehicle/train/cargo/trolley/pussywagon/proc/empty_hoover(mob/user)
+/obj/vehicle/train/trolley/pussywagon/proc/empty_hoover(mob/user)
 	for(var/obj/item/I in hoovered)
 		I.forceMove(user.loc)
 		hoovered -= I
 	vacuum_capacity = max_vacuum_capacity
 
-/obj/vehicle/train/cargo/trolley/pussywagon/Move(var/turf/destination)
+/obj/vehicle/train/trolley/pussywagon/Move(var/turf/destination)
 	if(lead)
 		var/turf/tile = loc
 		if(mopping && bucket)
@@ -284,13 +281,13 @@
 				playsound(src, 'sound/machines/disposalflush.ogg', 50, TRUE)
 	return ..()
 
-/obj/vehicle/train/cargo/trolley/pussywagon/proc/trolley_off()
+/obj/vehicle/train/trolley/pussywagon/proc/trolley_off()
 	if(mopping)
 		toggle_mop()
 	if(hoover)
 		toggle_hoover()
 
-/obj/vehicle/train/cargo/trolley/pussywagon/proc/toggle_mop()
+/obj/vehicle/train/trolley/pussywagon/proc/toggle_mop()
 	if(!mopping)
 		playsound(src, 'sound/machines/hydraulic_long.ogg', 20, TRUE)
 		mopping = 1
@@ -298,7 +295,7 @@
 		mopping = 0
 	update_icon()
 
-/obj/vehicle/train/cargo/trolley/pussywagon/proc/toggle_hoover()
+/obj/vehicle/train/trolley/pussywagon/proc/toggle_hoover()
 	if(!hoover)
 		playsound(src, 'sound/machines/hydraulic_long.ogg', 20, TRUE)
 		hoover = 1
@@ -306,7 +303,7 @@
 		hoover = 0
 	update_icon()
 
-/obj/vehicle/train/cargo/trolley/pussywagon/update_icon()
+/obj/vehicle/train/trolley/pussywagon/update_icon()
 	cut_overlays()
 
 	if(mopping)

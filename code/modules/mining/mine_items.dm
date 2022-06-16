@@ -589,7 +589,7 @@
 	icon_state = "track[dir_sum]"
 	return
 
-/obj/vehicle/train/cargo/engine/mining
+/obj/vehicle/train/engine/mining
 	name = "mine cart engine"
 	desc = "A ridable electric minecart designed for pulling other mine carts."
 	icon = 'icons/obj/cart.dmi'
@@ -608,7 +608,7 @@
 	light_wedge = LIGHT_WIDE
 	light_color = LIGHT_COLOR_FIRE
 
-/obj/vehicle/train/cargo/engine/mining/Initialize()
+/obj/vehicle/train/engine/mining/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 	key = new /obj/item/key/minecarts(src)
@@ -616,7 +616,7 @@
 	add_overlay(I)
 	turn_off()
 
-/obj/vehicle/train/cargo/engine/mining/attackby(obj/item/W, mob/user)
+/obj/vehicle/train/engine/mining/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/key/minecarts))
 		if(!key)
 			user.drop_from_inventory(W, src)
@@ -624,7 +624,7 @@
 		return
 	..()
 
-/obj/vehicle/train/cargo/engine/mining/Move(var/turf/destination)
+/obj/vehicle/train/engine/mining/Move(var/turf/destination)
 	if((locate(/obj/structure/track) in destination))
 		move_delay = initial(move_delay)
 	else if(!(locate(/obj/structure/track) in loc) && on) // Allow minecarts to off-track move, albeit slowly and only if not on a track already
@@ -639,10 +639,10 @@
 
 	. = ..()
 
-/obj/vehicle/train/cargo/engine/mining/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/engine/mining/update_car(var/train_length, var/active_engines)
 	return
 
-/obj/vehicle/train/cargo/trolley/mining
+/obj/vehicle/train/trolley/mining
 	name = "mine-cart"
 	desc = "A modern day twist to an ancient classic."
 	icon = 'icons/obj/cart.dmi'

@@ -5786,7 +5786,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/secondary/exit)
 "fal" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/quartermaster/loading)
@@ -7697,7 +7697,7 @@
 /turf/unsimulated/floor/asteroid/ash,
 /area/shuttle/research)
 "gKx" = (
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine/cargo,
 /obj/machinery/alarm{
 	pixel_y = 28
 	},
@@ -20518,7 +20518,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/toilet)
 "rCo" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley/cargo,
 /obj/machinery/requests_console{
 	department = "Cargo Bay";
 	departmentType = 2;

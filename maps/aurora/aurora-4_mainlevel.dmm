@@ -27944,14 +27944,14 @@
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aWc" = (
-/obj/vehicle/train/cargo/trolley/pussywagon,
+/obj/vehicle/train/trolley/pussywagon,
 /obj/machinery/alarm{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/janitor)
 "aWd" = (
-/obj/vehicle/train/cargo/engine/pussywagon,
+/obj/vehicle/train/engine/pussywagon,
 /turf/simulated/floor/tiled/dark,
 /area/janitor)
 "aWe" = (
@@ -57167,7 +57167,7 @@
 /turf/simulated/floor/tiled/asteroid/airless,
 /area/outpost/mining_main/eva)
 "cfg" = (
-/obj/vehicle/train/cargo/engine/mining{
+/obj/vehicle/train/engine/mining{
 	dir = 2
 	},
 /obj/structure/track{
@@ -57176,7 +57176,7 @@
 /turf/simulated/floor/tiled/asteroid/airless,
 /area/outpost/mining_main/eva)
 "cfh" = (
-/obj/vehicle/train/cargo/trolley/mining,
+/obj/vehicle/train/trolley/mining,
 /obj/structure/track{
 	icon_state = "track12"
 	},
