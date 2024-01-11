@@ -47,19 +47,19 @@
 			connect_to_network()
 		return
 
-/obj/machinery/power/tesla_coil/tesla_act(var/power, var/melt = FALSE)
-	if(anchored && !melt)
-		being_shocked = 1
+/obj/machinery/power/tesla_coil/zap_act(power, zap_flags, shocked_targets)
+	if(anchored && !panel_open && !(zap_flags & ZAP_OBJ_MELT))
+		ADD_TRAIT(src, TRAIT_SHOCKED, TRAIT_GENERIC)
 		//don't lose arc power when it's not connected to anything
 		//please place tesla coils all around the station to maximize effectiveness
 		var/power_produced = powernet ? power / power_loss : power
 		add_avail(power_produced*input_power_multiplier)
 		flick("coilhit", src)
+		addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_SHOCKED, TRAIT_GENERIC), 1 SECOND)
 		playsound(src.loc, 'sound/magic/LightningShock.ogg', 100, 1, extrarange = 5)
-		tesla_zap(src, 5, power_produced)
-		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
+		return power_produced
 	else
-		..()
+		. = ..()
 
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
@@ -97,8 +97,12 @@
 		update_icon()
 		return
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power, var/melt = FALSE)
-	flick("coil_shock_1", src)
+/obj/machinery/power/grounding_rod/zap_act()
+	if (anchored && !panel_open)
+		flick("coil_shock_1", src)
+		return 0
+	else
+		. = ..()
 
 /obj/item/circuitboard/tesla_coil
 	name = "tesla coil circuitry"

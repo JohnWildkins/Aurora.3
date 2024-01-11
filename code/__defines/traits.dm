@@ -153,3 +153,6 @@
 #define TRAIT_OVERLOADER_OD_INITIAL "overloader_od_initial"
 #define TRAIT_OVERLOADER_OD_MEDIUM "overloader_od_medium"
 #define TRAIT_OVERLOADER_OD_EFFECT "overloader_od_effect"
+
+/// Is this atom being actively shocked? Used to prevent repeated shocks.
+#define TRAIT_SHOCKED "shocked"

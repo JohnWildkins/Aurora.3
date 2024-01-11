@@ -219,9 +219,10 @@
 		ex_act(2.0)
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act()
+/obj/structure/reagent_dispensers/fueltank/zap_act(power, zap_flags)
 	..()
-	ex_act(2.0)
+	if(zap_flags & ZAP_OBJ_DAMAGE)
+		ex_act(2.0)
 
 //Wall Dispensers
 

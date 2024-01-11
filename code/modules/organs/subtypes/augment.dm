@@ -233,10 +233,10 @@
 	if(actual_charges >= max_charges)
 		return FALSE
 	else
-		do_tesla_act()
+		do_zap_act()
 		return TRUE
 
-/obj/item/organ/internal/augment/tesla/proc/do_tesla_act()
+/obj/item/organ/internal/augment/tesla/proc/do_zap_act()
 	if(owner)
 		to_chat(owner, FONT_LARGE(SPAN_DANGER("You feel your [src.name] surge with energy!")))
 		spark(get_turf(owner), 3)

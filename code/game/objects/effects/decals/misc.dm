@@ -1,5 +1,5 @@
-/obj/effect/decal/tesla_act()
-	return
+/obj/effect/decal/zap_act()
+	return 0
 
 /obj/effect/decal/point
 	name = "arrow"

@@ -133,10 +133,11 @@
 	if(H)
 		H.ex_act(severity)
 
-/obj/item/poppet/tesla_act(var/power)
-	var/mob/living/carbon/human/H = target.resolve()
-	if(H)
-		H.electrocute_act(power, src)
+/obj/item/poppet/zap_act(power, zap_flags)
+	if (zap_flags & ZAP_OBJ_DAMAGE)
+		var/mob/living/carbon/human/H = target.resolve()
+		if(H)
+			H.electrocute_act(power, src)
 
 /obj/item/poppet/bullet_act(var/obj/item/projectile/Proj)
 	var/mob/living/carbon/human/H = target.resolve()

@@ -202,7 +202,7 @@
 	blend_mode = BLEND_ADD
 	var/datum/beam/owner
 
-/obj/effect/ebeam/tesla_act()
+/obj/effect/ebeam/zap_act()
 	return
 
 /obj/effect/ebeam/Destroy()

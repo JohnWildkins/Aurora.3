@@ -344,6 +344,14 @@
 /atom/proc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return
 
+/**
+ * Respond to an electric bolt action on our item
+ *
+ * Default behaviour is to return 0
+ */
+/atom/proc/zap_act(power, zap_flags, shocked_targets)
+	return 0
+
 /atom/proc/melt()
 	return
 

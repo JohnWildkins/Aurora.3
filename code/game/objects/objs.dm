@@ -18,8 +18,6 @@
 	var/armor_penetration = 0
 	var/noslice = 0 // To make it not able to slice things.
 
-	var/being_shocked = 0
-
 	var/icon_species_tag = ""//If set, this holds the 3-letter shortname of a species, used for species-specific worn icons
 	var/icon_auto_adapt = 0//If 1, this item will automatically change its species tag to match the wearer's species.
 	//requires that the wearer's species is listed in icon_supported_species_tags
@@ -167,20 +165,19 @@
 /obj/proc/see_emote(mob/M as mob, text, var/emote_type)
 	return
 
-/obj/proc/tesla_act(var/power, var/melt = FALSE)
-	if(melt)
+/obj/zap_act(power, zap_flags, shocked_targets)
+	if(QDELETED(src))
+		return 0
+
+	if(zap_flags & ZAP_OBJ_MELT)
 		visible_message(SPAN_DANGER("\The [src] melts down until ashes are left!"))
 		new /obj/effect/decal/cleanable/ash(loc)
 		qdel(src)
-		return
-	being_shocked = 1
-	var/power_bounced = power / 2
-	tesla_zap(src, 3, power_bounced)
-	addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
+		return 0
 
-/obj/proc/reset_shocked()
-	being_shocked = 0
-
+	ADD_TRAIT(src, TRAIT_SHOCKED, TRAIT_GENERIC)
+	addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_SHOCKED, TRAIT_GENERIC), 1 SECOND)
+	return power / 2
 
 /obj/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return

@@ -25,8 +25,8 @@
 /obj/machinery/abstract/ex_act(severity)
 	return
 
-/obj/machinery/abstract/tesla_act()
-	return
+/obj/machinery/abstract/zap_act()
+	return 0
 
 /obj/machinery/abstract/singularity_act()
 	return

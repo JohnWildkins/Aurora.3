@@ -259,6 +259,9 @@
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
 		take_damage(min(damage, 100))
 
+/obj/machinery/door/zap_act(power, zap_flags)
+	zap_flags &= ~ZAP_OBJ_DAMAGE
+	. = ..()
 
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
 	..()

@@ -18,6 +18,16 @@ var/global/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 // Convenience flag.
 #define ZM_MIMIC_DEFAULTS (ZM_MIMIC_BELOW)
 
+// zap_act
+#define ZAP_MACHINE_EXPLOSIVE (1<<0)
+#define ZAP_ALLOW_DUPLICATES (1<<1)
+#define ZAP_OBJ_DAMAGE (1<<2)
+#define ZAP_OBJ_MELT (1<<3) // we need this until we get atom/obj health
+#define ZAP_MOB_DAMAGE (1<<4)
+#define ZAP_MOB_STUN (1<<5)
+
+#define ZAP_DEFAULT_FLAGS ZAP_MOB_STUN | ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
+
 // For debug purposes, should contain the above defines in ascending order.
 var/list/mimic_defines = list(
 	"ZM_MIMIC_BELOW",

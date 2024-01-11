@@ -214,6 +214,13 @@ Class Procs:
 				return
 	return
 
+/obj/machinery/zap_act(power, zap_flags, shocked_targets)
+	. = ..()
+	if (prob(85) && (zap_flags & ZAP_MACHINE_EXPLOSIVE))
+		explosion(src, 1, 2, 4, 2, adminlog = FALSE)
+	else if (zap_flags & ZAP_OBJ_DAMAGE && prob(40))
+		emp_act(2)
+
 /proc/is_operable(var/obj/machinery/M, var/mob/user)
 	return istype(M) && M.operable()
 
